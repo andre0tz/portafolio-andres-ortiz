@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="es" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Andres Ortiz · Diseño gráfico y creativo digital</title>
+<meta name="description" content="Portafolio de Andres Ortiz: identidad visual, publicidad, contenido para redes y video de producto.">
+<meta name="theme-color" content="#f3efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a1022" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Andres Ortiz · Diseño gráfico y creativo digital">
+<meta property="og:description" content="Identidad visual, publicidad, contenido para redes y video de producto.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  /* Tema antes de pintar, para evitar parpadeo */
+  (function () {
+    var d = document.documentElement, t = null;
+    d.classList.remove('no-js'); d.classList.add('js');
+    try { t = localStorage.getItem('tema'); } catch (e) {}
+    if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'oscuro' : 'claro';
+    d.dataset.theme = t;
+    if (/[?&]pendientes\b/.test(location.search)) d.classList.add('ver-pendientes');
+  })();
+</script>
+<link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- ============ SÍMBOLOS SVG REUTILIZABLES ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-flecha" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></symbol>
+  <symbol id="i-abajo" viewBox="0 0 24 24"><path d="M12 4v15M5 12l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></symbol>
+  <symbol id="i-chispa" viewBox="0 0 24 24"><path d="M12 0c.9 6.7 4.4 10.4 12 12-7.6 1.6-11.1 5.3-12 12-.9-6.7-4.4-10.4-12-12C7.6 10.4 11.1 6.7 12 0Z" fill="currentColor"/></symbol>
+  <symbol id="i-estallido" viewBox="0 0 40 40"><g stroke="currentColor" stroke-width="5" stroke-linecap="round"><path d="M20 3v34M3 20h34M8 8l24 24M32 8 8 32"/></g></symbol>
+  <symbol id="i-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-luna" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></symbol>
+  <symbol id="i-copiar" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-imagen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m4 18 5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
+</svg>
+
+<!-- ============ NAVEGACIÓN ============ -->
+<header class="nav" id="nav">
+  <div class="contenedor nav__in">
+    <a class="marca" href="#inicio" aria-label="Andres Ortiz, ir al inicio">
+      <span class="marca__txt">ANDRES<br>ORTIZ</span>
+      <svg class="marca__icono" aria-hidden="true"><use href="#i-estallido"/></svg>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Principal">
+      <a href="#proyectos" data-seccion="proyectos">Proyectos</a>
+      <a href="#servicios" data-seccion="servicios">Qué hago</a>
+      <a href="#sobre-mi" data-seccion="sobre-mi">Sobre mí</a>
+      <a href="#contacto" data-seccion="contacto">Contacto</a>
+    </nav>
+    <div class="nav__acciones">
+      <button class="tema" id="tema" type="button" aria-label="Cambiar a modo oscuro">
+        <svg class="tema__sol" aria-hidden="true"><use href="#i-sol"/></svg>
+        <svg class="tema__luna" aria-hidden="true"><use href="#i-luna"/></svg>
+      </button>
+      <a class="nav__cta" href="#contacto">Hablemos <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+      <button class="hamburguesa" id="hamburguesa" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- ============ PORTADA ============ -->
+<section class="hero" id="inicio" aria-labelledby="hero-titulo">
+  <div class="contenedor hero__grid">
+    <div class="hero__texto">
+      <p class="hero__firma" data-anim="1"><span class="pincel">Diseñador gráfico</span></p>
+      <h1 class="hero__titulo" id="hero-titulo">
+        <span class="linea"><span>Ideas</span></span>
+        <span class="linea"><span>claras,</span></span>
+        <span class="linea linea--acento"><span>bien</span></span>
+        <span class="linea linea--acento"><span>diseñadas<i class="punto">.</i></span></span>
+      </h1>
+      <svg class="trazo" viewBox="0 0 320 22" aria-hidden="true" preserveAspectRatio="none"><path d="M4 15C70 6 160 4 316 10c-90 0-170 3-250 9" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+    </div>
+
+    <aside class="hero__nota" data-anim="2">
+      <p class="mono">Identidad visual<br>Publicidad<br>Contenido y video<br><span class="hero__ubicacion" data-perfil="ubicacion"></span></p>
+    </aside>
+
+    <div class="hero__visual" data-anim="3">
+      <div class="hero__panel">
+        <span class="hero__letra" aria-hidden="true">A</span>
+        <div class="hero__foto" id="heroFoto">
+          <div class="hueco hueco--foto">
+            <svg aria-hidden="true"><use href="#i-imagen"/></svg>
+            <span>Tu foto va aquí</span>
+            <code>assets/perfil/andres.webp</code>
+          </div>
+        </div>
+      </div>
+      <span class="hero__nombre"><span class="script">Andres Ortiz</span><span class="mono">Diseño · Contenido</span></span>
+      <div class="sello" aria-hidden="true">
+        <svg viewBox="0 0 120 120" class="sello__texto"><defs><path id="circulo" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text><textPath href="#circulo">DISEÑO GRÁFICO · CREATIVO DIGITAL · </textPath></text></svg>
+        <span class="sello__centro">A<i>.</i></span>
+      </div>
+      <div class="estampa" aria-hidden="true"><span>Hecho con</span><b>intención</b><svg><use href="#i-chispa"/></svg></div>
+      <svg class="chispa chispa--1" aria-hidden="true"><use href="#i-chispa"/></svg>
+      <svg class="chispa chispa--2" aria-hidden="true"><use href="#i-chispa"/></svg>
+    </div>
+
+    <div class="hero__pie" data-anim="4">
+      <p class="hero__intro">Soy <strong>Andres Ortiz</strong>. Hago identidades visuales, piezas publicitarias, contenido para redes y videos cortos de producto. Cuando un proyecto lo pide, también programo la herramienta.</p>
+      <div class="botones">
+        <a class="btn btn--solido" href="#proyectos">Ver proyectos <svg aria-hidden="true"><use href="#i-abajo"/></svg></a>
+        <a class="btn btn--linea" href="#contacto">Contactarme <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+      </div>
+      <p class="hero__estado"><span class="pulso" aria-hidden="true"></span> Abierto a oportunidades profesionales</p>
+    </div>
+  </div>
+
+  <div class="cinta" aria-hidden="true">
+    <div class="cinta__pista">
+      <span>Identidad visual</span><svg><use href="#i-estallido"/></svg>
+      <span>Publicidad</span><svg><use href="#i-estallido"/></svg>
+      <span>Redes sociales</span><svg><use href="#i-estallido"/></svg>
+      <span>Video de producto</span><svg><use href="#i-estallido"/></svg>
+      <span>Carteles</span><svg><use href="#i-estallido"/></svg>
+      <span>Identidad visual</span><svg><use href="#i-estallido"/></svg>
+      <span>Publicidad</span><svg><use href="#i-estallido"/></svg>
+      <span>Redes sociales</span><svg><use href="#i-estallido"/></svg>
+      <span>Video de producto</span><svg><use href="#i-estallido"/></svg>
+      <span>Carteles</span><svg><use href="#i-estallido"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROYECTOS ============ -->
+<section class="seccion proyectos" id="proyectos" aria-labelledby="proyectos-titulo">
+  <div class="contenedor">
+    <header class="cabecera" data-reveal>
+      <div>
+        <p class="script kicker">Trabajo seleccionado</p>
+        <h2 class="titulo-seccion" id="proyectos-titulo">Proyectos</h2>
+      </div>
+      <p class="cabecera__texto">Clientes, trabajo profesional, colaboraciones y ejercicios personales. Cada tarjeta dice de cuál se trata. Abre una para ver el caso completo.</p>
+    </header>
+
+    <div class="filtros" id="filtros" role="toolbar" aria-label="Filtrar proyectos" data-reveal></div>
+    <p class="sr-only" id="filtroEstado" aria-live="polite"></p>
+
+    <div class="obras" id="obras">
+      <noscript><p>Activa JavaScript para ver la galería de proyectos.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUÉ HAGO ============ -->
+<section class="banda" id="servicios" aria-labelledby="servicios-titulo">
+  <div class="contenedor banda__grid">
+    <h2 class="banda__vertical" id="servicios-titulo">Qué hago</h2>
+    <article class="servicio" data-reveal>
+      <span class="servicio__num">01</span>
+      <h3>Identidad<br>visual</h3>
+      <p>Logotipo, variaciones, color, tipografía y las aplicaciones donde la marca va a vivir.</p>
+    </article>
+    <article class="servicio" data-reveal>
+      <span class="servicio__num">02</span>
+      <h3>Publicidad<br>y campañas</h3>
+      <p>Piezas para promociones y campañas que funcionan solas y también en conjunto.</p>
+    </article>
+    <article class="servicio" data-reveal>
+      <span class="servicio__num">03</span>
+      <h3>Redes<br>y video</h3>
+      <p>Publicaciones, pauta y videos cortos de producto pensados para el feed.</p>
+    </article>
+    <article class="servicio" data-reveal>
+      <span class="servicio__num">04</span>
+      <h3>Herramientas<br>digitales</h3>
+      <p>Apps sencillas para ordenar el trabajo, como la que uso para métricas y reportes mensuales.</p>
+    </article>
+  </div>
+  <div class="contenedor manifiesto" data-reveal>
+    <p class="manifiesto__frase">Diseño para<br>comunicar, <span>no solo<br>para decorar.</span></p>
+    <svg class="manifiesto__estallido" aria-hidden="true"><use href="#i-estallido"/></svg>
+  </div>
+</section>
+
+<!-- ============ SOBRE MÍ ============ -->
+<section class="seccion sobre" id="sobre-mi" aria-labelledby="sobre-titulo">
+  <div class="contenedor sobre__grid">
+    <div class="sobre__izq" data-reveal>
+      <p class="script kicker">Un poco sobre mí</p>
+      <h2 class="titulo-seccion" id="sobre-titulo">Hola, soy Andres.</h2>
+      <div class="etiquetas">
+        <span>Identidad visual</span><span>Diseño gráfico</span><span>Publicidad digital</span><span>Contenido para redes</span><span>Edición de video</span><span>Dirección visual</span>
+      </div>
+    </div>
+    <div class="sobre__der" data-reveal>
+      <p class="sobre__entrada">Me gusta que una pieza se entienda rápido y que, además, tenga algo propio.</p>
+      <p>Trabajo en identidad visual, diseño publicitario, contenido para redes y video. En mi trabajo diario me encargo de las publicaciones y la pauta de una refaccionaria. Para ese mismo trabajo programé una app que ordena las métricas y arma el reporte de cada mes.</p>
+      <p>Aquí junto proyectos para clientes, trabajo profesional, colaboraciones y ejercicios personales. Cada caso muestra lo que hice y nada más.</p>
+      <div class="herramientas" id="herramientas" hidden>
+        <h3 class="mono">Herramientas</h3>
+        <ul></ul>
+      </div>
+      <p class="nota-pendiente">Pendiente: agrega tus herramientas en <code>PERFIL.herramientas</code> y tu formación si quieres mostrarla.</p>
+      <a class="btn btn--linea btn--cv" id="btnCV" href="#" hidden>Descargar CV <svg aria-hidden="true"><use href="#i-abajo"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="contenedor contacto__grid">
+    <div data-reveal>
+      <p class="script kicker kicker--claro">¿Trabajamos juntos?</p>
+      <h2 class="contacto__titulo" id="contacto-titulo">¿Tienes una idea que necesita tomar forma?</h2>
+      <p class="contacto__texto">Escríbeme si tienes un proyecto creativo o una oportunidad de trabajo. Respondo por correo o por teléfono.</p>
+    </div>
+    <div class="contacto__tarjeta" data-reveal>
+      <a class="contacto__correo" data-perfil-href="mailto" href="mailto:ortizjuanandres787@gmail.com">
+        <span class="mono">Correo</span>
+        <b data-perfil="correo">ortizjuanandres787@gmail.com</b>
+      </a>
+      <button class="copiar" id="copiar" type="button"><svg aria-hidden="true"><use href="#i-copiar"/></svg><span>Copiar correo</span></button>
+      <a class="contacto__tel" data-perfil-href="tel" href="tel:+527711837883"><span class="mono">Teléfono</span><b data-perfil="telefonoVisible">771 183 7883</b></a>
+      <div class="redes" id="redes" hidden></div>
+      <a class="btn btn--sol" data-perfil-href="mailto" href="mailto:ortizjuanandres787@gmail.com">Escríbeme <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <p class="pie__gigante" aria-hidden="true">ANDRES ORTIZ<svg><use href="#i-estallido"/></svg></p>
+    <div class="pie__fila">
+      <span>Diseño gráfico y creativo digital</span>
+      <nav aria-label="Pie de página"><a href="#proyectos">Proyectos</a><a href="#servicios">Qué hago</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav>
+      <span>© <span id="anio">2026</span> Andres Ortiz</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CASO DE PROYECTO ============ -->
+<dialog class="caso" id="caso" aria-labelledby="casoTitulo">
+  <div class="caso__barra">
+    <span class="mono" id="casoContador"></span>
+    <div class="caso__nav">
+      <button type="button" class="caso__btn" id="casoPrev" aria-label="Proyecto anterior"><svg aria-hidden="true" style="transform:rotate(-135deg)"><use href="#i-flecha"/></svg></button>
+      <button type="button" class="caso__btn" id="casoNext" aria-label="Proyecto siguiente"><svg aria-hidden="true" style="transform:rotate(45deg)"><use href="#i-flecha"/></svg></button>
+      <button type="button" class="caso__btn caso__cerrar" id="casoCerrar" aria-label="Cerrar proyecto"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></button>
+    </div>
+  </div>
+  <div class="caso__cuerpo" id="casoCuerpo"></div>
+</dialog>
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script src="assets/js/proyectos.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
