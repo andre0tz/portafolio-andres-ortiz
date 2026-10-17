@@ -7,7 +7,13 @@
   'use strict';
 
   var PERFIL = window.PERFIL || {};
-  var PROYECTOS = window.PROYECTOS || [];
+  var raizDoc = document.documentElement;
+  var verBorradores = /[?&](borrador|pendientes)\b/.test(location.search);
+  if (verBorradores) raizDoc.classList.add('ver-borradores');
+  var TODOS = window.PROYECTOS || [];
+  var PROYECTOS = TODOS.filter(function (p) { return p.publicado !== false || verBorradores; });
+  var EXPERIENCIA = window.EXPERIENCIA || [];
+  var FORMACION = window.FORMACION || [];
   var FILTROS = window.FILTROS || [];
   var RELACIONES = window.RELACIONES || {};
   var raiz = document.documentElement;
@@ -20,6 +26,8 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
+  function titulo(p) { return p.titulo || p.tituloProvisional || 'Proyecto sin nombre'; }
+  function porSlug(slug) { return PROYECTOS.findIndex(function (p) { return p.slug === slug; }); }
   function numero(i) { return String(i + 1).padStart(2, '0'); }
   function vacio(v) { return v == null || v === '' || (Array.isArray(v) && v.length === 0); }
   function guardar(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -78,7 +86,7 @@
         enlaces.forEach(function (a) { a.classList.toggle('activo', a.dataset.seccion === en.target.id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['proyectos', 'servicios', 'sobre-mi', 'contacto'].forEach(function (id) {
+    ['proyectos', 'servicios', 'trayectoria', 'sobre-mi', 'contacto'].forEach(function (id) {
       var s = document.getElementById(id); if (s) ioSeccion.observe(s);
     });
   }
@@ -102,8 +110,41 @@
   if (PERFIL.cv) { var cv = $('#btnCV'); cv.href = PERFIL.cv; cv.setAttribute('download', ''); cv.hidden = false; }
   if (PERFIL.herramientas && PERFIL.herramientas.length) {
     var h = $('#herramientas');
-    $('ul', h).innerHTML = PERFIL.herramientas.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+    $('ul', h).innerHTML = PERFIL.herramientas.map(function (t) {
+      if (typeof t === 'string') t = { nombre: t };
+      return '<li>' + esc(t.nombre) + (t.nivel ? ' <small>' + esc(t.nivel) + '</small>' : '') + '</li>';
+    }).join('');
     h.hidden = false;
+  }
+  if (PERFIL.habilidades && PERFIL.habilidades.length) {
+    var hb = $('#habilidades');
+    $('.habilidades__grupos', hb).innerHTML = PERFIL.habilidades.map(function (g) {
+      return '<div class="habilidades__grupo"><h4>' + esc(g.grupo) + '</h4><ul>' +
+        g.lista.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
+    }).join('');
+    hb.hidden = false;
+  }
+  if (FORMACION.length) {
+    var fo = $('#formacion');
+    $('ul', fo).innerHTML = FORMACION.map(function (f) {
+      return '<li><b>' + esc(f.titulo) + '</b><span>' + esc(f.lugar) + '</span><span class="mono">' + esc(f.periodo) + '</span>' +
+        (f.estado ? '<span class="formacion__estado">' + esc(f.estado) + '</span>' : '') + '</li>';
+    }).join('');
+    fo.hidden = false;
+  }
+
+  /* ---------- Trayectoria ---------- */
+  var tray = $('#listaTrayectoria');
+  if (tray && EXPERIENCIA.length) {
+    tray.innerHTML = EXPERIENCIA.map(function (x, k) {
+      var enlace = x.proyecto && porSlug(x.proyecto) > -1
+        ? '<a class="tray__enlace" href="#caso/' + esc(x.proyecto) + '">Ver proyecto <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>' : '';
+      return '<li class="tray__item' + (k === 0 ? ' tray__item--actual' : '') + '" data-reveal>' +
+        '<div class="tray__fecha"><span class="mono">' + esc(x.periodo) + '</span>' + (x.tipo ? '<span class="tray__tipo">' + esc(x.tipo) + '</span>' : '') + '</div>' +
+        '<div class="tray__puesto"><h3>' + esc(x.empresa) + '</h3><p>' + esc(x.puesto) + '</p>' + enlace + '</div>' +
+        '<ul class="tray__tareas">' + (x.tareas || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
+      '</li>';
+    }).join('');
   }
   var redes = PERFIL.redes || {}, nombresRedes = { instagram: 'Instagram', behance: 'Behance', linkedin: 'LinkedIn' };
   var htmlRedes = Object.keys(redes).filter(function (k) { return redes[k]; }).map(function (k) {
@@ -132,7 +173,7 @@
     { span: 7, filas: 2, clase: 'obra--destacada' },
     { span: 5, filas: 1 }, { span: 5, filas: 1 },
     { span: 4, filas: 1 }, { span: 4, filas: 1 }, { span: 4, filas: 1 },
-    { span: 12, filas: 1, clase: 'obra--ancha' }
+    { span: 4, filas: 1 }, { span: 4, filas: 1 }, { span: 4, filas: 1 }
   ];
 
   function portadaHTML(p, i) {
@@ -141,20 +182,21 @@
   }
 
   function tarjeta(p, i) {
-    var d = DISTRIBUCION[i] || { span: 6, filas: 1 };
+    var d = DISTRIBUCION[i] || { span: 12, filas: 1, clase: 'obra--ancha' };
     var rel = RELACIONES[p.relacion];
     return '<article class="obra t-' + esc(p.tono) + ' ' + (p.portada ? 'obra--foto' : 'obra--tipo') + ' ' + (d.clase || '') +
       '" style="--span:' + d.span + ';--filas:' + d.filas + '" data-cats="' + esc(p.categorias.join(' ')) + '" data-slug="' + esc(p.slug) + '">' +
       portadaHTML(p, i) +
       '<div class="obra__info">' +
         '<span class="obra__num">' + numero(i) + ' /</span>' +
-        '<h3><a class="obra__enlace" href="#caso/' + esc(p.slug) + '">' + esc(p.titulo) + '</a></h3>' +
+        '<h3><a class="obra__enlace" href="#caso/' + esc(p.slug) + '">' + esc(titulo(p)) + '</a></h3>' +
         '<span class="obra__disc">' + esc(p.disciplina) + '</span>' +
         (d.filas > 1 || d.span >= 12 ? '<p class="obra__resumen">' + esc(p.resumen) + '</p>' : '') +
         (rel ? '<span class="obra__rel">' + esc(rel) + '</span>' : '') +
       '</div>' +
       '<span class="obra__flecha" aria-hidden="true"><svg><use href="#i-flecha"/></svg></span>' +
-      (p.portada ? '' : '<span class="obra__chip chip-pendiente">Portada pendiente</span>') +
+      '<span class="obra__chip">' + (p.publicado === false ? '<span class="chip-borrador">Borrador</span>' : '') +
+        (p.portada ? '' : '<span class="chip-pendiente">Portada pendiente</span>') + '</span>' +
     '</article>';
   }
 
@@ -209,6 +251,7 @@
 
   function faltantes(p) {
     var f = [];
+    if (!p.titulo) f.push('nombre del proyecto');
     if (!RELACIONES[p.relacion]) f.push('tipo de relación (cliente, profesional, colaboración...)');
     if (!p.contexto) f.push('contexto');
     if (!p.objetivo) f.push('objetivo');
@@ -235,9 +278,11 @@
                  : '<div class="obra__portada"><span class="obra__numero" aria-hidden="true">' + numero(i) + '</span></div>') +
       '<div class="caso__chips">' +
         (rel ? '<span class="chip' + (fuerte ? ' chip--fuerte' : '') + '">' + esc(rel) + '</span>' : '<span class="chip-pendiente">Relación pendiente</span>') +
+        (p.agencia && porSlug(p.agencia) > -1 ? '<button type="button" class="chip chip--enlace" data-ir="' + porSlug(p.agencia) + '">Ver Ink House</button>' : '') +
         p.categorias.map(function (c) { return '<span class="chip">' + esc(nombresCat[c] || c) + '</span>'; }).join('') +
       '</div>' +
-      '<h2 class="caso__titulo" id="casoTitulo">' + esc(p.titulo) + '</h2>' +
+      (p.publicado === false ? '<p class="caso__aviso-borrador mono">Borrador: no se muestra al público</p>' : '') +
+      '<h2 class="caso__titulo" id="casoTitulo">' + esc(titulo(p)) + '</h2>' +
       '<p class="caso__resumen">' + esc(p.resumen) + '</p>' +
     '</header>';
 
@@ -259,6 +304,17 @@
       '</section>';
     });
 
+    var rel2 = (p.relacionados || []).map(porSlug).filter(function (k) { return k > -1; });
+    if (rel2.length) {
+      html += '<section class="caso__seccion"><div class="bloque__cab"><h3 class="bloque__titulo">Clientes que atendí aquí</h3>' +
+        '<p class="bloque__nota">Cada uno tiene su propio caso.</p></div><div class="relacionados">' +
+        rel2.map(function (k) {
+          var r = PROYECTOS[k];
+          return '<button type="button" class="relacionado t-' + esc(r.tono) + '" data-ir="' + k + '"><span class="mono">' + esc(r.disciplina) + '</span><strong>' + esc(titulo(r)) +
+            '</strong><svg aria-hidden="true"><use href="#i-flecha"/></svg></button>';
+        }).join('') + '</div></section>';
+    }
+
     if (!vacio(p.proceso)) {
       html += '<section class="caso__seccion"><div class="bloque__cab"><h3 class="bloque__titulo">Proceso</h3></div>' +
         '<div class="galeria c3">' + p.proceso.map(function (x) { return piezaHTML(x, p.slug); }).join('') + '</div></section>';
@@ -274,7 +330,7 @@
     }
 
     html += '<button type="button" class="caso__sig" data-ir="' + ((i + 1) % PROYECTOS.length) + '">' +
-      '<span><span class="mono">Siguiente proyecto</span><strong>' + esc(sig.titulo) + '</strong></span>' +
+      '<span><span class="mono">Siguiente proyecto</span><strong>' + esc(titulo(sig)) + '</strong></span>' +
       '<svg aria-hidden="true"><use href="#i-flecha"/></svg></button>';
     return html;
   }
@@ -326,7 +382,7 @@
     var a = e.target.closest('.obra__enlace'); if (!a) return;
     e.preventDefault();
     var slug = a.closest('.obra').dataset.slug;
-    abrir(PROYECTOS.findIndex(function (p) { return p.slug === slug; }), a);
+    abrir(porSlug(slug), a);
   });
 
   function desdeHash() {
@@ -365,9 +421,11 @@
     if (!PERFIL.ubicacion) lista.push('Ubicación (PERFIL.ubicacion), opcional');
     if (!PERFIL.cv) lista.push('CV en PDF (PERFIL.cv), opcional');
     if (!Object.keys(redes).some(function (k) { return redes[k]; })) lista.push('Enlaces a redes o Behance (PERFIL.redes)');
-    if (!(PERFIL.herramientas || []).length) lista.push('Herramientas que usas (PERFIL.herramientas)');
+    TODOS.filter(function (p) { return p.publicado === false; }).forEach(function (p) {
+      lista.push('Borrador oculto al público: ' + titulo(p) + ' (cambia publicado a true para mostrarlo)');
+    });
     PROYECTOS.forEach(function (p) {
-      var f = faltantes(p); if (f.length) lista.push('<b>' + esc(p.titulo) + ':</b> ' + esc(f.join(', ')));
+      var f = faltantes(p); if (f.length) lista.push('<b>' + esc(titulo(p)) + ':</b> ' + esc(f.join(', ')));
     });
     var panel = document.createElement('aside');
     panel.className = 'panel-pendientes';

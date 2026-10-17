@@ -14,6 +14,12 @@ python -m http.server 8000
 
 Luego entra a http://localhost:8000
 
+## Borradores
+
+Cada proyecto tiene `publicado: true` o `publicado: false` en `assets/js/proyectos.js`. Los que están en `false` no aparecen para los visitantes. Para verlos, abre el sitio con `?borrador` al final de la dirección, por ejemplo `https://andre0tz.github.io/portafolio-andres-ortiz/?borrador`.
+
+El proyecto conceptual de belleza que sustituye a Casiopea está como borrador. Cuando tenga nombre, escríbelo en `titulo` y cambia `publicado` a `true`.
+
 ## Cómo ver lo que falta
 
 Abre `index.html?pendientes` (con el servidor: http://localhost:8000/?pendientes). Aparece una lista con todo lo que falta y cada caso muestra sus notas en amarillo. Sin `?pendientes` los visitantes no ven esas notas.
@@ -43,7 +49,7 @@ Recomendación de peso: exporta en WebP a 1600 px del lado mayor (portadas) y 12
 ```
 index.html                 página principal
 assets/css/estilos.css     estilos, temas claro y oscuro, responsive
-assets/js/proyectos.js     textos, proyectos y datos de contacto
+assets/js/proyectos.js     perfil, experiencia, formación, herramientas, habilidades y proyectos
 assets/js/main.js          filtros, casos, tema, menú y animaciones
 assets/fonts/              Anton, Manrope, Caveat Brush, JetBrains Mono (OFL)
 assets/proyectos/<slug>/   imágenes y videos de cada proyecto
@@ -58,4 +64,4 @@ Sube la carpeta completa a Netlify (arrastrar y soltar), GitHub Pages o Vercel. 
 
 ## Al publicar cambios
 
-En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261017b` a `20261018a`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
+En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261017d` a `20261018a`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
