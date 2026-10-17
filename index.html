@@ -24,7 +24,7 @@
     if (/[?&]pendientes\b/.test(location.search)) d.classList.add('ver-pendientes');
   })();
 </script>
-<link rel="stylesheet" href="assets/css/estilos.css?v=20261017d">
+<link rel="stylesheet" href="assets/css/estilos.css?v=20261017f">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -276,11 +276,17 @@
     </div>
   </div>
   <div class="caso__cuerpo" id="casoCuerpo"></div>
+  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Pieza ampliada" hidden>
+    <button type="button" class="visor__btn visor__cerrar" id="visorCerrar" aria-label="Cerrar vista ampliada"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></button>
+    <button type="button" class="visor__btn visor__prev" id="visorPrev" aria-label="Pieza anterior"><svg aria-hidden="true" style="transform:rotate(-135deg)"><use href="#i-flecha"/></svg></button>
+    <figure class="visor__marco"><img id="visorImg" alt=""><figcaption class="visor__pie mono" id="visorPie"></figcaption></figure>
+    <button type="button" class="visor__btn visor__next" id="visorNext" aria-label="Pieza siguiente"><svg aria-hidden="true" style="transform:rotate(45deg)"><use href="#i-flecha"/></svg></button>
+  </div>
 </dialog>
 
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
-<script src="assets/js/proyectos.js?v=20261017d"></script>
-<script src="assets/js/main.js?v=20261017d"></script>
+<script src="assets/js/proyectos.js?v=20261017f"></script>
+<script src="assets/js/main.js?v=20261017f"></script>
 </body>
 </html>

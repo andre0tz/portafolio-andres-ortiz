@@ -232,8 +232,8 @@
         return '<figure class="pieza ' + f + '"><video src="' + esc(p.src) + '"' + (p.poster ? ' poster="' + esc(p.poster) + '"' : '') +
           ' controls muted playsinline preload="metadata" aria-label="' + esc(p.alt) + '"></video></figure>';
       }
-      return '<figure class="pieza ' + f + (p.contener ? ' pieza--contener' : '') + '"><img src="' + esc(p.src) + '" alt="' + esc(p.alt) +
-        '" loading="lazy" decoding="async"></figure>';
+      return '<figure class="pieza ' + f + (p.contener ? ' pieza--contener' : '') + '"><button type="button" class="pieza__btn" aria-label="Ampliar: ' + esc(p.alt) + '">' +
+        '<img src="' + esc(p.src) + '" alt="' + esc(p.alt) + '" loading="lazy" decoding="async"></button></figure>';
     }
     return '<figure class="pieza ' + f + '"><div class="hueco' + (esVideo ? ' hueco--video' : '') + '">' +
       '<svg aria-hidden="true"><use href="' + (esVideo ? '#i-play' : '#i-imagen') + '"/></svg>' +
@@ -273,9 +273,8 @@
     var nombresCat = {};
     FILTROS.forEach(function (f) { nombresCat[f.id] = f.nombre; });
 
-    var html = '<header class="caso__cabeza t-' + esc(p.tono) + ' ' + (p.portada ? 'obra--foto' : 'obra--tipo') + '">' +
-      (p.portada ? '<div class="obra__portada"><img src="' + esc(p.portada) + '" alt=""></div>'
-                 : '<div class="obra__portada"><span class="obra__numero" aria-hidden="true">' + numero(i) + '</span></div>') +
+    var html = '<header class="caso__cabeza t-' + esc(p.tono) + ' obra--tipo">' +
+      '<div class="obra__portada"><span class="obra__numero" aria-hidden="true">' + numero(i) + '</span></div>' +
       '<div class="caso__chips">' +
         (rel ? '<span class="chip' + (fuerte ? ' chip--fuerte' : '') + '">' + esc(rel) + '</span>' : '<span class="chip-pendiente">Relación pendiente</span>') +
         (p.agencia && porSlug(p.agencia) > -1 ? '<button type="button" class="chip chip--enlace" data-ir="' + porSlug(p.agencia) + '">Ver Ink House</button>' : '') +
@@ -296,7 +295,8 @@
 
     (p.secciones || []).forEach(function (s, k) {
       var normales = s.piezas.filter(function (x) { return x.formato !== 'ancho'; }).length;
-      var cols = 'c' + Math.max(1, Math.min(normales, 3)) + (normales === 0 ? ' solo-ancho' : '');
+      var historias = s.piezas.every(function (x) { return x.formato === 'historia'; });
+      var cols = (historias && normales >= 4) ? 'c4' : 'c' + Math.max(1, Math.min(normales, 3)) + (normales === 0 ? ' solo-ancho' : '');
       html += '<section class="caso__seccion">' +
         '<div class="bloque__cab"><h3 class="bloque__titulo"><span>' + String(k + 1).padStart(2, '0') + '</span>' + esc(s.titulo) + '</h3>' +
         (s.nota ? '<p class="bloque__nota">' + esc(s.nota) + '</p>' : '') + '</div>' +
@@ -356,6 +356,7 @@
   function cerrar() { if (caso.open) caso.close(); }
 
   caso.addEventListener('close', function () {
+    if (visorAbierto()) { visor.hidden = true; visorImg.removeAttribute('src'); }
     raiz.style.overflow = '';
     cuerpo.innerHTML = '';
     history.replaceState(null, '', '#proyectos');
@@ -364,12 +365,54 @@
     (destino || origen || document.body).focus({ preventScroll: false });
     actual = -1;
   });
+  /* ---------- Visor de piezas ---------- */
+  var visor = $('#visor'), visorImg = $('#visorImg'), visorPie = $('#visorPie'), visorLista = [], visorPos = 0, visorOrigen = null;
+  function visorAbierto() { return !visor.hidden; }
+  function pintarVisor() {
+    var img = $('img', visorLista[visorPos]);
+    visorImg.src = img.currentSrc || img.src;
+    visorImg.alt = img.alt;
+    visorPie.textContent = img.alt + '  ·  ' + (visorPos + 1) + ' de ' + visorLista.length;
+    $('#visorPrev').hidden = $('#visorNext').hidden = visorLista.length < 2;
+  }
+  function abrirVisor(btn) {
+    visorLista = $$('.pieza__btn', btn.closest('.galeria'));
+    visorPos = visorLista.indexOf(btn);
+    visorOrigen = btn;
+    pintarVisor();
+    visor.hidden = false;
+    $('#visorCerrar').focus();
+  }
+  function cerrarVisor() {
+    visor.hidden = true;
+    visorImg.removeAttribute('src');
+    if (visorOrigen) visorOrigen.focus();
+  }
+  function moverVisor(d) { visorPos = (visorPos + d + visorLista.length) % visorLista.length; pintarVisor(); }
+  $('#visorCerrar').addEventListener('click', cerrarVisor);
+  $('#visorPrev').addEventListener('click', function () { moverVisor(-1); });
+  $('#visorNext').addEventListener('click', function () { moverVisor(1); });
+  visor.addEventListener('click', function (e) { if (e.target === visor || e.target === $('.visor__marco', visor)) cerrarVisor(); });
+  caso.addEventListener('cancel', function (e) { if (visorAbierto()) { e.preventDefault(); cerrarVisor(); } });
+
   caso.addEventListener('click', function (e) {
+    if (visorAbierto()) return;
     if (e.target === caso) cerrar();
+    var z = e.target.closest('.pieza__btn');
+    if (z) { abrirVisor(z); return; }
     var ir = e.target.closest('[data-ir]');
     if (ir) mostrar(Number(ir.dataset.ir));
   });
   caso.addEventListener('keydown', function (e) {
+    if (visorAbierto()) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); moverVisor(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); moverVisor(-1); }
+      if (e.key === 'Tab') {
+        var f = $$('button:not([hidden])', visor), i = f.indexOf(document.activeElement);
+        e.preventDefault(); f.at((i + (e.shiftKey ? -1 : 1) + f.length) % f.length).focus();
+      }
+      return;
+    }
     if (/^(INPUT|TEXTAREA|VIDEO)$/.test(e.target.tagName)) return;
     if (e.key === 'ArrowRight') { mostrar(actual + 1); }
     if (e.key === 'ArrowLeft') { mostrar(actual - 1); }

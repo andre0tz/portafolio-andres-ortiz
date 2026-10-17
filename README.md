@@ -64,4 +64,4 @@ Sube la carpeta completa a Netlify (arrastrar y soltar), GitHub Pages o Vercel. 
 
 ## Al publicar cambios
 
-En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261017d` a `20261018a`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
+En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261017f` a `20261018a`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.

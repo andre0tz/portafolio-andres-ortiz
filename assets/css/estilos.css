@@ -525,3 +525,34 @@ code{font-family:var(--f-mono);font-size:.8em}
   .panel{padding:20px}
 }
 .caso__chips{position:relative;z-index:2}
+
+/* 17. VISOR DE PIEZAS Y GALERÍAS AMPLIAS */
+.galeria.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.galeria.c1:not(.solo-ancho){max-width:560px}
+.pieza__btn{display:block;width:100%;height:100%;padding:0;cursor:zoom-in}
+.pieza__btn:focus-visible{outline-offset:-3px}
+.visor{position:fixed;inset:0;z-index:5;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:20px;background:rgba(6,10,24,.94)}
+.visor[hidden]{display:none}
+.visor__marco{margin:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:0}
+.visor__marco img{max-width:100%;max-height:calc(100% - 40px);object-fit:contain;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.visor__pie{color:#cfd8ee;text-align:center;font-size:.68rem}
+.visor__btn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.25);transition:background-color .25s,color .25s}
+.visor__btn:hover{background:var(--sol);color:var(--azul-tinta);border-color:var(--sol)}
+.visor__btn svg{width:20px;height:20px}
+.visor__cerrar{position:absolute;top:16px;right:16px;z-index:1}
+@media (max-width:620px){
+  .galeria.c4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .visor{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;padding:64px 12px 16px}
+  .visor__marco{grid-column:1/-1;grid-row:1}
+  .visor__prev,.visor__next{grid-row:2;justify-self:center}
+  .visor__prev{grid-column:1;margin-right:72px}
+  .visor__next{grid-column:1;margin-left:72px}
+}
+
+/* 18. TARJETAS CON IMAGEN */
+.obra--foto{--t-texto:#fff;--t-acento:var(--sol);background:var(--azul-tinta)}
+.obra--foto .obra__portada::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,16,34,.94) 0%,rgba(10,16,34,.72) 34%,rgba(10,16,34,0) 66%)}
+.obra--foto .obra__portada img{object-position:center 30%}
+.obra--foto .obra__info{position:absolute;left:0;right:0;bottom:0;max-width:none;padding:24px;background:none;border-radius:0}
+.obra--foto .obra__flecha{background:rgba(10,16,34,.55);border-color:rgba(255,255,255,.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.obra--foto .obra__resumen{max-width:52ch}
