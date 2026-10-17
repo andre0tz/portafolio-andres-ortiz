@@ -26,7 +26,7 @@ Todo el contenido está en `assets/js/proyectos.js`.
 2. En `proyectos.js`, busca esa pieza y escribe la ruta en `src`:
 
 ```js
-{ src: "assets/proyectos/moncar/publicidad-1.webp", archivo: "publicidad-1.webp", alt: "Pieza publicitaria de Moncar", formato: "cuadrado" }
+{ src: "assets/proyectos/moncar/publicidad-1.webp", archivo: "publicidad-1.webp", alt: "Pieza publicitaria de Grupo Refaccionario Moncar", formato: "cuadrado" }
 ```
 
 3. Para la portada de una tarjeta, llena `portada` con la ruta de la imagen.

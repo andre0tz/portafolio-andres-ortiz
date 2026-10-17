@@ -93,7 +93,7 @@ window.PROYECTOS = [
   },
   {
     slug: "moncar",
-    titulo: "Moncar",
+    titulo: "Grupo Refaccionario Moncar",
     corto: "MC",
     categorias: ["publicidad", "redes"],
     disciplina: "Publicidad, contenido y video",
@@ -101,7 +101,7 @@ window.PROYECTOS = [
     tono: "tinta",
     portada: "",
     resumen: "Publicidad, videos de producto y campañas para una refaccionaria automotriz. También programé una app para sus reportes mensuales.",
-    contexto: "Moncar es una refaccionaria automotriz. Ahí me encargo de las publicaciones y de la pauta en redes sociales.",
+    contexto: "Grupo Refaccionario Moncar vende refacciones automotrices. Ahí me encargo de las publicaciones y de la pauta en redes sociales.",
     objetivo: "",
     participacion: "Diseño las piezas publicitarias, grabo y edito videos cortos de producto, preparo campañas y publico el contenido. También desarrollé una aplicación para ordenar las métricas y armar el reporte de cada mes.",
     concepto: "",
@@ -112,16 +112,16 @@ window.PROYECTOS = [
     resultados: [],
     secciones: [
       { titulo: "Piezas publicitarias", piezas: [
-        { src: "", archivo: "publicidad-1.webp", alt: "Pieza publicitaria de Moncar", formato: "cuadrado" },
-        { src: "", archivo: "publicidad-2.webp", alt: "Pieza publicitaria de Moncar", formato: "cuadrado" },
-        { src: "", archivo: "publicidad-3.webp", alt: "Pieza publicitaria de Moncar", formato: "cuadrado" } ] },
+        { src: "", archivo: "publicidad-1.webp", alt: "Pieza publicitaria de Grupo Refaccionario Moncar", formato: "cuadrado" },
+        { src: "", archivo: "publicidad-2.webp", alt: "Pieza publicitaria de Grupo Refaccionario Moncar", formato: "cuadrado" },
+        { src: "", archivo: "publicidad-3.webp", alt: "Pieza publicitaria de Grupo Refaccionario Moncar", formato: "cuadrado" } ] },
       { titulo: "Videos de producto", piezas: [
         { tipo: "video", src: "", poster: "", archivo: "video-producto-1.mp4", alt: "Video de producto", formato: "historia" },
         { tipo: "video", src: "", poster: "", archivo: "video-producto-2.mp4", alt: "Video de producto", formato: "historia" },
         { tipo: "video", src: "", poster: "", archivo: "video-producto-3.mp4", alt: "Video de producto", formato: "historia" } ] },
       { titulo: "Campañas", piezas: [
-        { src: "", archivo: "campana-1.webp", alt: "Campaña de Moncar", formato: "horizontal" },
-        { src: "", archivo: "campana-2.webp", alt: "Campaña de Moncar", formato: "horizontal" } ] },
+        { src: "", archivo: "campana-1.webp", alt: "Campaña de Grupo Refaccionario Moncar", formato: "horizontal" },
+        { src: "", archivo: "campana-2.webp", alt: "Campaña de Grupo Refaccionario Moncar", formato: "horizontal" } ] },
       { titulo: "App de métricas y reportes", nota: "Herramienta interna para organizar métricas y reportes mensuales.", piezas: [
         { src: "", archivo: "app-reportes.webp", alt: "Captura de la aplicación de reportes", formato: "ancho" } ] }
     ],
@@ -215,8 +215,8 @@ window.PROYECTOS = [
     proceso: []
   },
   {
-    slug: "sumergela",
-    titulo: "Sumérgela",
+    slug: "ismerely",
+    titulo: "Ismerely",
     corto: "SM",
     categorias: ["publicidad"],
     disciplina: "Diseño promocional",
@@ -224,7 +224,7 @@ window.PROYECTOS = [
     tono: "cielo",
     portada: "",
     resumen: "Material promocional para una persona que vende productos de la marca.",
-    contexto: "Hice estas piezas para apoyar a una persona que vende productos Sumérgela. No fue un encargo de la marca.",
+    contexto: "Hice estas piezas para apoyar a una persona que vende productos Ismerely. No fue un encargo de la marca.",
     objetivo: "",
     participacion: "Diseño de las piezas promocionales.",
     concepto: "",
