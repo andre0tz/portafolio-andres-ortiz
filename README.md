@@ -55,3 +55,7 @@ Cada caso tiene un enlace directo, por ejemplo `index.html#caso/moncar`, útil p
 ## Publicarlo
 
 Sube la carpeta completa a Netlify (arrastrar y soltar), GitHub Pages o Vercel. No necesita compilación.
+
+## Al publicar cambios
+
+En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261017b` a `20261018a`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
