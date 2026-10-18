@@ -555,7 +555,7 @@ window.PROYECTOS = [
     slug: "serie-grafica-cristiana",
     publicado: true,
     titulo: "Serie gráfica cristiana",
-    categorias: ["personal"],
+    categorias: ["personal", "video"],
     disciplina: "Carteles personales",
     relacion: "personal",
     tono: "sol",
@@ -569,6 +569,10 @@ window.PROYECTOS = [
     entregables: ["Carteles"],
     resultados: [],
     secciones: [
+      { titulo: "Video", encabezado: { ante: "Video con tipografía animada", linea1: "Palabras", linea2: "en movimiento" },
+        nota: "Una pieza en video donde los textos aparecen y se mueven sobre las escenas, siguiendo el ritmo del audio. Es parte de los mismos ejercicios personales: aquí la tipografía no solo se lee, también marca el tiempo de cada frase.",
+        piezas: [
+        { tipo: "video", src: "assets/proyectos/serie-grafica-cristiana/video-jesus.mp4", poster: "assets/proyectos/serie-grafica-cristiana/video-jesus-poster.webp", archivo: "video-jesus.mp4", titulo: "Video con tipografía animada", alt: "Video con tipografía animada sobre escenas de Jesús", formato: "ancho" } ] },
       { titulo: "Con mi Espíritu", nota: "Cartel personal.", piezas: [
         { src: "", archivo: "con-mi-espiritu.webp", alt: "Cartel Con mi Espíritu", formato: "vertical" } ] },
       { titulo: "Más carteles de la serie", piezas: [

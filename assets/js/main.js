@@ -218,7 +218,7 @@
     if (p.src) {
       if (esVideo) {
         return '<figure class="pieza ' + f + '"><video src="' + esc(p.src) + '"' + (p.poster ? ' poster="' + esc(p.poster) + '"' : '') +
-          ' controls muted playsinline preload="metadata" aria-label="' + esc(p.alt) + '"></video></figure>';
+          ' controls playsinline preload="none" aria-label="' + esc(p.alt) + '"></video></figure>';
       }
       return '<figure class="pieza ' + f + (p.contener ? ' pieza--contener' : '') + '"><button type="button" class="pieza__btn" data-src="' + esc(p.src) + '" data-alt="' + esc(p.alt) +
         '" data-titulo="' + esc(p.titulo || '') + '" data-desc="' + esc(p.desc || desc || '') + '" data-seccion="' + esc(seccion || '') + '" aria-label="Ampliar: ' + esc(p.titulo || p.alt) + '">' +

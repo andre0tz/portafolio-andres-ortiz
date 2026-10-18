@@ -1023,7 +1023,7 @@ code{font-family:var(--f-mono);font-size:.8em}
 .contacto__tarjeta .btn--wa svg{width:20px;height:20px}
 
 
-/* =====================================================================
+/* ==============================================================
    24. THE OLD BARBER: PALETA, TÍTULOS EN FIRMA, PORTADA EN COLUMNAS,
        CINTA DE SERVICIOS Y VITRINA
    ===================================================================== */
@@ -1154,3 +1154,7 @@ code{font-family:var(--f-mono);font-size:.8em}
   .vitrina__item{gap:14px;padding:16px 4px 18px 2px}
   .vitrina__item[aria-pressed="true"]{padding-left:14px}
 }
+=======
+/* Videos horizontales: proporción 16:9 completa, sin recortes */
+.pieza.f-ancho:has(video){aspect-ratio:16/9;background:#000}
+.pieza video{object-fit:contain;background:#000}
