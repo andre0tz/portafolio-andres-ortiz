@@ -170,9 +170,12 @@ window.FILTROS = [
    cuenta: { nombre, iniciales, color } para los marcos de Instagram.
    formato de pieza: "cuadrado", "vertical", "horizontal", "ancho", "historia"
    tipo de pieza: "imagen" (por defecto) o "video"
-   paleta: "ink" o "blef" (colores del caso en claro y oscuro, en estilos.css).
+   paleta: "ink", "blef" o "barber" (colores del caso en claro y oscuro, en estilos.css).
+   portadaEstilo: "columnas" cambia el collage de la portada del caso por dos columnas
+   de publicaciones en movimiento. tituloFirma: parte final del título en manuscrita.
+   cinta: textos que corren en una franja bajo la portada del caso.
    collage: hasta 4 publicaciones que acompañan a la portada en el caso.
-   acento: color del proyecto si no tiene paleta. estiloTitulos: "contorno" o "marcador".
+   acento: color del proyecto si no tiene paleta. estiloTitulos: "contorno", "marcador" o "firma".
    aclaracion: nota breve bajo el resumen del caso.
    contexto, objetivo y participacion (Mi aportación) aparecen en la portada del caso.
    solucion y decisiones: [{ titulo, texto }] forman la sección "Decisiones de diseño".
@@ -182,6 +185,7 @@ window.FILTROS = [
    el visor usa la nota de su sección o la desc de su carrusel.
    tipo de sección (ver assets/js/presentaciones.js):
      "feed", "escenario" (admite capitulos: [...]), "abanico", "historias",
+     "vitrina" (una publicación al frente y el índice al lado; cada pieza admite etiqueta),
      "carruseles" (usa carruseles: [...]) o nada para una galería normal.
    encabezado de sección: { ante, linea1, linea2 } y unidad ("publicaciones"). */
 window.PROYECTOS = [
@@ -415,11 +419,24 @@ window.PROYECTOS = [
     slug: "the-old-barber",
     publicado: true,
     titulo: "The Old Barber",
+    // Parte del título que se escribe con letra manuscrita en la portada del caso.
+    tituloFirma: "Barber",
     categorias: ["identidad", "redes"],
     disciplina: "Marca y contenido",
     relacion: "conceptual",
     tono: "papel",
-    portada: "",
+    // Negro, amarillo y crema, tomados de las publicaciones (definida en estilos.css).
+    paleta: "barber",
+    estiloTitulos: "firma",
+    portada: "assets/proyectos/the-old-barber/publicacion-6.webp",
+    portadaPos: "center 18%",
+    // Portada del caso: dos columnas de publicaciones en movimiento.
+    portadaEstilo: "columnas",
+    collage: ["assets/proyectos/the-old-barber/publicacion-2.webp", "assets/proyectos/the-old-barber/publicacion-1.webp", "assets/proyectos/the-old-barber/publicacion-5.webp", "assets/proyectos/the-old-barber/publicacion-3.webp"],
+    vistazo: ["assets/proyectos/the-old-barber/publicacion-2.webp", "assets/proyectos/the-old-barber/publicacion-3.webp", "assets/proyectos/the-old-barber/publicacion-1.webp"],
+    cuenta: { nombre: "theoldbarber", iniciales: "OB", color: "#14110c" },
+    // Textos de la cinta que corre bajo la portada del caso.
+    cinta: ["Corte de cabello", "Tratamiento de barba", "Limpieza facial", "Lunes a sábado", "Agenda tu cita"],
     resumen: "Ejercicio de marca y parrilla de contenido para una barbería imaginaria que empieza en redes. No fue un encargo real.",
     contexto: "Es un proyecto conceptual: la barbería no existe. Planteé el caso de un negocio que necesita arrancar su presencia en redes desde cero.",
     objetivo: "Atraer nuevas visitas con mensajes claros y llamativos, apoyados en promociones.",
@@ -429,12 +446,24 @@ window.PROYECTOS = [
     entregables: [],
     resultados: [],
     secciones: [
+      { titulo: "Publicaciones", tipo: "vitrina",
+        encabezado: { ante: "Publicaciones para el feed", linea1: "Cinco motivos", linea2: "para sentarse" },
+        unidad: "publicaciones",
+        nota: "Cada publicación cumple una tarea distinta: presentar un servicio, organizar una dinámica, dar un consejo, lanzar una promoción o recordar que hay que agendar. Todas usan fondo oscuro, amarillo y la mezcla de letra condensada con letra manuscrita, así que se reconocen como de la misma barbería aunque cambie el mensaje.",
+        ayuda: "Elige una publicación de la lista o espera a que cambie sola",
+        piezas: [
+          { src: "assets/proyectos/the-old-barber/publicacion-1.webp", archivo: "publicacion-1.webp", etiqueta: "Agenda", titulo: "Inicia la semana con estilo", alt: "Inicia la semana con estilo", formato: "vertical",
+            desc: "Pensada para publicarse en lunes. Cierra con los datos de contacto en una sola franja y el botón para agendar." },
+          { src: "assets/proyectos/the-old-barber/publicacion-2.webp", archivo: "publicacion-2.webp", etiqueta: "Servicio", titulo: "Es hora de darle tratamiento a tu barba", alt: "Es hora de darle tratamiento a tu barba", formato: "vertical",
+            desc: "Presenta el servicio de barba y reúne en la misma pieza el horario, el teléfono, la dirección y el botón para agendar." },
+          { src: "assets/proyectos/the-old-barber/publicacion-3.webp", archivo: "publicacion-3.webp", etiqueta: "Dinámica", titulo: "Gana un corte de cabello", alt: "Gana un corte de cabello", formato: "vertical",
+            desc: "Invita a participar por un corte gratis. Las bases van en la descripción, así la imagen se queda con un solo mensaje." },
+          { src: "assets/proyectos/the-old-barber/publicacion-5.webp", archivo: "publicacion-5.webp", etiqueta: "Consejo", titulo: "Cómo mantener tu corte de cabello limpio", alt: "Cómo mantener tu corte de cabello limpio", formato: "vertical",
+            desc: "Contenido de cuidado personal. El perfil del cliente ocupa casi toda la pieza y el texto se acomoda en el espacio libre." },
+          { src: "assets/proyectos/the-old-barber/publicacion-6.webp", archivo: "publicacion-6.webp", etiqueta: "Promoción", titulo: "Limpieza facial gratis en tu corte de cabello", alt: "Limpieza facial gratis en tu corte de cabello", formato: "vertical",
+            desc: "La palabra «Gratis» va en manuscrita y amarillo para que sea lo primero que se lea. Abajo queda la vigencia: del 15 al 23 de enero." } ] },
       { titulo: "Logotipo", piezas: [ { src: "", archivo: "logotipo.webp", alt: "Logotipo de The Old Barber", formato: "ancho" } ] },
       { titulo: "Paleta y tipografía", piezas: [ { src: "", archivo: "paleta-tipografia.webp", alt: "Paleta y tipografía de The Old Barber", formato: "horizontal" } ] },
-      { titulo: "Publicaciones", nota: "Promociones, consejos de cuidado y productos con mensajes cortos y llamativos, pensados para conseguir las primeras visitas.", piezas: [
-        { src: "", archivo: "publicacion-1.webp", alt: "Publicación de The Old Barber", formato: "vertical" },
-        { src: "", archivo: "publicacion-2.webp", alt: "Publicación de The Old Barber", formato: "vertical" },
-        { src: "", archivo: "publicacion-3.webp", alt: "Publicación de The Old Barber", formato: "vertical" } ] },
       { titulo: "Aplicaciones", piezas: [
         { src: "", archivo: "aplicacion-1.webp", alt: "Aplicación de marca", formato: "vertical" },
         { src: "", archivo: "aplicacion-2.webp", alt: "Aplicación de marca", formato: "vertical" } ] }

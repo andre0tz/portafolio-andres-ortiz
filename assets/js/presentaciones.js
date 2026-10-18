@@ -408,13 +408,121 @@
     '</div>';
   }
 
+  /* ---------- Portada en columnas que suben y bajan ---------- */
+  /* Dos columnas de publicaciones que se desplazan sin fin en sentidos
+     opuestos, inclinadas, con un poste de barbería girando detrás.
+     Se activa con portadaEstilo: "columnas". */
+  function columnas(p) {
+    var cu = cuentaDe(p), lista = [p.portada].concat(p.collage || []).filter(Boolean);
+    var nombre = p.titulo || '';
+    var piezas = lista.map(function (src, k) {
+      var x = piezaPorSrc(p, src) || { src: src, alt: 'Publicación de ' + nombre };
+      return { x: x, k: k };
+    });
+    var a = piezas.filter(function (_, i) { return i % 2 === 0; }), b = piezas.filter(function (_, i) { return i % 2 === 1; });
+    function col(items, clase) {
+      function copia(oculta) {
+        return '<div class="columnas__copia"' + (oculta ? ' aria-hidden="true" inert' : '') + '>' + items.map(function (it) {
+          return '<div class="columnas__p">' + postIG(it.x, p, cu, '', { desc: it.x.__desc || p.resumen, seccion: it.x.__sec || nombre, k: oculta ? null : it.k }) + '</div>';
+        }).join('') + '</div>';
+      }
+      return '<div class="columnas__col ' + clase + '"><div class="columnas__pista">' + copia(false) + copia(true) + '</div></div>';
+    }
+    return '<div class="columnas" data-grupo>' +
+      '<i class="poste" aria-hidden="true"><i></i></i>' +
+      '<div class="columnas__giro">' + col(a, 'columnas__col--sube') + col(b.length ? b : a, 'columnas__col--baja') + '</div>' +
+    '</div>';
+  }
+
+  /* ---------- Cinta con los servicios de la marca ---------- */
+  var TIJERAS = '<svg class="franja__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.6 7.6 20 18M8.6 16.4 20 6"/></svg>';
+  function cinta(p) {
+    if (!p.cinta || !p.cinta.length) return '';
+    var uno = p.cinta.map(function (t) { return '<span>' + esc(t) + '</span>' + TIJERAS; }).join('');
+    return '<div class="franja" aria-hidden="true"><div class="franja__pista"><div>' + uno + '</div><div>' + uno + '</div></div></div>';
+  }
+
+  /* ---------- Vitrina: una publicación al frente y el índice al lado ---------- */
+  /* Cada pieza puede llevar "etiqueta" (Servicio, Promoción...). La pieza
+     del frente cambia con un corte diagonal, como una navaja. */
+  function vitrina(s, p) {
+    var cu = cuentaDe(p), n = s.piezas.length, sec = (s.encabezado && s.encabezado.ante) || s.titulo;
+    var media = s.piezas.map(function (x, k) {
+      var activa = k === 0 ? ' activa' : '';
+      return x.src
+        ? '<button type="button" class="pieza__btn vitrina__img' + activa + '"' + datos(x, s.nota, sec, k) + ' aria-label="Ampliar: ' + esc(x.titulo || x.alt) + '"' + (k ? ' tabindex="-1" aria-hidden="true"' : '') + '>' + imagen(x) + '</button>'
+        : '<div class="vitrina__img' + activa + '">' + hueco(x, p.slug) + '</div>';
+    }).join('');
+    var lista = s.piezas.map(function (x, k) {
+      return '<li><button type="button" class="vitrina__item" data-ir-vitrina="' + k + '" aria-pressed="' + (k === 0) + '">' +
+        '<span class="vitrina__n">' + dos(k + 1) + '</span>' +
+        '<span class="vitrina__txt">' + (x.etiqueta ? '<span class="vitrina__etq">' + esc(x.etiqueta) + '</span>' : '') +
+          '<b>' + esc(x.titulo || x.alt) + '</b>' + (x.desc ? '<span class="vitrina__desc"><span>' + esc(x.desc) + '</span></span>' : '') + '</span>' +
+        '<i class="vitrina__barra" aria-hidden="true"><i></i></i>' +
+      '</button></li>';
+    }).join('');
+    return '<div class="vitrina" data-vitrina data-grupo>' +
+      '<div class="vitrina__escena">' +
+        '<p class="vitrina__num" aria-hidden="true"><b>01</b><span>/' + dos(n) + '</span></p>' +
+        '<article class="ig vitrina__ig">' + cabeceraIG(cu) +
+          '<div class="ig__media vitrina__media">' + media + '<i class="vitrina__navaja" aria-hidden="true"></i></div>' +
+          accionesIG() +
+        '</article>' +
+      '</div>' +
+      '<ol class="vitrina__lista" aria-label="Publicaciones">' + lista + '</ol>' +
+    '</div>';
+  }
+
+  function iniciarVitrina(el) {
+    var imgs = $$('.vitrina__img', el), items = $$('.vitrina__item', el), num = $('.vitrina__num b', el);
+    var escena = $('.vitrina__escena', el), n = imgs.length, actual = 0;
+    function ir(k, foco) {
+      k = (k + n) % n;
+      if (k === actual) { if (foco) items[k].focus(); return; }
+      imgs.forEach(function (im, i) {
+        im.classList.remove('previa', 'entra');
+        if (i === actual) { im.classList.remove('activa'); im.classList.add('previa'); }
+        if (i === k) { void im.offsetWidth; im.classList.add('activa', 'entra'); }
+        if (im.matches('button')) { im.tabIndex = i === k ? 0 : -1; if (i === k) im.removeAttribute('aria-hidden'); else im.setAttribute('aria-hidden', 'true'); }
+      });
+      items.forEach(function (b, i) { b.setAttribute('aria-pressed', String(i === k)); });
+      el.classList.remove('corta'); void el.offsetWidth; el.classList.add('corta');
+      num.textContent = dos(k + 1);
+      num.classList.remove('cambia'); void num.offsetWidth; num.classList.add('cambia');
+      actual = k;
+      if (foco) items[k].focus();
+    }
+    items.forEach(function (b, i) {
+      b.addEventListener('click', function () { ir(i); });
+      b.addEventListener('keydown', function (e) {
+        var d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+        if (d) { e.preventDefault(); e.stopPropagation(); ir(actual + d, true); }
+      });
+      // La barra del elemento activo marca el tiempo; al llenarse pasa a la siguiente.
+      $('.vitrina__barra i', b).addEventListener('animationend', function () { if (i === actual) ir(actual + 1); });
+    });
+    if (!reducir) {
+      escena.addEventListener('pointermove', function (e) {
+        var r = escena.getBoundingClientRect();
+        escena.style.setProperty('--rx', (((e.clientY - r.top) / r.height - .5) * -8).toFixed(2) + 'deg');
+        escena.style.setProperty('--ry', (((e.clientX - r.left) / r.width - .5) * 10).toFixed(2) + 'deg');
+      });
+      escena.addEventListener('pointerleave', function () { escena.style.setProperty('--rx', '0deg'); escena.style.setProperty('--ry', '0deg'); });
+    } else el.classList.add('quieta');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (en) { el.classList.toggle('fuera', !en[0].isIntersecting); }, { threshold: .3 });
+      io.observe(el); limpiezas.push(function () { io.disconnect(); });
+    }
+  }
+
   /* ---------- Interfaz pública ---------- */
-  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico };
+  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina };
 
   window.Presenta = {
     html: function (s, p) { var f = TIPOS[s.tipo]; return f ? f(s, p) : null; },
     encabezado: encabezado,
-    collage: collage,
+    collage: function (p) { return p.portadaEstilo === 'columnas' ? columnas(p) : collage(p); },
+    cinta: cinta,
     postIG: function (x, p) { return postIG(x, p, cuentaDe(p)); },
     iniciar: function (raiz) {
       $$('[data-feed]', raiz).forEach(function (el) { iniciarFeed(el, raiz); });
@@ -422,6 +530,7 @@
       $$('[data-historias]', raiz).forEach(iniciarHistorias);
       $$('[data-carrusel]', raiz).forEach(iniciarCarrusel);
       $$('[data-fila]', raiz).forEach(iniciarFila);
+      $$('[data-vitrina]', raiz).forEach(iniciarVitrina);
       var aparecen = $$('[data-aparece], .feed .ig', raiz);
       if ('IntersectionObserver' in window && !reducir) {
         var io = new IntersectionObserver(function (en) {

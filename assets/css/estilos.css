@@ -11,6 +11,7 @@
 @font-face{font-family:"Anton";src:url(../fonts/anton-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Manrope";src:url(../fonts/manrope-latin-wght-normal.woff2) format("woff2");font-weight:200 800;font-display:swap}
 @font-face{font-family:"Caveat Brush";src:url(../fonts/caveat-brush-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Great Vibes";src:url(../fonts/great-vibes-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"JetBrains Mono";src:url(../fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 
 /* 2. TOKENS Y TEMAS */
@@ -1020,3 +1021,136 @@ code{font-family:var(--f-mono);font-size:.8em}
 .contacto__tarjeta .btn--wa{background:#25d366;border-color:#25d366;color:#0b2e17}
 .contacto__tarjeta .btn--wa:hover{box-shadow:5px 5px 0 var(--azul-tinta)}
 .contacto__tarjeta .btn--wa svg{width:20px;height:20px}
+
+
+/* =====================================================================
+   24. THE OLD BARBER: PALETA, TÍTULOS EN FIRMA, PORTADA EN COLUMNAS,
+       CINTA DE SERVICIOS Y VITRINA
+   ===================================================================== */
+/* Paleta: negro, amarillo de la marca y crema */
+.paleta-barber{
+  --amarillo:#f9d104;--carbon:#0d0c0a;
+  --fondo:#f5f1e8;--fondo-2:#ece5d5;--superficie:#fffdf7;
+  --texto:#15120c;--texto-suave:#5c5546;--linea:rgba(21,18,12,.14);
+  --proy:#8a6a00;--proy-2:#f9d104;--proy-3:#15120c;--acento:#8a6a00;
+}
+[data-theme="oscuro"] .paleta-barber{
+  --fondo:#0d0c0a;--fondo-2:#15130f;--superficie:#1c1914;
+  --texto:#f6f1e4;--texto-suave:#b4ab98;--linea:rgba(255,255,255,.12);
+  --proy:#f9d104;--proy-2:#f9d104;--proy-3:#f6f1e4;--acento:#f9d104;
+}
+.caso__lienzo.paleta-barber{overflow-x:clip}
+/* La portada del caso siempre es oscura, como las publicaciones */
+.paleta-barber .caso__cabeza.paleta-hero{
+  --texto:#f6f1e4;--texto-suave:#b4ab98;--linea:rgba(255,255,255,.14);--proy:#f9d104;--proy-2:#f9d104;
+  background:radial-gradient(circle at 78% 30%,rgba(249,209,4,.16),transparent 42%),radial-gradient(circle at 10% 110%,rgba(249,209,4,.08),transparent 40%),#0d0c0a;
+  overflow:hidden}
+.paleta-barber .paleta-hero .chip--fuerte{background:var(--amarillo);border-color:var(--amarillo);color:#15120c}
+.paleta-barber .caso__fichas .ficha:last-child dt{color:var(--amarillo)}
+.caso__firma{display:block;font-family:"Great Vibes",var(--f-script);text-transform:none;font-weight:400;color:var(--amarillo,var(--proy));font-size:1.18em;line-height:.8;margin:-.02em 0 .08em .32em;letter-spacing:0;
+  clip-path:inset(-20% 100% -30% -5%);animation:firma 1.5s cubic-bezier(.6,.05,.3,1) .45s forwards}
+@keyframes firma{to{clip-path:inset(-20% -5% -30% -5%)}}
+
+/* Títulos de sección en firma: la segunda línea se escribe de izquierda a derecha */
+[data-titulos="firma"] .sec-cab__titulo .l2{overflow:visible;padding:0 0 .12em .3em}
+[data-titulos="firma"] .sec-cab__titulo .l2>span{transform:none;font-family:"Great Vibes",var(--f-script);text-transform:none;color:var(--proy);font-size:1.2em;line-height:.9;letter-spacing:0;
+  clip-path:inset(-30% 100% -40% -5%);transition:clip-path 1.6s cubic-bezier(.6,.05,.3,1) .3s}
+[data-titulos="firma"] .sec-cab.visto .l2>span{clip-path:inset(-30% -5% -40% -5%)}
+[data-titulos="firma"] .sec-cab__ante{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;transform:none;display:flex;align-items:center;gap:12px}
+[data-titulos="firma"] .sec-cab__ante::before{content:"";width:34px;height:2px;background:var(--proy-2,var(--proy))}
+
+/* Portada en columnas */
+.columnas{position:relative;height:min(84dvh,760px);margin-block:-40px}
+.columnas__giro{position:absolute;inset:-6% -4%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,26px);transform:rotate(-7deg);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent);mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent)}
+.columnas__col{overflow:hidden}
+.columnas__col--baja{margin-top:-18%}
+.columnas__pista{display:grid;animation:sube 34s linear infinite}
+.columnas__col--baja .columnas__pista{animation-name:baja;animation-duration:40s}
+.columnas:hover .columnas__pista{animation-play-state:paused}
+.columnas__copia{display:grid;gap:clamp(14px,2vw,26px);padding-bottom:clamp(14px,2vw,26px)}
+.columnas__p .ig{box-shadow:0 26px 50px -24px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.06);transition:transform .5s var(--ease)}
+.columnas__p .ig:hover{transform:scale(1.03)}
+@keyframes sube{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes baja{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+/* Poste de barbería que gira detrás de las columnas */
+.poste{position:absolute;left:50%;top:-12%;bottom:-12%;width:clamp(26px,3vw,40px);transform:translateX(-50%) rotate(-7deg);border-radius:999px;overflow:hidden;opacity:.9;
+  box-shadow:0 0 0 3px #0d0c0a,0 0 0 5px rgba(249,209,4,.55),0 0 60px rgba(249,209,4,.25)}
+.poste>i{position:absolute;inset:-60px 0;background:repeating-linear-gradient(-35deg,#f9d104 0 14px,#0d0c0a 14px 28px,#f6f1e4 28px 34px,#0d0c0a 34px 48px);animation:poste 2.4s linear infinite}
+@keyframes poste{to{transform:translateY(58.6px)}}
+
+/* Franja de servicios (reutiliza la animación "cinta" de la portada) */
+.franja{position:relative;z-index:2;overflow:hidden;background:var(--amarillo);color:#15120c;transform:rotate(-1.6deg) scale(1.04);margin:-26px 0 -8px;padding:16px 0;box-shadow:0 18px 40px -20px rgba(0,0,0,.6)}
+.franja__pista{display:flex;width:max-content;animation:cinta 30s linear infinite}
+.franja__pista>div{display:flex;align-items:center;gap:28px;padding-right:28px}
+.franja span{font-family:var(--f-display);text-transform:uppercase;font-size:clamp(1.3rem,2.4vw,2rem);line-height:1;letter-spacing:.02em;white-space:nowrap}
+.franja__ico{width:26px;height:26px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+
+
+/* Vitrina */
+.vitrina{margin-top:clamp(24px,5vw,80px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);align-items:center;max-width:1180px;margin:0 auto}
+.vitrina__escena{position:relative;justify-self:center;width:min(100%,420px);perspective:1200px;--rx:0deg;--ry:0deg}
+.vitrina__ig{position:relative;z-index:1;transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .4s var(--ease);box-shadow:0 50px 90px -40px rgba(0,0,0,.75),0 0 0 1px var(--linea)}
+.vitrina__escena::before{content:"";position:absolute;inset:8% -8% -6% 10%;border-radius:18px;background:repeating-linear-gradient(-45deg,var(--proy-2) 0 10px,transparent 10px 22px);opacity:.55;transform:rotate(4deg)}
+.vitrina__media{isolation:isolate}
+.vitrina__img{position:absolute;inset:0;width:100%;height:100%;opacity:0;z-index:0}
+.vitrina__img img{width:100%;height:100%;object-fit:cover}
+.vitrina__img.activa{opacity:1;z-index:2}
+.vitrina__img.previa{opacity:1;z-index:1}
+.vitrina__img.entra{animation:navaja .9s cubic-bezier(.7,0,.25,1) both}
+.vitrina__img.previa img{animation:retira .9s cubic-bezier(.7,0,.25,1) both}
+@keyframes navaja{from{clip-path:polygon(0 0,0 0,-25% 100%,-25% 100%)}to{clip-path:polygon(0 0,125% 0,100% 100%,-25% 100%)}}
+@keyframes retira{to{transform:scale(1.08);filter:brightness(.55)}}
+.vitrina__navaja{position:absolute;top:-20%;bottom:-20%;left:-15%;z-index:3;width:5px;background:#fff8cc;transform:skewX(-11.3deg);opacity:0;pointer-events:none;
+  box-shadow:0 0 0 2px var(--amarillo),0 0 28px 8px rgba(249,209,4,.75)}
+.vitrina.corta .vitrina__navaja{animation:corte .9s cubic-bezier(.7,0,.25,1)}
+@keyframes corte{0%{left:-15%;opacity:1}92%{opacity:1}100%{left:113%;opacity:0}}
+.vitrina__num{position:absolute;z-index:0;right:calc(100% - 34px);top:-8%;margin:0;font-family:var(--f-display);line-height:.8;color:transparent;-webkit-text-stroke:2px var(--proy);pointer-events:none;display:flex;align-items:flex-start}
+.vitrina__num b{font-weight:400;font-size:clamp(5rem,11vw,9.5rem);display:inline-block}
+.vitrina__num span{font-size:clamp(1.2rem,2vw,1.7rem);margin:.4em 0 0 6px;-webkit-text-stroke:0;color:var(--texto-suave);font-family:var(--f-mono)}
+.vitrina__num b.cambia{animation:numero .7s var(--ease)}
+@keyframes numero{from{opacity:0;transform:translateY(40%)}}
+.vitrina__lista{list-style:none;margin:0;padding:0;display:grid;counter-reset:v;border-top:1.5px solid var(--linea)}
+.vitrina__item{position:relative;width:100%;display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:start;text-align:left;padding:20px 8px 22px 4px;border-bottom:1.5px solid var(--linea);color:var(--texto-suave);transition:color .3s,padding .45s var(--ease),background-color .3s}
+.vitrina__item:hover{color:var(--texto)}
+.vitrina__item:focus-visible{outline:3px solid var(--proy);outline-offset:-3px;border-radius:8px}
+.vitrina__n{font-family:var(--f-mono);font-size:.78rem;padding-top:.5em;transition:color .3s}
+.vitrina__txt{display:grid;gap:6px}
+.vitrina__etq{justify-self:start;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1.5px solid currentColor;transition:background-color .3s,color .3s,border-color .3s}
+.vitrina__item b{font-family:var(--f-display);font-weight:400;text-transform:uppercase;font-size:clamp(1.25rem,2.1vw,1.75rem);line-height:1.02;letter-spacing:.01em}
+.vitrina__desc>span{min-height:0}
+.vitrina__desc{display:grid;grid-template-rows:0fr;font-size:.93rem;line-height:1.55;overflow:hidden;opacity:0;transition:grid-template-rows .55s var(--ease),opacity .4s,margin .4s}
+.vitrina__item[aria-pressed="true"]{color:var(--texto);padding-left:18px}
+.vitrina__item[aria-pressed="true"] .vitrina__n{color:var(--proy)}
+.vitrina__item[aria-pressed="true"] .vitrina__etq{background:var(--proy-2);border-color:var(--proy-2);color:#15120c}
+.vitrina__item[aria-pressed="true"] .vitrina__desc{grid-template-rows:1fr;opacity:1;margin-top:4px;color:var(--texto-suave)}
+.vitrina__item::before{content:"";position:absolute;left:0;top:18px;bottom:20px;width:4px;border-radius:4px;background:var(--proy-2);transform:scaleY(0);transition:transform .45s var(--ease)}
+.vitrina__item[aria-pressed="true"]::before{transform:none}
+.vitrina__barra{position:absolute;left:0;right:0;bottom:-1.5px;height:2px;overflow:hidden}
+.vitrina__barra i{display:block;height:100%;background:var(--proy);transform:scaleX(0);transform-origin:left}
+.vitrina__item[aria-pressed="true"] .vitrina__barra i{animation:progreso 6s linear forwards}
+.vitrina:hover .vitrina__barra i,.vitrina:focus-within .vitrina__barra i,.vitrina.fuera .vitrina__barra i{animation-play-state:paused!important}
+.vitrina.quieta .vitrina__barra i{animation:none!important}
+
+@media (prefers-reduced-motion:reduce){
+  .columnas__pista,.poste>i,.franja__pista,.caso__firma{animation:none}
+  .caso__firma{clip-path:none}
+  [data-titulos="firma"] .sec-cab__titulo .l2>span{clip-path:none;transition:none}
+  .vitrina__img.entra,.vitrina__img.previa img,.vitrina.corta .vitrina__navaja{animation:none}
+}
+@media (max-width:980px){
+  .columnas{height:min(70dvh,560px);margin-block:0}
+  .vitrina{grid-template-columns:minmax(0,1fr)}
+  .vitrina__escena{width:min(84%,380px)}
+  .vitrina__num{right:auto;left:-14%}
+}
+@media (max-width:620px){
+  .columnas{height:440px}
+  .franja{padding:12px 0}
+  .vitrina__escena{width:min(80%,330px)}
+  .vitrina__escena{margin-top:64px}
+  .vitrina__num{left:-4px;top:-68px;right:auto}
+  .vitrina__num b{font-size:4.6rem}
+  .vitrina__item{gap:14px;padding:16px 4px 18px 2px}
+  .vitrina__item[aria-pressed="true"]{padding-left:14px}
+}

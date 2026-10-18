@@ -274,7 +274,9 @@
             p.categorias.map(function (c) { return '<span class="chip">' + esc(nombresCat[c] || c) + '</span>'; }).join('') +
           '</div>' +
           (p.publicado === false ? '<p class="caso__aviso-borrador mono">Borrador: no se muestra al público</p>' : '') +
-          '<h2 class="caso__titulo" id="casoTitulo">' + esc(titulo(p)) + '</h2>' +
+          '<h2 class="caso__titulo" id="casoTitulo">' + (p.tituloFirma && p.titulo && p.titulo.slice(-p.tituloFirma.length) === p.tituloFirma
+            ? esc(p.titulo.slice(0, -p.tituloFirma.length).trim()) + ' <span class="caso__firma">' + esc(p.tituloFirma) + '</span>'
+            : esc(titulo(p))) + '</h2>' +
           '<p class="caso__resumen">' + esc(p.resumen) + '</p>' +
           (fichasHero ? '<dl class="caso__fichas">' + fichasHero + '</dl>' : '') +
           (p.aclaracion ? '<p class="caso__aclaracion">' + esc(p.aclaracion) + '</p>' : '') +
@@ -282,6 +284,8 @@
       '</div>' +
       '<span class="caso__explora" aria-hidden="true">Explora el proyecto <svg><use href="#i-abajo"/></svg></span>' +
     '</header>';
+
+    if (p.cinta && window.Presenta) html += window.Presenta.cinta(p);
 
     var fichas = ficha('Concepto creativo', p.concepto) + ficha('Entregables', p.entregables);
     var falta = faltantes(p);
@@ -423,7 +427,8 @@
   window.abrirVisorLista = abrirVisorLista;
   function abrirVisor(btn) {
     var grupo = btn.closest('[data-grupo]') || btn.parentNode;
-    var botones = $$('[data-src]', grupo).filter(function (b) { return b.dataset.src; });
+    // Las copias decorativas (marcadas con inert) no entran al visor.
+    var botones = $$('[data-src]', grupo).filter(function (b) { return b.dataset.src && !b.closest('[inert]'); });
     if (botones.length && botones.every(function (b) { return b.dataset.k != null; })) {
       botones.sort(function (a, b) { return Number(a.dataset.k) - Number(b.dataset.k); });
     }

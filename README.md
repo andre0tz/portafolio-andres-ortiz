@@ -53,11 +53,12 @@ Cada sección de un proyecto puede usar un `tipo` distinto (ver `assets/js/prese
 3. `escenario`: publicaciones en marcos de Instagram que pasan en un carrusel con profundidad. Admite `capitulos: [{ titulo, nota, piezas }]`.
 4. `historias`: historias dentro de un teléfono que las reproduce, con vista de Instagram o de Facebook.
 5. `carruseles`: carruseles de Instagram que se deslizan. Usa `carruseles: [{ titulo, piezas }]`.
-6. Sin `tipo`: galería normal.
+6. `vitrina`: una publicación al frente que cambia con un corte diagonal y, a un lado, el índice numerado con `etiqueta`, título y descripción de cada pieza. Avanza sola.
+7. Sin `tipo`: galería normal.
 
 Cada sección puede tener `encabezado: { ante, linea1, linea2 }` y `unidad` ("publicaciones", "historias"...).
 
-Cada proyecto puede tener `paleta` ("ink" o "blef", colores del caso en claro y oscuro), `collage` (hasta 4 publicaciones junto a la portada), `cuenta` (nombre, iniciales y `foto` de perfil para los marcos), `acento` (color del proyecto), `estiloTitulos` ("contorno" o "marcador"), `aclaracion`, `vistazo` (hasta 3 imágenes que se asoman en la tarjeta) y `portadaPos` (qué parte de la portada se ve).
+Cada proyecto puede tener `paleta` ("ink", "blef" o "barber", colores del caso en claro y oscuro), `portadaEstilo` ("columnas": publicaciones que suben y bajan en la portada del caso), `tituloFirma` (parte final del título en letra manuscrita), `cinta` (textos de la franja bajo la portada), `collage` (hasta 4 publicaciones junto a la portada), `cuenta` (nombre, iniciales y `foto` de perfil para los marcos), `acento` (color del proyecto), `estiloTitulos` ("contorno", "marcador" o "firma"), `aclaracion`, `vistazo` (hasta 3 imágenes que se asoman en la tarjeta) y `portadaPos` (qué parte de la portada se ve).
 
 ## Estructura
 
@@ -67,7 +68,7 @@ assets/css/estilos.css     estilos, temas claro y oscuro, responsive
 assets/js/proyectos.js     perfil, experiencia, formación, herramientas, habilidades y proyectos
 assets/js/presentaciones.js feed, abanico, escenario, historias, carruseles y collage
 assets/js/main.js          filtros, casos, visor, tema, menú y animaciones
-assets/fonts/              Anton, Manrope, Caveat Brush, JetBrains Mono (OFL)
+assets/fonts/              Anton, Manrope, Caveat Brush, Great Vibes, JetBrains Mono (OFL)
 assets/proyectos/<slug>/   imágenes y videos de cada proyecto
 assets/perfil/             tu foto y CV
 ```
