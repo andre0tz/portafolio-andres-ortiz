@@ -176,6 +176,8 @@ window.FILTROS = [
    aclaracion: nota breve bajo el resumen del caso.
    contexto, objetivo y participacion (Mi aportación) aparecen en la portada del caso.
    solucion y decisiones: [{ titulo, texto }] forman la sección "Decisiones de diseño".
+   Historias: sticker: { texto, x, y, w } agrega un sticker de preguntas sobre la
+   historia; x e y son el centro en % de la historia, w su ancho en % y escala (opcional) lo reduce.
    Cada pieza: titulo (lo que se ve en el visor), alt y desc opcional; si no hay desc,
    el visor usa la nota de su sección o la desc de su carrusel.
    tipo de sección (ver assets/js/presentaciones.js):
@@ -365,14 +367,14 @@ window.PROYECTOS = [
         nota: "Las historias funcionan como una conversación: abren con una pregunta, desmienten un mito, explican el procedimiento con palabras sencillas y terminan con una invitación a agendar una valoración.",
         ayuda: "Cambia entre Instagram y Facebook o toca los lados de la pantalla para avanzar",
         piezas: [
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-1.webp", archivo: "historia-1.webp", titulo: "¿Qué te gustaría mejorar de tu mirada?", alt: "¿Qué te gustaría mejorar de tu mirada?", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-2.webp", archivo: "historia-2.webp", titulo: "¿Qué es la blefaroplastia?", alt: "¿Qué es la blefaroplastia?", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-3.webp", archivo: "historia-3.webp", titulo: "¿Tus párpados han cambiado?", alt: "¿Tus párpados han cambiado?", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-4.webp", archivo: "historia-4.webp", titulo: "¿Mito o realidad?", alt: "¿Mito o realidad?", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-5.webp", archivo: "historia-5.webp", titulo: "¿Cambiará mi expresión?", alt: "¿Cambiará mi expresión?", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-6.webp", archivo: "historia-6.webp", titulo: "El primer paso es conocer tu caso", alt: "El primer paso es conocer tu caso", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-7.webp", archivo: "historia-7.webp", titulo: "¿Qué quieres saber sobre la blefaroplastia?", alt: "¿Qué quieres saber sobre la blefaroplastia?", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", archivo: "historia-8.webp", titulo: "Tu mirada merece atención", alt: "Tu mirada merece atención", formato: "historia" } ] }
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-1.webp", archivo: "historia-1.webp", titulo: "¿Qué te gustaría mejorar de tu mirada?", alt: "¿Qué te gustaría mejorar de tu mirada?", formato: "historia", sticker: { texto: "¿Cuál es tu duda?", x: 50, y: 81, w: 50, escala: 0.9 } },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-2.webp", archivo: "historia-2.webp", titulo: "¿Qué es la blefaroplastia?", alt: "¿Qué es la blefaroplastia?", formato: "historia", sticker: { texto: "¿Qué más quieres saber?", x: 50, y: 93.6, w: 54, escala: 0.86 } },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-3.webp", archivo: "historia-3.webp", titulo: "¿Tus párpados han cambiado?", alt: "¿Tus párpados han cambiado?", formato: "historia", sticker: { texto: "¿Qué cambio has notado en tus párpados?", x: 73, y: 57, w: 48 } },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-4.webp", archivo: "historia-4.webp", titulo: "¿Mito o realidad?", alt: "¿Mito o realidad?", formato: "historia", sticker: { texto: "¿Qué otro mito has escuchado?", x: 66, y: 72, w: 56 } },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-5.webp", archivo: "historia-5.webp", titulo: "¿Cambiará mi expresión?", alt: "¿Cambiará mi expresión?", formato: "historia", sticker: { texto: "¿Qué te preocupa de tu expresión?", x: 28, y: 19.5, w: 50 } },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-6.webp", archivo: "historia-6.webp", titulo: "El primer paso es conocer tu caso", alt: "El primer paso es conocer tu caso", formato: "historia", sticker: { texto: "¿Qué te gustaría preguntar?", x: 54, y: 37, w: 36, escala: 0.92 } },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-7.webp", archivo: "historia-7.webp", titulo: "¿Qué quieres saber sobre la blefaroplastia?", alt: "¿Qué quieres saber sobre la blefaroplastia?", formato: "historia", sticker: { texto: "Escribe aquí tu pregunta", x: 50, y: 89, w: 60 } },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", archivo: "historia-8.webp", titulo: "Tu mirada merece atención", alt: "Tu mirada merece atención", formato: "historia", sticker: { texto: "¿Tienes dudas antes de agendar?", x: 79, y: 64.5, w: 38 } } ] }
     ],
     proceso: []
   },

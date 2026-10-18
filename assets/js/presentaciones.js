@@ -221,6 +221,18 @@
   }
 
   /* ---------- Historias en teléfono ---------- */
+  /* Sticker de preguntas (como el de Instagram) colocado en una zona libre
+     de cada historia. Va dentro de la historia, así se ve en ambas vistas. */
+  function sticker(x, cu, k) {
+    var st = x.sticker;
+    if (!st || !st.texto) return '';
+    return '<div class="sticker' + (k === 0 ? ' activa' : '') + '" data-sticker="' + k + '" aria-hidden="true" style="--x:' + st.x + '%;--y:' + st.y + '%;--w:' + st.w + '%;--s:' + (st.escala || 1) + '">' +
+      '<span class="sticker__avatar">' + avatar(cu, 'sticker__foto') + '</span>' +
+      '<span class="sticker__cab">' + esc(st.texto) + '</span>' +
+      '<span class="sticker__campo">Escribe algo…</span>' +
+    '</div>';
+  }
+
   function historias(s, p) {
     var cu = cuentaDe(p), con = s.piezas.filter(function (x) { return x.src; });
     if (!con.length) return null;
@@ -236,6 +248,7 @@
         '</div>' +
         '<div class="historia__marco">' +
           con.map(function (x, k) { return '<img class="historia__img' + (k === 0 ? ' activa' : '') + '" src="' + esc(x.src) + '" alt="' + esc(x.alt) + '"' + datos(x, s.nota, (s.encabezado && s.encabezado.ante) || s.titulo, k) + (k ? ' loading="lazy"' : '') + ' decoding="async">'; }).join('') +
+          con.map(function (x, k) { return sticker(x, cu, k); }).join('') +
           '<button type="button" class="historia__zona historia__zona--prev" data-paso="-1" aria-label="Historia anterior"></button>' +
           '<button type="button" class="historia__zona historia__zona--next" data-paso="1" aria-label="Historia siguiente"></button>' +
         '</div>' +
@@ -264,6 +277,7 @@
     function ir(k) {
       actual = (k + n) % n;
       imgs.forEach(function (im, i) { im.classList.toggle('activa', i === actual); });
+      $$('.sticker', el).forEach(function (sk) { sk.classList.toggle('activa', Number(sk.dataset.sticker) === actual); });
       segs.forEach(function (sg, i) { sg.classList.remove('activa'); sg.classList.toggle('hecha', i < actual); });
       void segs[actual].offsetWidth;
       segs[actual].classList.add('activa');

@@ -152,21 +152,6 @@
   }).join('');
   if (htmlRedes) { var r = $('#redes'); r.innerHTML = htmlRedes; r.hidden = false; }
 
-  /* ---------- Copiar correo ---------- */
-  $('#copiar').addEventListener('click', function () {
-    var correo = PERFIL.correo || '';
-    function ok() { avisar('Correo copiado'); }
-    function respaldo() {
-      var t = document.createElement('textarea');
-      t.value = correo; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
-      document.body.appendChild(t); t.select();
-      try { document.execCommand('copy'); ok(); } catch (e) { avisar(correo); }
-      t.remove();
-    }
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(correo).then(ok, respaldo);
-    else respaldo();
-  });
-
   /* ---------- Galería ---------- */
   var obras = $('#obras'), filtros = $('#filtros'), estadoFiltro = $('#filtroEstado');
   var DISTRIBUCION = [ // tamaño de cada tarjeta en escritorio (columnas de 12, filas)

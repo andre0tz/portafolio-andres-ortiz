@@ -24,7 +24,7 @@
     if (/[?&]pendientes\b/.test(location.search)) d.classList.add('ver-pendientes');
   })();
 </script>
-<link rel="stylesheet" href="assets/css/estilos.css?v=20261018a">
+<link rel="stylesheet" href="assets/css/estilos.css?v=20261018b">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -38,6 +38,8 @@
   <symbol id="i-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-luna" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></symbol>
+  <symbol id="i-correo" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m3.5 6.5 8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></symbol>
   <symbol id="i-copiar" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   <symbol id="i-imagen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m4 18 5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
@@ -245,17 +247,17 @@
     <div data-reveal>
       <p class="script kicker kicker--claro">¿Trabajamos juntos?</p>
       <h2 class="contacto__titulo" id="contacto-titulo">¿Tienes una idea que necesita tomar forma?</h2>
-      <p class="contacto__texto">Escríbeme si tienes un proyecto creativo o una oportunidad de trabajo. Respondo por correo o por teléfono.</p>
+      <p class="contacto__texto">Escríbeme si tienes un proyecto creativo o una oportunidad de trabajo. Respondo por correo o por WhatsApp.</p>
     </div>
     <div class="contacto__tarjeta" data-reveal>
       <a class="contacto__correo" data-perfil-href="mailto" href="mailto:ortizjuanandres787@gmail.com">
         <span class="mono">Correo</span>
         <b data-perfil="correo">ortizjuanandres787@gmail.com</b>
       </a>
-      <button class="copiar" id="copiar" type="button"><svg aria-hidden="true"><use href="#i-copiar"/></svg><span>Copiar correo</span></button>
+      <a class="contacto__accion" data-perfil-href="mailto" href="mailto:ortizjuanandres787@gmail.com"><svg aria-hidden="true"><use href="#i-correo"/></svg><span>Contactar por correo</span></a>
       <a class="contacto__tel" data-perfil-href="tel" href="tel:+527711837883"><span class="mono">Teléfono</span><b data-perfil="telefonoVisible">771 183 7883</b></a>
       <div class="redes" id="redes" hidden></div>
-      <a class="btn btn--sol" data-perfil-href="mailto" href="mailto:ortizjuanandres787@gmail.com">Escríbeme <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+      <a class="btn btn--wa" href="https://wa.me/527711837883" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg> Escribirme por WhatsApp</a>
     </div>
   </div>
 </section>
@@ -296,8 +298,8 @@
 
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
-<script src="assets/js/proyectos.js?v=20261018a"></script>
-<script src="assets/js/presentaciones.js?v=20261018a"></script>
-<script src="assets/js/main.js?v=20261018a"></script>
+<script src="assets/js/proyectos.js?v=20261018b"></script>
+<script src="assets/js/presentaciones.js?v=20261018b"></script>
+<script src="assets/js/main.js?v=20261018b"></script>
 </body>
 </html>

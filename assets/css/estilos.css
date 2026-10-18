@@ -995,3 +995,28 @@ code{font-family:var(--f-mono);font-size:.8em}
   .fila__flecha{display:none}
   .sec-cab{grid-template-columns:minmax(0,1fr)}
 }
+
+
+/* =====================================================================
+   23. STICKER DE PREGUNTAS EN HISTORIAS Y BOTONES DE CONTACTO
+   ===================================================================== */
+.historia__marco{container-type:inline-size}
+.sticker{position:absolute;left:var(--x);top:var(--y);width:var(--w);z-index:2;transform:translate(-50%,-50%) scale(calc(var(--s,1) * .85));opacity:0;pointer-events:none;
+  display:flex;flex-direction:column;align-items:stretch;border-radius:4.2cqw;background:#fff;box-shadow:0 2cqw 6cqw rgba(0,0,0,.28);transition:opacity .35s ease .15s,transform .5s var(--ease) .15s;font-family:var(--f-texto)}
+.sticker.activa{opacity:1;transform:translate(-50%,-50%) scale(var(--s,1))}
+.sticker__avatar{position:absolute;left:50%;top:0;transform:translate(-50%,-45%);width:7.4cqw;height:7.4cqw;border-radius:50%;background:#fff;padding:.7cqw;display:grid}
+.sticker__foto{display:grid;width:100%;height:100%;border-radius:50%;overflow:hidden;background:var(--c,#1257c9)}
+.sticker__foto span{display:grid;place-items:center;width:100%;height:100%;color:#fff;font-size:2.2cqw;font-weight:800}
+.sticker__foto img{width:100%;height:100%;object-fit:cover}
+.sticker__cab{display:block;padding:4.6cqw 3cqw 2.4cqw;border-radius:4.2cqw 4.2cqw 0 0;background:linear-gradient(135deg,#0d47b5,#2f7cf0);color:#fff;text-align:center;font-weight:700;font-size:3.2cqw;line-height:1.2}
+.sticker__campo{display:block;margin:2cqw;padding:1.8cqw 3cqw;border-radius:2.4cqw;background:#eef1f5;color:#8a93a3;text-align:center;font-size:2.7cqw}
+[data-plataforma="fb"] .sticker__cab{background:linear-gradient(135deg,#1158d6,#1877f2)}
+@media (prefers-reduced-motion:reduce){.sticker{transition:none}}
+
+/* Botones de contacto */
+.contacto__accion{justify-self:start;display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:9px 13px;border-radius:8px;background:var(--azul-hielo);color:var(--azul-tinta);transition:background-color .25s,transform .25s var(--ease)}
+.contacto__accion:hover{background:var(--azul-cielo);transform:translateY(-1px)}
+.contacto__accion svg{width:16px;height:16px}
+.contacto__tarjeta .btn--wa{background:#25d366;border-color:#25d366;color:#0b2e17}
+.contacto__tarjeta .btn--wa:hover{box-shadow:5px 5px 0 var(--azul-tinta)}
+.contacto__tarjeta .btn--wa svg{width:20px;height:20px}
