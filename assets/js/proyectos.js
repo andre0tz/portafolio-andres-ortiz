@@ -174,6 +174,10 @@ window.FILTROS = [
    collage: hasta 4 publicaciones que acompañan a la portada en el caso.
    acento: color del proyecto si no tiene paleta. estiloTitulos: "contorno" o "marcador".
    aclaracion: nota breve bajo el resumen del caso.
+   contexto, objetivo y participacion (Mi aportación) aparecen en la portada del caso.
+   solucion y decisiones: [{ titulo, texto }] forman la sección "Decisiones de diseño".
+   Cada pieza: titulo (lo que se ve en el visor), alt y desc opcional; si no hay desc,
+   el visor usa la nota de su sección o la desc de su carrusel.
    tipo de sección (ver assets/js/presentaciones.js):
      "feed", "escenario" (admite capitulos: [...]), "abanico", "historias",
      "carruseles" (usa carruseles: [...]) o nada para una galería normal.
@@ -188,10 +192,10 @@ window.PROYECTOS = [
     relacion: "profesional",
     tono: "tinta",
     portada: "",
-    resumen: "Publicaciones, historias, Reels y campañas en Facebook Ads para cinco refaccionarias, más una aplicación web para consultar sus métricas.",
-    contexto: "Grupo Refaccionario Moncar vende refacciones automotrices. Trabajo ahí desde marzo de 2026 como Community Manager y llevo las redes de cinco refaccionarias.",
+    resumen: "Community management para cinco refaccionarias: contenido diario, video para Reels, campañas en Facebook Ads, atención de cotizaciones y una aplicación web propia para consultar métricas.",
+    contexto: "Grupo Refaccionario Moncar vende refacciones automotrices a través de cinco refaccionarias, cada una con sus propias redes. Trabajo ahí como Community Manager desde marzo de 2026.",
     objetivo: "",
-    participacion: "Creo publicaciones e historias, grabo material de stock y edito videos para Facebook Reels. Atiendo mensajes, comentarios y cotizaciones por WhatsApp, y registro en un solo lugar las cotizaciones que llegan por WhatsApp y Facebook. También desarrollo las campañas en Facebook Ads.",
+    participacion: "Creo publicaciones e historias para las cinco cuentas, grabo material de stock y edito videos para Facebook Reels. También armo las campañas en Facebook Ads, atiendo mensajes, comentarios y cotizaciones por WhatsApp, y registro en un solo lugar las cotizaciones que llegan por WhatsApp y Facebook. Para revisar los resultados desarrollé una aplicación web que reúne las estadísticas por apartados.",
     concepto: "",
     decisiones: [],
     entregables: ["Publicaciones", "Historias", "Videos para Facebook Reels", "Material de stock", "Campañas en Facebook Ads", "Registro de cotizaciones", "Aplicación web de estadísticas"],
@@ -211,14 +215,14 @@ window.PROYECTOS = [
         { tipo: "video", src: "", poster: "", archivo: "reel-1.mp4", alt: "Video para Facebook Reels", formato: "historia" },
         { tipo: "video", src: "", poster: "", archivo: "reel-2.mp4", alt: "Video para Facebook Reels", formato: "historia" },
         { tipo: "video", src: "", poster: "", archivo: "reel-3.mp4", alt: "Video para Facebook Reels", formato: "historia" } ] },
-      { titulo: "Material de stock", nota: "Fotos y video que grabo para usar en las publicaciones.", piezas: [
+      { titulo: "Material de stock", nota: "Fotos y video que grabo yo mismo para tener imágenes propias de los productos.", piezas: [
         { src: "", archivo: "stock-1.webp", alt: "Fotografía de stock de refacciones", formato: "horizontal" },
         { src: "", archivo: "stock-2.webp", alt: "Fotografía de stock de refacciones", formato: "horizontal" },
         { src: "", archivo: "stock-3.webp", alt: "Fotografía de stock de refacciones", formato: "horizontal" } ] },
       { titulo: "Campañas en Facebook Ads", piezas: [
         { src: "", archivo: "campana-1.webp", alt: "Anuncio de campaña en Facebook Ads", formato: "vertical" },
         { src: "", archivo: "campana-2.webp", alt: "Anuncio de campaña en Facebook Ads", formato: "vertical" } ] },
-      { titulo: "Aplicación web de estadísticas", nota: "Centraliza las estadísticas y métricas y permite consultarlas en distintos apartados.", piezas: [
+      { titulo: "Aplicación web de estadísticas", nota: "Una herramienta que desarrollé para centralizar las estadísticas y métricas de las cuentas y consultarlas por apartados.", piezas: [
         { src: "", archivo: "app-estadisticas.webp", alt: "Captura de la aplicación web de estadísticas", formato: "ancho" } ] }
     ],
     proceso: []
@@ -242,11 +246,11 @@ window.PROYECTOS = [
     vistazo: ["assets/proyectos/ink-house/invitaciones-2.webp", "assets/proyectos/ink-house/promocion-5.webp", "assets/proyectos/ink-house/carrusel-pacman-1.webp"],
     // Nombre y foto de perfil que aparecen en los marcos de Instagram.
     cuenta: { nombre: "Ink House", iniciales: "IH", color: "#ff6a13", foto: "assets/proyectos/ink-house/perfil.webp" },
-    resumen: "Contenido digital para las redes de Ink House y para las marcas de sus clientes.",
+    resumen: "Redes sociales de una agencia de diseño y publicidad: promociones de temporada, contenido de marca y el lanzamiento de dos servicios nuevos.",
     aclaracion: "Aquí muestro una selección de algunos proyectos que realicé, no la totalidad de mi trabajo en la agencia.",
-    contexto: "Ink House Diseño y Publicidad es una agencia en Pachuca. Trabajé ahí de enero de 2025 a febrero de 2026 como diseñador gráfico y community manager.",
-    objetivo: "",
-    participacion: "Me encargué principalmente de la gestión de redes sociales, tanto de Ink House como de sus clientes: planeé, creé y programé los contenidos digitales.",
+    contexto: "Ink House Diseño y Publicidad es una agencia de Pachuca. Trabajé ahí de enero de 2025 a febrero de 2026 como diseñador gráfico y community manager, a cargo de sus redes y de las de varios clientes.",
+    objetivo: "Que las redes de la agencia vendieran sus servicios sin dejar de mostrarla como un estudio creativo, con contenido constante y fiel a su identidad.",
+    participacion: "Planeé, diseñé y programé el contenido. Decidía qué tocaba publicar en cada momento (una promoción, una fecha conmemorativa o un servicio nuevo) y cómo resolverlo dentro de la línea gráfica de la marca.",
     concepto: "",
     decisiones: [],
     entregables: [],
@@ -255,55 +259,59 @@ window.PROYECTOS = [
     relacionados: ["blefaroplastia-pachuca", "bailoterapia", "nutriologa-amparo-valdez"],
     secciones: [
       { titulo: "Promociones", tipo: "feed",
-        encabezado: { ante: "Promociones de la agencia", linea1: "Precios que", linea2: "saltan a la vista" },
-        nota: "Tarjetas, stickers, tazas y playeras personalizadas; varias de ellas para el Buen Fin.",
+        encabezado: { ante: "Promociones de temporada", linea1: "Precios que", linea2: "saltan a la vista" },
+        nota: "Para El Buen Fin y la temporada navideña, Ink House necesitaba que sus ofertas se entendieran en el segundo que alguien tarda en pasar una publicación. Elegí una comunicación directa a propósito: el precio en tipografía grande y en el color de acento es lo primero que se lee, el producto queda en segundo nivel y las condiciones al final. Los copos de nieve y el sello del Buen Fin ubican la temporada sin competir con la oferta.",
+        ayuda: "Toca cualquier publicación para verla en grande",
         piezas: [
-          { src: "assets/proyectos/ink-house/promocion-8.webp", archivo: "promocion-8.webp", alt: "Promoción de Ink House, pieza 8", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/promocion-1.webp", archivo: "promocion-1.webp", alt: "Promoción de Ink House, pieza 1", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/promocion-2.webp", archivo: "promocion-2.webp", alt: "Promoción de Ink House, pieza 2", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/promocion-3.webp", archivo: "promocion-3.webp", alt: "Promoción de Ink House, pieza 3", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/promocion-4.webp", archivo: "promocion-4.webp", alt: "Promoción de Ink House, pieza 4", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/promocion-5.webp", archivo: "promocion-5.webp", alt: "Promoción de Ink House, pieza 5", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/promocion-6.webp", archivo: "promocion-6.webp", alt: "Promoción de Ink House, pieza 6", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/promocion-7.webp", archivo: "promocion-7.webp", alt: "Promoción de Ink House, pieza 7", formato: "vertical" } ] },
+          { src: "assets/proyectos/ink-house/promocion-8.webp", archivo: "promocion-8.webp", titulo: "Playeras para parejas personalizadas", alt: "Playeras para parejas personalizadas", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-1.webp", archivo: "promocion-1.webp", titulo: "Tarjetas de presentación: 100 por $100", alt: "Tarjetas de presentación: 100 por $100", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-2.webp", archivo: "promocion-2.webp", titulo: "Planillas de stickers navideños a $49", alt: "Planillas de stickers navideños a $49", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-3.webp", archivo: "promocion-3.webp", titulo: "Tarjetas de presentación: 200 por $200", alt: "Tarjetas de presentación: 200 por $200", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-4.webp", archivo: "promocion-4.webp", titulo: "Tazas personalizadas: 30 por $1,290", alt: "Tazas personalizadas: 30 por $1,290", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-5.webp", archivo: "promocion-5.webp", titulo: "Planillas de stickers, versión Buen Fin", alt: "Planillas de stickers, versión Buen Fin", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-6.webp", archivo: "promocion-6.webp", titulo: "Tazas personalizadas, versión Buen Fin", alt: "Tazas personalizadas, versión Buen Fin", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-7.webp", archivo: "promocion-7.webp", titulo: "Tarjetas de presentación, versión Buen Fin", alt: "Tarjetas de presentación, versión Buen Fin", formato: "vertical" } ] },
       { titulo: "Carruseles para redes", tipo: "carruseles",
-        encabezado: { ante: "Carruseles para redes", linea1: "Ideas que", linea2: "se deslizan" },
-        nota: "Fechas conmemorativas contadas en varias láminas. Desliza cada una como en Instagram.",
+        encabezado: { ante: "Carruseles de diseño gráfico", linea1: "Ideas que", linea2: "se deslizan" },
+        nota: "La agencia ya tenía una línea gráfica para este contenido: ilustración en blanco y negro, naranja y amarillo, y frases con palabras resaltadas. El reto era respetarla y aun así variar los temas. Propuse partir de fechas conmemorativas y referencias cercanas para conectarlas con el diseño gráfico, y así mostrar que la disciplina aparece en más lugares de la vida diaria de los que parece.",
+        ayuda: "Desliza cada carrusel como en Instagram",
         carruseles: [
-        { titulo: "Comunicólogos", piezas: [
-            { src: "assets/proyectos/ink-house/carrusel-comunicologos-1.webp", archivo: "carrusel-comunicologos-1.webp", alt: "Carrusel sobre comunicólogos, lámina 1", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-comunicologos-2.webp", archivo: "carrusel-comunicologos-2.webp", alt: "Carrusel sobre comunicólogos, lámina 2", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-comunicologos-3.webp", archivo: "carrusel-comunicologos-3.webp", alt: "Carrusel sobre comunicólogos, lámina 3", formato: "vertical" } ] },
-        { titulo: "Pac-Man diseñador", piezas: [
-            { src: "assets/proyectos/ink-house/carrusel-pacman-1.webp", archivo: "carrusel-pacman-1.webp", alt: "Carrusel Pac-Man diseñador, lámina 1", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-pacman-2.webp", archivo: "carrusel-pacman-2.webp", alt: "Carrusel Pac-Man diseñador, lámina 2", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-pacman-3.webp", archivo: "carrusel-pacman-3.webp", alt: "Carrusel Pac-Man diseñador, lámina 3", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-pacman-4.webp", archivo: "carrusel-pacman-4.webp", alt: "Carrusel Pac-Man diseñador, lámina 4", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-pacman-5.webp", archivo: "carrusel-pacman-5.webp", alt: "Carrusel Pac-Man diseñador, lámina 5", formato: "vertical" } ] },
-        { titulo: "Dalí", piezas: [
-            { src: "assets/proyectos/ink-house/carrusel-dali-1.webp", archivo: "carrusel-dali-1.webp", alt: "Carrusel sobre Dalí, lámina 1", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-dali-2.webp", archivo: "carrusel-dali-2.webp", alt: "Carrusel sobre Dalí, lámina 2", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-dali-3.webp", archivo: "carrusel-dali-3.webp", alt: "Carrusel sobre Dalí, lámina 3", formato: "vertical" } ] },
-        { titulo: "Diseñar también es expresarse", piezas: [
-            { src: "assets/proyectos/ink-house/carrusel-expresarse-1.webp", archivo: "carrusel-expresarse-1.webp", alt: "Carrusel diseñar también es expresarse, lámina 1", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-expresarse-2.webp", archivo: "carrusel-expresarse-2.webp", alt: "Carrusel diseñar también es expresarse, lámina 2", formato: "vertical" },
-            { src: "assets/proyectos/ink-house/carrusel-expresarse-3.webp", archivo: "carrusel-expresarse-3.webp", alt: "Carrusel diseñar también es expresarse, lámina 3", formato: "vertical" } ] }
+        { titulo: "Comunicólogos", desc: "Felicitación por el día del comunicólogo que pasa del humor al reconocimiento: sin comunicólogos no hay marcas ni medios.", piezas: [
+            { src: "assets/proyectos/ink-house/carrusel-comunicologos-1.webp", archivo: "carrusel-comunicologos-1.webp", titulo: "Sin comunicólogos no hay nada", alt: "Sin comunicólogos no hay nada", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-comunicologos-2.webp", archivo: "carrusel-comunicologos-2.webp", titulo: "Ser comunicólogo es…", alt: "Ser comunicólogo es…", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-comunicologos-3.webp", archivo: "carrusel-comunicologos-3.webp", titulo: "Feliz día a los que hacen todo posible", alt: "Feliz día a los que hacen todo posible", formato: "vertical" } ] },
+        { titulo: "Pac-Man diseñador", desc: "Pac-Man como diseñador que sube de nivel con situaciones que cualquier diseñador reconoce: cambios sin fin, Comic Sans y briefs hechos de emojis.", piezas: [
+            { src: "assets/proyectos/ink-house/carrusel-pacman-1.webp", archivo: "carrusel-pacman-1.webp", titulo: "¿Y si Pac-Man fuera diseñador gráfico?", alt: "¿Y si Pac-Man fuera diseñador gráfico?", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-pacman-2.webp", archivo: "carrusel-pacman-2.webp", titulo: "Nivel 1: cien cambios", alt: "Nivel 1: cien cambios", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-pacman-3.webp", archivo: "carrusel-pacman-3.webp", titulo: "Nivel 2: Comic Sans", alt: "Nivel 2: Comic Sans", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-pacman-4.webp", archivo: "carrusel-pacman-4.webp", titulo: "Nivel 3: el brief es un emoji", alt: "Nivel 3: el brief es un emoji", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-pacman-5.webp", archivo: "carrusel-pacman-5.webp", titulo: "El primer héroe gráfico de la infancia", alt: "El primer héroe gráfico de la infancia", formato: "vertical" } ] },
+        { titulo: "Dalí", desc: "Homenaje a Salvador Dalí que usa su obra para hablar de libertad creativa y del valor de diseñar distinto.", piezas: [
+            { src: "assets/proyectos/ink-house/carrusel-dali-1.webp", archivo: "carrusel-dali-1.webp", titulo: "¿Quién dijo que el diseño tenía que ser lógico?", alt: "¿Quién dijo que el diseño tenía que ser lógico?", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-dali-2.webp", archivo: "carrusel-dali-2.webp", titulo: "El arte no tiene límites", alt: "El arte no tiene límites", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-dali-3.webp", archivo: "carrusel-dali-3.webp", titulo: "Ser diferentes es ser auténticos", alt: "Ser diferentes es ser auténticos", formato: "vertical" } ] },
+        { titulo: "Diseñar también es expresarse", desc: "El diseño como forma de expresión: una invitación a usarlo para decir lo que uno piensa.", piezas: [
+            { src: "assets/proyectos/ink-house/carrusel-expresarse-1.webp", archivo: "carrusel-expresarse-1.webp", titulo: "Diseñar también es expresarse", alt: "Diseñar también es expresarse", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-expresarse-2.webp", archivo: "carrusel-expresarse-2.webp", titulo: "No calles lo que piensas, dibújalo", alt: "No calles lo que piensas, dibújalo", formato: "vertical" },
+            { src: "assets/proyectos/ink-house/carrusel-expresarse-3.webp", archivo: "carrusel-expresarse-3.webp", titulo: "Aquí estoy y esto es lo que pienso", alt: "Aquí estoy y esto es lo que pienso", formato: "vertical" } ] }
       ] },
       { titulo: "Apps digitales", tipo: "escenario",
-        encabezado: { ante: "Campaña de apps digitales", linea1: "Del antojo", linea2: "al pedido" },
-        nota: "Campaña para dar a conocer las apps de pedidos y menú digital para restaurantes.",
+        encabezado: { ante: "Campaña de apps para negocios", linea1: "Del antojo", linea2: "al pedido" },
+        nota: "Ink House iba a sumar un servicio nuevo: crear aplicaciones para negocios. Un servicio tecnológico cuesta trabajo explicarlo en abstracto, así que la campaña lo aterrizó en un caso de uso concreto, una app para restaurantes. La primera pieza presenta la idea; las otras dos explican qué gana el restaurante y qué gana su cliente, con la interfaz de la app al centro para que el servicio se entienda sin tecnicismos.",
+        ayuda: "Desliza o usa las flechas; toca la pieza del centro para verla en grande",
         piezas: [
-          { src: "assets/proyectos/ink-house/apps-1.webp", archivo: "apps-1.webp", alt: "Pieza 1 de la campaña de apps digitales para restaurantes", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/apps-2.webp", archivo: "apps-2.webp", alt: "Pieza 2 de la campaña de apps digitales para restaurantes", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/apps-3.webp", archivo: "apps-3.webp", alt: "Pieza 3 de la campaña de apps digitales para restaurantes", formato: "vertical" } ] },
+          { src: "assets/proyectos/ink-house/apps-1.webp", archivo: "apps-1.webp", titulo: "Haz que tus clientes pidan con solo un clic", alt: "Haz que tus clientes pidan con solo un clic", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/apps-2.webp", archivo: "apps-2.webp", titulo: "Beneficios para tu restaurante", alt: "Beneficios para tu restaurante", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/apps-3.webp", archivo: "apps-3.webp", titulo: "Beneficios para tus clientes", alt: "Beneficios para tus clientes", formato: "vertical" } ] },
       { titulo: "Invitaciones digitales", tipo: "abanico",
-        encabezado: { ante: "Invitaciones digitales", linea1: "Un paquete", linea2: "para cada fiesta" },
-        nota: "Paquetes de invitaciones digitales interactivas. Pasa el cursor o desliza para ver los cuatro paquetes.",
+        encabezado: { ante: "Lanzamiento de invitaciones digitales", linea1: "Un paquete", linea2: "para cada fiesta" },
+        nota: "Las invitaciones digitales eran otro servicio nuevo de la agencia y había que presentarlas como una opción moderna y práctica frente a la invitación impresa. Cada pieza muestra el diseño dentro de un celular, que es donde la recibe el invitado. Los paquetes se distinguen por color y precio, y unos íconos resumen lo que incluye cada uno, como cuenta regresiva, música o confirmación por WhatsApp, sin saturar la publicación.",
+        ayuda: "Pasa el cursor o desliza para ver los cuatro paquetes",
         piezas: [
-          { src: "assets/proyectos/ink-house/invitaciones-1.webp", archivo: "invitaciones-1.webp", alt: "Paquete de invitaciones digitales, pieza 1", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/invitaciones-2.webp", archivo: "invitaciones-2.webp", alt: "Paquete de invitaciones digitales, pieza 2", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/invitaciones-3.webp", archivo: "invitaciones-3.webp", alt: "Paquete de invitaciones digitales, pieza 3", formato: "vertical" },
-          { src: "assets/proyectos/ink-house/invitaciones-4.webp", archivo: "invitaciones-4.webp", alt: "Paquete de invitaciones digitales, pieza 4", formato: "vertical" } ] }
+          { src: "assets/proyectos/ink-house/invitaciones-1.webp", archivo: "invitaciones-1.webp", titulo: "Paquete Elite", alt: "Paquete Elite", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/invitaciones-2.webp", archivo: "invitaciones-2.webp", titulo: "Paquete Premium", alt: "Paquete Premium", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/invitaciones-3.webp", archivo: "invitaciones-3.webp", titulo: "Paquete Standar", alt: "Paquete Standar", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/invitaciones-4.webp", archivo: "invitaciones-4.webp", titulo: "Invitaciones digitales interactivas desde $380", alt: "Invitaciones digitales interactivas desde $380", formato: "vertical" } ] }
     ],
     proceso: []
   },
@@ -312,7 +320,7 @@ window.PROYECTOS = [
     publicado: true,
     titulo: "Blefaroplastia Pachuca",
     categorias: ["redes", "publicidad"],
-    disciplina: "Contenido para redes",
+    disciplina: "Contenido para redes en salud",
     relacion: "agencia",
     agencia: "ink-house",
     tono: "cobalto",
@@ -324,40 +332,47 @@ window.PROYECTOS = [
     collage: ["assets/proyectos/blefaroplastia-pachuca/publicacion-1.webp", "assets/proyectos/blefaroplastia-pachuca/publicacion-2.webp", "assets/proyectos/blefaroplastia-pachuca/publicacion-8.webp", "assets/proyectos/blefaroplastia-pachuca/publicacion-7.webp"],
     vistazo: ["assets/proyectos/blefaroplastia-pachuca/publicacion-8.webp", "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", "assets/proyectos/blefaroplastia-pachuca/publicacion-7.webp"],
     cuenta: { nombre: "Blefaroplastia Pachuca", iniciales: "BP", color: "#1257c9", foto: "assets/proyectos/blefaroplastia-pachuca/perfil.webp" },
-    resumen: "Publicaciones e historias educativas y promociones para una clínica de cirugía de párpados.",
-    contexto: "Cliente que atendí en Ink House. La clínica realiza blefaroplastia superior e inferior.",
-    objetivo: "Explicar el procedimiento a la audiencia y dar a conocer sus promociones.",
-    participacion: "Diseño de publicaciones e historias para redes sociales.",
-    concepto: "",
-    decisiones: [],
+    resumen: "Contenido para empezar a dar a conocer en redes un servicio de blefaroplastia: publicaciones e historias que explican el procedimiento y resuelven las primeras dudas.",
+    contexto: "El Dr. Miguel A. García quería empezar a promover su servicio de blefaroplastia en redes sociales y la comunicación partía prácticamente de cero. Lo atendí como cliente de Ink House.",
+    objetivo: "Construir una base de contenido para que alguien que escucha por primera vez la palabra «blefaroplastia» entienda de qué se trata y sepa qué considerar antes de pedir una valoración médica.",
+    participacion: "Diseñé las publicaciones y las historias, y organicé el contenido según su propósito: presentar el servicio, explicar lo básico del procedimiento, responder dudas frecuentes y difundir promociones.",
+    solucion: "Todo el contenido mantiene un tono informativo y responsable. Explica, aclara dudas y cierra con una invitación a la valoración con el especialista, sin prometer resultados ni presentar los beneficios como garantía.",
+    decisiones: [
+      { titulo: "El azul como base", texto: "Es un color que se asocia con la salud, la confianza y lo profesional, y le dio a la cuenta una identidad reconocible desde la primera publicación." },
+      { titulo: "Jerarquía para leer rápido", texto: "Composiciones limpias y pocos niveles tipográficos para que la pregunta, el beneficio y el contacto se lean en ese orden." },
+      { titulo: "Fotografía natural", texto: "Imágenes editoriales con expresiones relajadas y recursos gráficos suaves para transmitir cuidado y cercanía, lejos de un tono quirúrgico." },
+      { titulo: "Dos formatos, dos funciones", texto: "Las publicaciones informan y dan a conocer las promociones; las historias conversan con la audiencia y la invitan a escribir al consultorio." }
+    ],
     entregables: [],
     resultados: [],
     secciones: [
       { titulo: "Publicaciones", tipo: "feed",
         encabezado: { ante: "Publicaciones para el feed", linea1: "Lo que vive", linea2: "en el feed" },
-        nota: "Publicaciones educativas y promociones. Toca cualquiera para verla en grande.",
+        nota: "Las publicaciones presentan el procedimiento paso a paso: qué es, por qué se hace, quién puede ser candidato y qué cambios atiende. Las promociones del Buen Fin conservan la misma estructura gráfica para que se reconozcan como parte de la cuenta y no como un anuncio aislado.",
+        ayuda: "Toca cualquier publicación para verla en grande",
         piezas: [
-          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-1.webp", archivo: "publicacion-1.webp", alt: "Publicación 1 de Blefaroplastia Pachuca", formato: "vertical" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-2.webp", archivo: "publicacion-2.webp", alt: "Publicación 2 de Blefaroplastia Pachuca", formato: "vertical" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-3.webp", archivo: "publicacion-3.webp", alt: "Publicación 3 de Blefaroplastia Pachuca", formato: "vertical" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-4.webp", archivo: "publicacion-4.webp", alt: "Publicación 4 de Blefaroplastia Pachuca", formato: "vertical" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-5.webp", archivo: "publicacion-5.webp", alt: "Publicación 5 de Blefaroplastia Pachuca", formato: "vertical" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-6.webp", archivo: "publicacion-6.webp", alt: "Publicación 6 de Blefaroplastia Pachuca", formato: "vertical" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-7.webp", archivo: "publicacion-7.webp", alt: "Publicación 7 de Blefaroplastia Pachuca", formato: "vertical" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-8.webp", archivo: "publicacion-8.webp", alt: "Publicación 8 de Blefaroplastia Pachuca", formato: "vertical" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-9.webp", archivo: "publicacion-9.webp", alt: "Publicación 9 de Blefaroplastia Pachuca", formato: "vertical" } ] },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-1.webp", archivo: "publicacion-1.webp", titulo: "¿Por qué hacerse una blefaroplastia?", alt: "¿Por qué hacerse una blefaroplastia?", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-2.webp", archivo: "publicacion-2.webp", titulo: "Qué puede atender el procedimiento", alt: "Qué puede atender el procedimiento", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-3.webp", archivo: "publicacion-3.webp", titulo: "Elimina el aspecto del cansancio", alt: "Elimina el aspecto del cansancio", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-4.webp", archivo: "publicacion-4.webp", titulo: "¿Cómo saber si eres candidata(o)?", alt: "¿Cómo saber si eres candidata(o)?", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-5.webp", archivo: "publicacion-5.webp", titulo: "Descuentos Buen Fin", alt: "Descuentos Buen Fin", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-6.webp", archivo: "publicacion-6.webp", titulo: "25% de descuento en El Buen Fin", alt: "25% de descuento en El Buen Fin", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-7.webp", archivo: "publicacion-7.webp", titulo: "Párpados caídos y bolsas en párpados inferiores", alt: "Párpados caídos y bolsas en párpados inferiores", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-8.webp", archivo: "publicacion-8.webp", titulo: "Luce mejor, siéntete bien", alt: "Luce mejor, siéntete bien", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-9.webp", archivo: "publicacion-9.webp", titulo: "La blefaroplastia y el campo visual", alt: "La blefaroplastia y el campo visual", formato: "vertical" } ] },
       { titulo: "Historias", tipo: "historias",
         encabezado: { ante: "Historias de Instagram y Facebook", linea1: "24 horas", linea2: "en pantalla" },
-        nota: "Así se ven publicadas. Cambia entre Instagram y Facebook, o toca los lados de la pantalla para avanzar.",
+        nota: "Las historias funcionan como una conversación: abren con una pregunta, desmienten un mito, explican el procedimiento con palabras sencillas y terminan con una invitación a agendar una valoración.",
+        ayuda: "Cambia entre Instagram y Facebook o toca los lados de la pantalla para avanzar",
         piezas: [
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-1.webp", archivo: "historia-1.webp", alt: "Historia 1 de Blefaroplastia Pachuca", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-2.webp", archivo: "historia-2.webp", alt: "Historia 2 de Blefaroplastia Pachuca", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-3.webp", archivo: "historia-3.webp", alt: "Historia 3 de Blefaroplastia Pachuca", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-4.webp", archivo: "historia-4.webp", alt: "Historia 4 de Blefaroplastia Pachuca", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-5.webp", archivo: "historia-5.webp", alt: "Historia 5 de Blefaroplastia Pachuca", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-6.webp", archivo: "historia-6.webp", alt: "Historia 6 de Blefaroplastia Pachuca", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-7.webp", archivo: "historia-7.webp", alt: "Historia 7 de Blefaroplastia Pachuca", formato: "historia" },
-          { src: "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", archivo: "historia-8.webp", alt: "Historia 8 de Blefaroplastia Pachuca", formato: "historia" } ] }
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-1.webp", archivo: "historia-1.webp", titulo: "¿Qué te gustaría mejorar de tu mirada?", alt: "¿Qué te gustaría mejorar de tu mirada?", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-2.webp", archivo: "historia-2.webp", titulo: "¿Qué es la blefaroplastia?", alt: "¿Qué es la blefaroplastia?", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-3.webp", archivo: "historia-3.webp", titulo: "¿Tus párpados han cambiado?", alt: "¿Tus párpados han cambiado?", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-4.webp", archivo: "historia-4.webp", titulo: "¿Mito o realidad?", alt: "¿Mito o realidad?", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-5.webp", archivo: "historia-5.webp", titulo: "¿Cambiará mi expresión?", alt: "¿Cambiará mi expresión?", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-6.webp", archivo: "historia-6.webp", titulo: "El primer paso es conocer tu caso", alt: "El primer paso es conocer tu caso", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-7.webp", archivo: "historia-7.webp", titulo: "¿Qué quieres saber sobre la blefaroplastia?", alt: "¿Qué quieres saber sobre la blefaroplastia?", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", archivo: "historia-8.webp", titulo: "Tu mirada merece atención", alt: "Tu mirada merece atención", formato: "historia" } ] }
     ],
     proceso: []
   },
@@ -403,10 +418,10 @@ window.PROYECTOS = [
     relacion: "conceptual",
     tono: "papel",
     portada: "",
-    resumen: "Ejercicio de marca y contenido para redes de una barbería imaginaria. No fue un encargo real.",
-    contexto: "Es un proyecto conceptual. Lo hice para practicar la construcción de una marca y su contenido para redes; la barbería no existe.",
-    objetivo: "",
-    participacion: "Todo el desarrollo de la marca y de las publicaciones.",
+    resumen: "Ejercicio de marca y parrilla de contenido para una barbería imaginaria que empieza en redes. No fue un encargo real.",
+    contexto: "Es un proyecto conceptual: la barbería no existe. Planteé el caso de un negocio que necesita arrancar su presencia en redes desde cero.",
+    objetivo: "Atraer nuevas visitas con mensajes claros y llamativos, apoyados en promociones.",
+    participacion: "Desarrollé la marca y una parrilla de contenido con promociones, consejos de cuidado y productos.",
     concepto: "",
     decisiones: [],
     entregables: [],
@@ -414,7 +429,7 @@ window.PROYECTOS = [
     secciones: [
       { titulo: "Logotipo", piezas: [ { src: "", archivo: "logotipo.webp", alt: "Logotipo de The Old Barber", formato: "ancho" } ] },
       { titulo: "Paleta y tipografía", piezas: [ { src: "", archivo: "paleta-tipografia.webp", alt: "Paleta y tipografía de The Old Barber", formato: "horizontal" } ] },
-      { titulo: "Publicaciones", piezas: [
+      { titulo: "Publicaciones", nota: "Promociones, consejos de cuidado y productos con mensajes cortos y llamativos, pensados para conseguir las primeras visitas.", piezas: [
         { src: "", archivo: "publicacion-1.webp", alt: "Publicación de The Old Barber", formato: "vertical" },
         { src: "", archivo: "publicacion-2.webp", alt: "Publicación de The Old Barber", formato: "vertical" },
         { src: "", archivo: "publicacion-3.webp", alt: "Publicación de The Old Barber", formato: "vertical" } ] },
@@ -434,16 +449,16 @@ window.PROYECTOS = [
     agencia: "ink-house",
     tono: "tinta",
     portada: "",
-    resumen: "Campaña para dar a conocer clases de bailoterapia y sus beneficios físicos y emocionales.",
-    contexto: "Cliente que atendí en Ink House.",
+    resumen: "Campaña en redes para atraer participantes a clases de bailoterapia, centrada en los beneficios físicos y emocionales del baile.",
+    contexto: "Un servicio de clases de bailoterapia que atendí como cliente de Ink House.",
     objetivo: "Atraer nuevos participantes a las clases.",
-    participacion: "Diseño de las piezas de la campaña.",
+    participacion: "Diseñé las piezas de la campaña.",
     concepto: "",
     decisiones: [],
     entregables: ["Publicaciones de campaña"],
     resultados: [],
     secciones: [
-      { titulo: "Campaña", piezas: [
+      { titulo: "Campaña", nota: "Cada pieza destaca un beneficio distinto del baile, como moverse sin dolor, la constancia semanal o el cuidado del corazón, para invitar a probar una clase.", piezas: [
         { src: "", archivo: "campana-1.webp", alt: "Pieza de la campaña de bailoterapia", formato: "vertical" },
         { src: "", archivo: "campana-2.webp", alt: "Pieza de la campaña de bailoterapia", formato: "vertical" },
         { src: "", archivo: "campana-3.webp", alt: "Pieza de la campaña de bailoterapia", formato: "vertical" } ] }
@@ -460,16 +475,16 @@ window.PROYECTOS = [
     agencia: "ink-house",
     tono: "cobalto",
     portada: "",
-    resumen: "Publicaciones e historias educativas sobre diabetes, glucosa alterada y obesidad para la consulta de una nutrióloga.",
-    contexto: "Cliente que atendí en Ink House.",
+    resumen: "Contenido educativo sobre diabetes, glucosa alterada y obesidad para la consulta de una nutrióloga.",
+    contexto: "La consulta de la nutrióloga Amparo Valdez, cliente que atendí en Ink House.",
     objetivo: "Ayudar a reconocer las señales de una glucosa alterada, explicar qué pasa si la diabetes y la obesidad no se controlan, e invitar a tratarlas en consulta con un plan realista, sin dietas extremas.",
-    participacion: "Diseño de publicaciones e historias para redes sociales.",
+    participacion: "Diseñé las publicaciones y las historias para redes sociales.",
     concepto: "",
     decisiones: [],
     entregables: ["Publicaciones", "Historias"],
     resultados: [],
     secciones: [
-      { titulo: "Publicaciones", piezas: [
+      { titulo: "Publicaciones", nota: "Temas de salud delicados explicados con preguntas directas y datos sencillos, para que la audiencia reconozca señales de alerta sin sentirse juzgada.", piezas: [
         { src: "", archivo: "publicacion-1.webp", alt: "Publicación educativa sobre diabetes", formato: "vertical" },
         { src: "", archivo: "publicacion-2.webp", alt: "Publicación educativa sobre glucosa alterada", formato: "vertical" },
         { src: "", archivo: "publicacion-3.webp", alt: "Publicación educativa sobre obesidad", formato: "vertical" } ] },
@@ -489,10 +504,10 @@ window.PROYECTOS = [
     relacion: "colaboracion",
     tono: "cielo",
     portada: "",
-    resumen: "Material promocional para una persona que vende productos de la marca.",
+    resumen: "Piezas promocionales para apoyar a una persona que vende productos Ismerely.",
     contexto: "Hice estas piezas para apoyar a una persona que vende productos Ismerely. No fue un encargo de la marca.",
     objetivo: "",
-    participacion: "Diseño de las piezas promocionales.",
+    participacion: "Diseñé las piezas promocionales.",
     concepto: "",
     decisiones: [],
     entregables: ["Piezas promocionales de producto"],
@@ -514,7 +529,7 @@ window.PROYECTOS = [
     relacion: "personal",
     tono: "sol",
     portada: "",
-    resumen: "Carteles personales donde pruebo tipografía y composición. Incluye Con mi Espíritu.",
+    resumen: "Carteles personales en los que exploro tipografía y composición a partir de mensajes cristianos. Incluye Con mi Espíritu.",
     contexto: "Es una colección de ejercicios propios. Elegí aquí solo los carteles con mejor acabado.",
     objetivo: "",
     participacion: "Concepto, composición y diseño de cada cartel.",

@@ -24,7 +24,7 @@
     if (/[?&]pendientes\b/.test(location.search)) d.classList.add('ver-pendientes');
   })();
 </script>
-<link rel="stylesheet" href="assets/css/estilos.css?v=20261017l">
+<link rel="stylesheet" href="assets/css/estilos.css?v=20261018a">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -278,18 +278,26 @@
     <svg aria-hidden="true"><use href="#i-flecha"/></svg><span>Volver</span>
   </button>
   <div class="caso__cuerpo" id="casoCuerpo"></div>
-  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Pieza ampliada" hidden>
+  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitulo" hidden>
     <button type="button" class="visor__btn visor__cerrar" id="visorCerrar" aria-label="Cerrar vista ampliada"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></button>
-    <button type="button" class="visor__btn visor__prev" id="visorPrev" aria-label="Pieza anterior"><svg aria-hidden="true" style="transform:rotate(-135deg)"><use href="#i-flecha"/></svg></button>
-    <figure class="visor__marco"><img id="visorImg" alt=""><figcaption class="visor__pie mono" id="visorPie"></figcaption></figure>
-    <button type="button" class="visor__btn visor__next" id="visorNext" aria-label="Pieza siguiente"><svg aria-hidden="true" style="transform:rotate(45deg)"><use href="#i-flecha"/></svg></button>
+    <div class="visor__escena">
+      <button type="button" class="visor__btn visor__prev" id="visorPrev" aria-label="Pieza anterior"><svg aria-hidden="true" style="transform:rotate(-135deg)"><use href="#i-flecha"/></svg></button>
+      <figure class="visor__marco"><img id="visorImg" alt=""></figure>
+      <button type="button" class="visor__btn visor__next" id="visorNext" aria-label="Pieza siguiente"><svg aria-hidden="true" style="transform:rotate(45deg)"><use href="#i-flecha"/></svg></button>
+      <aside class="visor__info" aria-live="polite">
+        <p class="visor__seccion mono" id="visorSeccion"></p>
+        <h3 class="visor__titulo" id="visorTitulo"></h3>
+        <p class="visor__desc" id="visorDesc"></p>
+      </aside>
+    </div>
+    <div class="visor__minis" id="visorMinis" aria-label="Piezas de esta sección"></div>
   </div>
 </dialog>
 
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
-<script src="assets/js/proyectos.js?v=20261017l"></script>
-<script src="assets/js/presentaciones.js?v=20261017l"></script>
-<script src="assets/js/main.js?v=20261017l"></script>
+<script src="assets/js/proyectos.js?v=20261018a"></script>
+<script src="assets/js/presentaciones.js?v=20261018a"></script>
+<script src="assets/js/main.js?v=20261018a"></script>
 </body>
 </html>

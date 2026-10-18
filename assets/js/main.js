@@ -226,7 +226,7 @@
   /* ---------- Caso de proyecto ---------- */
   var caso = $('#caso'), cuerpo = $('#casoCuerpo'), actual = -1, origen = null;
 
-  function piezaHTML(p, slug) {
+  function piezaHTML(p, slug, desc, seccion) {
     var ruta = 'assets/proyectos/' + slug + '/' + (p.archivo || '');
     var f = 'f-' + (p.formato || 'cuadrado');
     var esVideo = p.tipo === 'video';
@@ -235,7 +235,8 @@
         return '<figure class="pieza ' + f + '"><video src="' + esc(p.src) + '"' + (p.poster ? ' poster="' + esc(p.poster) + '"' : '') +
           ' controls muted playsinline preload="metadata" aria-label="' + esc(p.alt) + '"></video></figure>';
       }
-      return '<figure class="pieza ' + f + (p.contener ? ' pieza--contener' : '') + '"><button type="button" class="pieza__btn" aria-label="Ampliar: ' + esc(p.alt) + '">' +
+      return '<figure class="pieza ' + f + (p.contener ? ' pieza--contener' : '') + '"><button type="button" class="pieza__btn" data-src="' + esc(p.src) + '" data-alt="' + esc(p.alt) +
+        '" data-titulo="' + esc(p.titulo || '') + '" data-desc="' + esc(p.desc || desc || '') + '" data-seccion="' + esc(seccion || '') + '" aria-label="Ampliar: ' + esc(p.titulo || p.alt) + '">' +
         '<img src="' + esc(p.src) + '" alt="' + esc(p.alt) + '" loading="lazy" decoding="async"></button></figure>';
     }
     return '<figure class="pieza ' + f + '"><div class="hueco' + (esVideo ? ' hueco--video' : '') + '">' +
@@ -277,7 +278,7 @@
 
     var visual = (p.portada && window.Presenta) ? '<div class="caso__visual">' + window.Presenta.collage(p) + '</div>' : '';
     var paleta = p.paleta ? ' paleta-hero' : ' t-' + esc(p.tono) + ' obra--tipo';
-    var fichasHero = ficha('Contexto', p.contexto) + ficha('Objetivo', p.objetivo) + ficha('Mi participación', p.participacion);
+    var fichasHero = ficha('Contexto', p.contexto) + ficha('Objetivo', p.objetivo) + ficha('Mi aportación', p.participacion);
     var html = '<header class="caso__cabeza' + paleta + (visual ? ' con-visual' : '') + '">' +
       (p.paleta ? '' : '<div class="obra__portada"></div>') +
       '<div class="caso__hero">' +
@@ -297,7 +298,7 @@
       '<span class="caso__explora" aria-hidden="true">Explora el proyecto <svg><use href="#i-abajo"/></svg></span>' +
     '</header>';
 
-    var fichas = ficha('Concepto creativo', p.concepto) + ficha('Decisiones de diseño', p.decisiones) + ficha('Entregables', p.entregables);
+    var fichas = ficha('Concepto creativo', p.concepto) + ficha('Entregables', p.entregables);
     var falta = faltantes(p);
     if (fichas || (falta.length && raiz.classList.contains('ver-pendientes'))) {
       html += '<section class="caso__seccion caso__seccion--fichas" aria-label="Más sobre el proyecto">' +
@@ -320,9 +321,20 @@
       var historias = s.piezas.every(function (x) { return x.formato === 'historia'; });
       var cols = (historias && normales >= 4) ? 'c4' : 'c' + Math.max(1, Math.min(normales, 3)) + (normales === 0 ? ' solo-ancho' : '');
       html += '<section class="caso__seccion">' + cabecera(s) +
-        '<div class="galeria ' + cols + '">' + s.piezas.map(function (x) { return piezaHTML(x, p.slug); }).join('') + '</div>' +
+        '<div class="galeria ' + cols + '" data-grupo>' + s.piezas.map(function (x) { return piezaHTML(x, p.slug, s.nota, (s.encabezado && s.encabezado.ante) || s.titulo); }).join('') + '</div>' +
       '</section>';
     });
+
+    var decs = (p.decisiones || []).filter(function (d) { return d && (d.titulo || typeof d === 'string'); });
+    if (decs.length || p.solucion) {
+      html += '<section class="caso__seccion caso__seccion--decisiones">' +
+        cabecera({ encabezado: p.encabezadoDecisiones || { ante: 'Decisiones de diseño', linea1: 'Por qué', linea2: 'se ve así' }, nota: p.solucion }) +
+        (decs.length ? '<div class="decisiones">' + decs.map(function (d) {
+          if (typeof d === 'string') d = { titulo: d, texto: '' };
+          return '<article class="decision" data-aparece><h4>' + esc(d.titulo) + '</h4>' + (d.texto ? '<p>' + esc(d.texto) + '</p>' : '') + '</article>';
+        }).join('') + '</div>' : '') +
+      '</section>';
+    }
 
     var rel2 = (p.relacionados || []).map(porSlug).filter(function (k) { return k > -1; });
     if (rel2.length) {
@@ -389,44 +401,75 @@
     actual = -1;
   });
   /* ---------- Visor de piezas ---------- */
-  var visor = $('#visor'), visorImg = $('#visorImg'), visorPie = $('#visorPie'), visorLista = [], visorPos = 0, visorOrigen = null;
+  /* Cada pieza ampliable declara sus datos (data-src, data-titulo, data-desc,
+     data-seccion, data-k). El visor solo usa esos datos: así nunca muestra
+     una foto de perfil, una portada u otra imagen que viva en el mismo marco. */
+  var visor = $('#visor'), visorImg = $('#visorImg'), visorLista = [], visorPos = 0, visorOrigen = null;
   function visorAbierto() { return !visor.hidden; }
   function pintarVisor() {
     var it = visorLista[visorPos];
+    visor.classList.remove('cambia'); void visor.offsetWidth; visor.classList.add('cambia');
     visorImg.src = it.src;
-    visorImg.alt = it.alt;
-    visorPie.textContent = it.alt + '  ·  ' + (visorPos + 1) + ' de ' + visorLista.length;
-    $('#visorPrev').hidden = $('#visorNext').hidden = visorLista.length < 2;
+    visorImg.alt = it.alt || it.titulo || '';
+    $('#visorSeccion').textContent = it.seccion || '';
+    $('#visorTitulo').textContent = it.titulo || it.alt || '';
+    $('#visorDesc').textContent = it.desc || '';
+    $('#visorDesc').hidden = !it.desc;
+    var multiple = visorLista.length > 1;
+    $('#visorPrev').hidden = $('#visorNext').hidden = !multiple;
+    var minis = $('#visorMinis');
+    minis.hidden = !multiple;
+    $$('button', minis).forEach(function (b, k) {
+      if (k === visorPos) { b.setAttribute('aria-current', 'true'); b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reducirMovimiento ? 'auto' : 'smooth' }); }
+      else b.removeAttribute('aria-current');
+    });
   }
   function abrirVisorLista(lista, pos, origen) {
-    visorLista = lista; visorPos = pos || 0; visorOrigen = origen || null;
-    pintarVisor();
+    visorLista = lista.filter(function (x) { return x && x.src; });
+    if (!visorLista.length) return;
+    visorPos = Math.max(0, Math.min(visorLista.length - 1, pos || 0)); visorOrigen = origen || null;
+    $('#visorMinis').innerHTML = visorLista.map(function (x, k) {
+      return '<button type="button" data-v="' + k + '" aria-label="Ver: ' + esc(x.titulo || x.alt || ('pieza ' + (k + 1))) + '"><img src="' + esc(x.src) + '" alt="" loading="lazy" decoding="async"></button>';
+    }).join('');
     visor.hidden = false;
+    pintarVisor();
     $('#visorCerrar').focus();
   }
   window.abrirVisorLista = abrirVisorLista;
   function abrirVisor(btn) {
-    var grupo = btn.closest('[data-grupo]') || btn.closest('.galeria') || btn.parentNode;
-    var botones = $$('.pieza__btn', grupo);
-    abrirVisorLista(botones.map(function (b) { var im = $('img', b); return { src: im.currentSrc || im.src, alt: im.alt }; }), botones.indexOf(btn), btn);
+    var grupo = btn.closest('[data-grupo]') || btn.parentNode;
+    var botones = $$('[data-src]', grupo).filter(function (b) { return b.dataset.src; });
+    if (botones.length && botones.every(function (b) { return b.dataset.k != null; })) {
+      botones.sort(function (a, b) { return Number(a.dataset.k) - Number(b.dataset.k); });
+    }
+    abrirVisorLista(botones.map(function (b) { return Object.assign({}, b.dataset); }), botones.indexOf(btn), btn);
   }
   function cerrarVisor() {
     visor.hidden = true;
     visorImg.removeAttribute('src');
+    $('#visorMinis').innerHTML = '';
     if (visorOrigen) visorOrigen.focus();
   }
   function moverVisor(d) { visorPos = (visorPos + d + visorLista.length) % visorLista.length; pintarVisor(); }
+  $('#visorMinis').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-v]'); if (!b) return;
+    visorPos = Number(b.dataset.v); pintarVisor();
+  });
   $('#visorCerrar').addEventListener('click', cerrarVisor);
   $('#visorPrev').addEventListener('click', function () { moverVisor(-1); });
   $('#visorNext').addEventListener('click', function () { moverVisor(1); });
-  visor.addEventListener('click', function (e) { if (e.target === visor || e.target === $('.visor__marco', visor)) cerrarVisor(); });
+  visor.addEventListener('click', function (e) { if (e.target === visor || e.target === $('.visor__escena', visor)) cerrarVisor(); });
   caso.addEventListener('cancel', function (e) { if (visorAbierto()) { e.preventDefault(); cerrarVisor(); } });
+  // Esc con el visor abierto cierra solo el visor, nunca el proyecto.
+  caso.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && visorAbierto()) { e.preventDefault(); e.stopPropagation(); cerrarVisor(); }
+  }, true);
 
   caso.addEventListener('click', function (e) {
     if (visorAbierto()) return;
     if (e.target === caso) cerrar();
     var z = e.target.closest('.pieza__btn');
-    if (z) { abrirVisor(z); return; }
+    if (z && z.dataset.src) { e.preventDefault(); abrirVisor(z); return; }
     var ir = e.target.closest('[data-ir]');
     if (ir) mostrar(Number(ir.dataset.ir));
   });

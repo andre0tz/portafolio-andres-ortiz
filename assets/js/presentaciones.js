@@ -42,6 +42,12 @@
     var dentro = cu.foto ? '<img src="' + esc(cu.foto) + '" alt="">' : esc(cu.iniciales);
     return '<span class="' + (clase || 'ig__avatar') + '" style="--c:' + esc(cu.color) + '" aria-hidden="true"><span>' + dentro + '</span></span>';
   }
+  /* Cada pieza ampliable lleva su propio archivo, título y descripción.
+     El visor lee solo estos datos, nunca "la primera imagen" de un marco. */
+  function datos(x, desc, seccion, k) {
+    return ' data-src="' + esc(x.src) + '" data-alt="' + esc(x.alt) + '" data-titulo="' + esc(x.titulo || '') + '"' +
+      ' data-desc="' + esc(x.desc || desc || '') + '" data-seccion="' + esc(seccion || '') + '"' + (k != null ? ' data-k="' + k + '"' : '');
+  }
   function imagen(x) {
     return '<img src="' + esc(x.src) + '" alt="' + esc(x.alt) + '" loading="lazy" decoding="async">';
   }
@@ -62,9 +68,10 @@
       icono('i-ig-guardar') +
       '</footer>';
   }
-  function postIG(x, p, cu, extra) {
+  function postIG(x, p, cu, extra, d) {
+    d = d || {};
     var media = x.src
-      ? '<button type="button" class="pieza__btn ig__media" aria-label="Ampliar: ' + esc(x.alt) + '">' + imagen(x) + '</button>'
+      ? '<button type="button" class="pieza__btn ig__media"' + datos(x, d.desc, d.seccion, d.k) + ' aria-label="Ampliar: ' + esc(x.titulo || x.alt) + '">' + imagen(x) + '</button>'
       : '<div class="ig__media">' + hueco(x, p.slug) + '</div>';
     return '<article class="ig"' + (extra || '') + '>' + cabeceraIG(cu) + media + accionesIG() + '</article>';
   }
@@ -84,30 +91,22 @@
         (e.ante ? '<p class="sec-cab__ante">' + esc(e.ante) + '</p>' : '') +
         '<h3 class="sec-cab__titulo"><span class="l1"><span>' + esc(l1) + '</span></span>' + (l2 ? '<span class="l2"><span>' + esc(l2) + '</span></span>' : '') + '</h3>' +
       '</div>' +
-      (s.nota ? '<div class="sec-cab__lado"><p class="sec-cab__nota">' + esc(s.nota) + '</p></div>' : '') +
+      (s.nota || s.ayuda ? '<div class="sec-cab__lado">' + (s.nota ? '<p class="sec-cab__nota">' + esc(s.nota) + '</p>' : '') +
+        (s.ayuda ? '<p class="sec-cab__ayuda">' + esc(s.ayuda) + '</p>' : '') + '</div>' : '') +
     '</header>';
   }
 
   /* ---------- Feed: muro de tres columnas ---------- */
   function feed(s, p) {
     var cu = cuentaDe(p), cols = [[], [], []];
-    s.piezas.forEach(function (x, k) { cols[k % 3].push(postIG(x, p, cu, ' style="--k:' + k + '"')); });
+    var sec = (s.encabezado && s.encabezado.ante) || s.titulo;
+    s.piezas.forEach(function (x, k) { cols[k % 3].push(postIG(x, p, cu, ' style="--k:' + k + '"', { desc: s.nota, seccion: sec, k: k })); });
     return '<div class="feed" data-feed data-grupo>' + cols.map(function (c, i) {
       return '<div class="feed__col" data-vel="' + [-0.6, 1, -0.25][i] + '">' + c.join('') + '</div>';
     }).join('') + '</div>';
   }
 
   function iniciarFeed(el, raiz) {
-    // El visor recorre las piezas en su orden original, no por columnas.
-    var orden = $$('.ig', el).sort(function (a, b) { return a.style.getPropertyValue('--k') - b.style.getPropertyValue('--k'); });
-    el.addEventListener('click', function (e) {
-      var b = e.target.closest('.pieza__btn');
-      if (!b || !window.abrirVisorLista) return;
-      e.stopPropagation();
-      var lista = orden.map(function (ig) { var im = $('img', ig); return im ? { src: im.currentSrc || im.src, alt: im.alt } : null; }).filter(Boolean);
-      var pos = orden.indexOf(b.closest('.ig'));
-      window.abrirVisorLista(lista, Math.max(0, pos), b);
-    });
     if (reducir) return;
     var cols = $$('.feed__col', el), pendiente = false;
     function mover() {
@@ -124,11 +123,11 @@
   }
 
   /* ---------- Escenario: carrusel con profundidad ---------- */
-  function pista(piezas, p, cu, etiqueta) {
+  function pista(piezas, p, cu, etiqueta, desc, sec) {
     return '<div class="escena">' +
       '<button type="button" class="escena__flecha escena__flecha--prev" data-paso="-1" aria-label="Publicación anterior">' + icono('i-flecha', 'ico gira-izq') + '</button>' +
       '<div class="escena__pista" data-grupo tabindex="0" aria-label="' + esc(etiqueta) + '">' +
-        piezas.map(function (x, k) { return '<div class="escena__item">' + postIG(x, p, cu, ' style="--k:' + k + '"') + '</div>'; }).join('') +
+        piezas.map(function (x, k) { return '<div class="escena__item">' + postIG(x, p, cu, ' style="--k:' + k + '"', { desc: desc, seccion: sec, k: k }) + '</div>'; }).join('') +
       '</div>' +
       '<button type="button" class="escena__flecha escena__flecha--next" data-paso="1" aria-label="Publicación siguiente">' + icono('i-flecha', 'ico gira-der') + '</button>' +
       '<p class="escena__puntos" aria-hidden="true">' + piezas.map(function (_, k) { return '<i' + (k === 0 ? ' class="on"' : '') + '></i>'; }).join('') + '</p>' +
@@ -146,7 +145,7 @@
         return '<div class="escenario__panel" role="' + (caps.length > 1 ? 'tabpanel' : 'group') + '" id="' + id + '-p' + k + '"' +
           (caps.length > 1 ? ' aria-labelledby="' + id + '-t' + k + '"' : '') + (k ? ' hidden' : '') + '>' +
           (c.nota && caps.length > 1 ? '<p class="escenario__nota">' + esc(c.nota) + '</p>' : '') +
-          pista(c.piezas, p, cu, c.titulo) +
+          pista(c.piezas, p, cu, c.titulo, c.nota || s.nota, (s.encabezado && s.encabezado.ante) || s.titulo) +
         '</div>';
       }).join('') +
     '</div>';
@@ -236,7 +235,7 @@
           '<div class="historia__cab">' + avatar(cu, 'historia__avatar') + '<b>' + esc(cu.nombre) + '</b>' + icono('i-ig-mas', 'ico historia__mas') + '</div>' +
         '</div>' +
         '<div class="historia__marco">' +
-          con.map(function (x, k) { return '<img class="historia__img' + (k === 0 ? ' activa' : '') + '" src="' + esc(x.src) + '" alt="' + esc(x.alt) + '"' + (k ? ' loading="lazy"' : '') + ' decoding="async">'; }).join('') +
+          con.map(function (x, k) { return '<img class="historia__img' + (k === 0 ? ' activa' : '') + '" src="' + esc(x.src) + '" alt="' + esc(x.alt) + '"' + datos(x, s.nota, (s.encabezado && s.encabezado.ante) || s.titulo, k) + (k ? ' loading="lazy"' : '') + ' decoding="async">'; }).join('') +
           '<button type="button" class="historia__zona historia__zona--prev" data-paso="-1" aria-label="Historia anterior"></button>' +
           '<button type="button" class="historia__zona historia__zona--next" data-paso="1" aria-label="Historia siguiente"></button>' +
         '</div>' +
@@ -284,7 +283,7 @@
       pausa.setAttribute('aria-label', p ? 'Reproducir' : 'Pausar');
     });
     $('[data-ampliar]', el).addEventListener('click', function (e) {
-      if (window.abrirVisorLista) window.abrirVisorLista(imgs.map(function (im) { return { src: im.currentSrc || im.src, alt: im.alt }; }), actual, e.currentTarget);
+      if (window.abrirVisorLista) window.abrirVisorLista(imgs.map(function (im) { return Object.assign({}, im.dataset); }), actual, e.currentTarget);
     });
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (en) { el.classList.toggle('fuera', !en[0].isIntersecting); }, { threshold: .35 });
@@ -296,15 +295,17 @@
 
   /* ---------- Carruseles de Instagram ---------- */
   function carruseles(s, p) {
-    var cu = cuentaDe(p);
-    return '<div class="carruseles">' + (s.carruseles || []).map(function (c, j) {
+    var cu = cuentaDe(p), sec = (s.encabezado && s.encabezado.ante) || s.titulo;
+    return '<div class="fila" data-fila>' +
+      '<button type="button" class="fila__flecha fila__flecha--prev" data-fila-paso="-1" aria-label="Carruseles anteriores">' + icono('i-flecha', 'ico gira-izq') + '</button>' +
+      '<div class="carruseles">' + (s.carruseles || []).map(function (c, j) {
       var n = c.piezas.length;
       return '<figure class="carrusel-pieza" style="--j:' + j + '">' +
         '<article class="ig ig--carrusel">' + cabeceraIG(cu) +
           '<div class="ig__media carrusel" data-carrusel>' +
             '<div class="carrusel__pista" data-grupo tabindex="0" aria-label="Carrusel: ' + esc(c.titulo) + '">' +
-              c.piezas.map(function (x) {
-                return x.src ? '<button type="button" class="pieza__btn carrusel__slide" aria-label="Ampliar: ' + esc(x.alt) + '">' + imagen(x) + '</button>'
+              c.piezas.map(function (x, k) {
+                return x.src ? '<button type="button" class="pieza__btn carrusel__slide"' + datos(x, c.desc || s.nota, sec + ' · ' + c.titulo, k) + ' aria-label="Ampliar: ' + esc(x.titulo || x.alt) + '">' + imagen(x) + '</button>'
                              : '<div class="carrusel__slide">' + hueco(x, p.slug) + '</div>';
               }).join('') +
             '</div>' +
@@ -314,9 +315,11 @@
           '</div>' +
           accionesIG('<span class="carrusel__puntos" aria-hidden="true">' + c.piezas.map(function (_, k) { return '<i' + (k === 0 ? ' class="on"' : '') + '></i>'; }).join('') + '</span>') +
         '</article>' +
-        '<figcaption>' + esc(c.titulo) + '</figcaption>' +
+        '<figcaption><b>' + esc(c.titulo) + '</b>' + (c.desc ? '<span>' + esc(c.desc) + '</span>' : '') + '</figcaption>' +
       '</figure>';
-    }).join('') + '</div>';
+    }).join('') + '</div>' +
+      '<button type="button" class="fila__flecha fila__flecha--next" data-fila-paso="1" aria-label="Más carruseles">' + icono('i-flecha', 'ico gira-der') + '</button>' +
+    '</div>';
   }
 
   function iniciarCarrusel(el) {
@@ -342,8 +345,41 @@
   function abanico(s, p) {
     var cu = cuentaDe(p), n = s.piezas.length;
     return '<div class="abanico" data-grupo style="--n:' + n + '">' +
-      s.piezas.map(function (x, k) { return postIG(x, p, cu, ' style="--i:' + k + ';--d:' + (k - (n - 1) / 2) + '"'); }).join('') +
+      s.piezas.map(function (x, k) { return postIG(x, p, cu, ' style="--i:' + k + ';--d:' + (k - (n - 1) / 2) + '"', { desc: s.nota, seccion: (s.encabezado && s.encabezado.ante) || s.titulo, k: k }); }).join('') +
     '</div>';
+  }
+
+  /* Busca la pieza original (con su título y descripción) a partir de su archivo. */
+  function piezaPorSrc(p, src) {
+    var hallada = null;
+    (p.secciones || []).forEach(function (s) {
+      var sec = (s.encabezado && s.encabezado.ante) || s.titulo;
+      (s.piezas || []).forEach(function (x) { if (!hallada && x.src === src) hallada = Object.assign({ __desc: x.desc || s.nota, __sec: sec }, x); });
+      (s.capitulos || []).forEach(function (c) { c.piezas.forEach(function (x) { if (!hallada && x.src === src) hallada = Object.assign({ __desc: x.desc || c.nota || s.nota, __sec: sec }, x); }); });
+      (s.carruseles || []).forEach(function (c) { c.piezas.forEach(function (x) { if (!hallada && x.src === src) hallada = Object.assign({ __desc: x.desc || c.desc || s.nota, __sec: sec + ' · ' + c.titulo }, x); }); });
+    });
+    return hallada;
+  }
+
+  /* ---------- Fila horizontal con flechas ---------- */
+  function iniciarFila(el) {
+    var pista = $('.carruseles', el), prev = $('[data-fila-paso="-1"]', el), next = $('[data-fila-paso="1"]', el);
+    function pintar() {
+      var max = pista.scrollWidth - pista.clientWidth - 2;
+      el.classList.toggle('sin-desborde', max <= 0);
+      prev.disabled = pista.scrollLeft <= 2; next.disabled = pista.scrollLeft >= max;
+    }
+    [prev, next].forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var item = $('.carrusel-pieza', pista), paso = item ? item.offsetWidth + 32 : pista.clientWidth * .8;
+        pista.scrollBy({ left: Number(b.dataset.filaPaso) * paso, behavior: reducir ? 'auto' : 'smooth' });
+      });
+    });
+    pista.addEventListener('scroll', function () { requestAnimationFrame(pintar); }, { passive: true });
+    addEventListener('resize', pintar);
+    limpiezas.push(function () { removeEventListener('resize', pintar); });
+    pintar();
   }
 
   /* ---------- Collage de portada ---------- */
@@ -352,7 +388,8 @@
     var nombre = p.titulo || '';
     return '<div class="collage collage--' + lista.length + '" data-grupo>' +
       lista.map(function (src, k) {
-        return '<div class="collage__p" style="--k:' + k + '">' + postIG({ src: src, alt: 'Publicación de ' + nombre }, p, cu) + '</div>';
+        var x = piezaPorSrc(p, src) || { src: src, alt: 'Publicación de ' + nombre };
+        return '<div class="collage__p" style="--k:' + k + '">' + postIG(x, p, cu, '', { desc: x.__desc || p.resumen, seccion: x.__sec || nombre, k: k }) + '</div>';
       }).join('') +
     '</div>';
   }
@@ -370,6 +407,7 @@
       $$('[data-escenario]', raiz).forEach(iniciarEscenario);
       $$('[data-historias]', raiz).forEach(iniciarHistorias);
       $$('[data-carrusel]', raiz).forEach(iniciarCarrusel);
+      $$('[data-fila]', raiz).forEach(iniciarFila);
       var aparecen = $$('[data-aparece], .feed .ig', raiz);
       if ('IntersectionObserver' in window && !reducir) {
         var io = new IntersectionObserver(function (en) {
