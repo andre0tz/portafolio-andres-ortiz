@@ -24,7 +24,7 @@
     if (/[?&]pendientes\b/.test(location.search)) d.classList.add('ver-pendientes');
   })();
 </script>
-<link rel="stylesheet" href="assets/css/estilos.css?v=20261017h">
+<link rel="stylesheet" href="assets/css/estilos.css?v=20261017j">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -274,14 +274,9 @@
 
 <!-- ============ CASO DE PROYECTO ============ -->
 <dialog class="caso" id="caso" aria-labelledby="casoTitulo">
-  <div class="caso__barra">
-    <span class="mono" id="casoContador"></span>
-    <div class="caso__nav">
-      <button type="button" class="caso__btn" id="casoPrev" aria-label="Proyecto anterior"><svg aria-hidden="true" style="transform:rotate(-135deg)"><use href="#i-flecha"/></svg></button>
-      <button type="button" class="caso__btn" id="casoNext" aria-label="Proyecto siguiente"><svg aria-hidden="true" style="transform:rotate(45deg)"><use href="#i-flecha"/></svg></button>
-      <button type="button" class="caso__btn caso__cerrar" id="casoCerrar" aria-label="Cerrar proyecto"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></button>
-    </div>
-  </div>
+  <button type="button" class="caso__volver" id="casoVolver" aria-label="Volver al portafolio">
+    <svg aria-hidden="true"><use href="#i-flecha"/></svg><span>Volver</span>
+  </button>
   <div class="caso__cuerpo" id="casoCuerpo"></div>
   <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Pieza ampliada" hidden>
     <button type="button" class="visor__btn visor__cerrar" id="visorCerrar" aria-label="Cerrar vista ampliada"><svg aria-hidden="true"><use href="#i-cerrar"/></svg></button>
@@ -293,8 +288,8 @@
 
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
-<script src="assets/js/proyectos.js?v=20261017h"></script>
-<script src="assets/js/presentaciones.js?v=20261017h"></script>
-<script src="assets/js/main.js?v=20261017h"></script>
+<script src="assets/js/proyectos.js?v=20261017j"></script>
+<script src="assets/js/presentaciones.js?v=20261017j"></script>
+<script src="assets/js/main.js?v=20261017j"></script>
 </body>
 </html>

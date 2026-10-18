@@ -170,9 +170,12 @@ window.FILTROS = [
    cuenta: { nombre, iniciales, color } para los marcos de Instagram.
    formato de pieza: "cuadrado", "vertical", "horizontal", "ancho", "historia"
    tipo de pieza: "imagen" (por defecto) o "video"
+   acento: color del proyecto. estiloTitulos: "contorno" o "marcador".
+   aclaracion: nota breve bajo el resumen del caso.
    tipo de sección (ver assets/js/presentaciones.js):
-     "mazo", "historias", "carruseles" (usa carruseles: [...]),
-     "campana" (usa capitulos: [...]) o nada para una galería normal. */
+     "feed", "escenario" (admite capitulos: [...]), "historias",
+     "carruseles" (usa carruseles: [...]) o nada para una galería normal.
+   encabezado de sección: { ante, linea1, linea2 } y unidad ("publicaciones"). */
 window.PROYECTOS = [
   {
     slug: "moncar",
@@ -223,26 +226,35 @@ window.PROYECTOS = [
     publicado: true,
     titulo: "Ink House",
     categorias: ["redes", "publicidad"],
-    disciplina: "Campañas y redes de la agencia",
+    disciplina: "Gestión de redes y contenido digital",
     relacion: "profesional",
-    tono: "cielo",
-    portada: "assets/proyectos/ink-house/apps-1.webp",
+    tono: "tinta",
+    // Color del proyecto (contornos y marcadores de los títulos).
+    acento: "#f2a900",
+    // Estilo de los títulos de sección: "contorno" o "marcador".
+    estiloTitulos: "marcador",
+    portada: "assets/proyectos/ink-house/apps-2.webp",
     // Piezas que se asoman en la tarjeta al pasar el cursor.
     vistazo: ["assets/proyectos/ink-house/invitaciones-2.webp", "assets/proyectos/ink-house/promocion-5.webp", "assets/proyectos/ink-house/carrusel-dali-2.webp"],
-    // Nombre que aparece en los marcos de Instagram.
-    cuenta: { nombre: "Ink House", iniciales: "IH", color: "#f2a900" },
-    resumen: "Una campaña de servicios en tres frentes (apps digitales, invitaciones y promociones) y carruseles para las redes de una agencia de diseño y publicidad.",
+    // Nombre y foto de perfil que aparecen en los marcos de Instagram.
+    // Cuando tengas la foto, ponla en assets/proyectos/ink-house/perfil.webp y escribe la ruta en foto.
+    cuenta: { nombre: "Ink House", iniciales: "IH", color: "#f2a900", foto: "" },
+    resumen: "Contenido digital para las redes de Ink House y para las marcas de sus clientes.",
+    aclaracion: "Aquí muestro una selección de algunos proyectos que realicé, no la totalidad de mi trabajo en la agencia.",
     contexto: "Ink House Diseño y Publicidad es una agencia en Pachuca. Trabajé ahí de enero de 2025 a febrero de 2026 como diseñador gráfico y community manager.",
     objetivo: "",
-    participacion: "Planeé parrillas de contenido, diseñé publicaciones y materiales de marketing, edité videos, redacté copies y programé las publicaciones, tanto para la agencia como para sus clientes.",
+    participacion: "Me encargué principalmente de la gestión de redes sociales, tanto de Ink House como de sus clientes: planeé, creé y programé los contenidos digitales.",
     concepto: "",
     decisiones: [],
-    entregables: ["Campaña de servicios", "Apps digitales", "Invitaciones digitales", "Promociones", "Carruseles para redes"],
+    entregables: [],
     resultados: [],
     // Clientes de la agencia que tienen su propio caso en el portafolio.
     relacionados: ["blefaroplastia-pachuca", "bailoterapia", "nutriologa-amparo-valdez"],
     secciones: [
-      { titulo: "Campaña de servicios", tipo: "campana", nota: "Tres frentes de una misma campaña para dar a conocer los servicios de la agencia.", capitulos: [
+      { titulo: "Campaña de servicios", tipo: "escenario", unidad: "publicaciones",
+        encabezado: { ante: "Campaña de servicios", linea1: "Tres servicios,", linea2: "una campaña" },
+        nota: "Apps digitales, invitaciones y promociones de la agencia. Desliza o usa las flechas para recorrer cada capítulo.",
+        capitulos: [
         { titulo: "Apps digitales", nota: "Apps de pedidos y menú digital para restaurantes.", piezas: [
           { src: "assets/proyectos/ink-house/apps-1.webp", archivo: "apps-1.webp", alt: "Pieza 1 de la campaña de apps digitales para restaurantes", formato: "vertical" },
           { src: "assets/proyectos/ink-house/apps-2.webp", archivo: "apps-2.webp", alt: "Pieza 2 de la campaña de apps digitales para restaurantes", formato: "vertical" },
@@ -262,7 +274,10 @@ window.PROYECTOS = [
           { src: "assets/proyectos/ink-house/promocion-7.webp", archivo: "promocion-7.webp", alt: "Promoción de Ink House, pieza 7", formato: "vertical" },
           { src: "assets/proyectos/ink-house/promocion-8.webp", archivo: "promocion-8.webp", alt: "Promoción de Ink House, pieza 8", formato: "vertical" } ] }
       ] },
-      { titulo: "Carruseles para redes", tipo: "carruseles", nota: "Desliza cada carrusel como en Instagram.", carruseles: [
+      { titulo: "Carruseles para redes", tipo: "carruseles", unidad: "carruseles",
+        encabezado: { ante: "Carruseles para redes", linea1: "Desliza", linea2: "para leer" },
+        nota: "Cada carrusel se recorre como en Instagram.",
+        carruseles: [
         { titulo: "Dalí", piezas: [
           { src: "assets/proyectos/ink-house/carrusel-dali-1.webp", archivo: "carrusel-dali-1.webp", alt: "Carrusel sobre Dalí, lámina 1", formato: "vertical" },
           { src: "assets/proyectos/ink-house/carrusel-dali-2.webp", archivo: "carrusel-dali-2.webp", alt: "Carrusel sobre Dalí, lámina 2", formato: "vertical" },
@@ -284,11 +299,14 @@ window.PROYECTOS = [
     relacion: "agencia",
     agencia: "ink-house",
     tono: "cobalto",
+    acento: "#1f4fe0",
+    estiloTitulos: "contorno",
     portada: "assets/proyectos/blefaroplastia-pachuca/publicacion-3.webp",
     // Parte de la imagen que se ve en la tarjeta (posición CSS).
     portadaPos: "center 6%",
     vistazo: ["assets/proyectos/blefaroplastia-pachuca/publicacion-8.webp", "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", "assets/proyectos/blefaroplastia-pachuca/publicacion-7.webp"],
-    cuenta: { nombre: "Blefaroplastia Pachuca", iniciales: "BP", color: "#1257c9" },
+    // Cuando tengas la foto de perfil, ponla en assets/proyectos/blefaroplastia-pachuca/perfil.webp y escribe la ruta en foto.
+    cuenta: { nombre: "Blefaroplastia Pachuca", iniciales: "BP", color: "#1257c9", foto: "" },
     resumen: "Publicaciones e historias educativas y promociones para una clínica de cirugía de párpados.",
     contexto: "Cliente que atendí en Ink House. La clínica realiza blefaroplastia superior e inferior.",
     objetivo: "Explicar el procedimiento a la audiencia y dar a conocer sus promociones.",
@@ -298,7 +316,10 @@ window.PROYECTOS = [
     entregables: ["Publicaciones educativas", "Promociones", "Historias"],
     resultados: [],
     secciones: [
-      { titulo: "Publicaciones", tipo: "mazo", piezas: [
+      { titulo: "Publicaciones", tipo: "feed", unidad: "publicaciones",
+        encabezado: { ante: "Publicaciones para el feed", linea1: "Lo que vive", linea2: "en el feed" },
+        nota: "Publicaciones educativas y promociones. Toca cualquiera para verla en grande.",
+        piezas: [
           { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-1.webp", archivo: "publicacion-1.webp", alt: "Publicación 1 de Blefaroplastia Pachuca", formato: "vertical" },
           { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-2.webp", archivo: "publicacion-2.webp", alt: "Publicación 2 de Blefaroplastia Pachuca", formato: "vertical" },
           { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-3.webp", archivo: "publicacion-3.webp", alt: "Publicación 3 de Blefaroplastia Pachuca", formato: "vertical" },
@@ -308,7 +329,10 @@ window.PROYECTOS = [
           { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-7.webp", archivo: "publicacion-7.webp", alt: "Publicación 7 de Blefaroplastia Pachuca", formato: "vertical" },
           { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-8.webp", archivo: "publicacion-8.webp", alt: "Publicación 8 de Blefaroplastia Pachuca", formato: "vertical" },
           { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-9.webp", archivo: "publicacion-9.webp", alt: "Publicación 9 de Blefaroplastia Pachuca", formato: "vertical" } ] },
-      { titulo: "Historias", tipo: "historias", nota: "Así se ven publicadas. Cambia entre Instagram y Facebook, o toca los lados de la pantalla para avanzar.", piezas: [
+      { titulo: "Historias", tipo: "historias", unidad: "historias",
+        encabezado: { ante: "Historias de Instagram y Facebook", linea1: "24 horas", linea2: "en pantalla" },
+        nota: "Así se ven publicadas. Cambia entre Instagram y Facebook, o toca los lados de la pantalla para avanzar.",
+        piezas: [
           { src: "assets/proyectos/blefaroplastia-pachuca/historia-1.webp", archivo: "historia-1.webp", alt: "Historia 1 de Blefaroplastia Pachuca", formato: "historia" },
           { src: "assets/proyectos/blefaroplastia-pachuca/historia-2.webp", archivo: "historia-2.webp", alt: "Historia 2 de Blefaroplastia Pachuca", formato: "historia" },
           { src: "assets/proyectos/blefaroplastia-pachuca/historia-3.webp", archivo: "historia-3.webp", alt: "Historia 3 de Blefaroplastia Pachuca", formato: "historia" },

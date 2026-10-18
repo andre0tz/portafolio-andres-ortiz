@@ -275,48 +275,63 @@
     var nombresCat = {};
     FILTROS.forEach(function (f) { nombresCat[f.id] = f.nombre; });
 
-    var html = '<header class="caso__cabeza t-' + esc(p.tono) + ' obra--tipo">' +
+    var visual = '';
+    if (p.portada && window.Presenta) {
+      var detras = (p.vistazo || [])[0];
+      visual = '<div class="caso__visual">' +
+        (detras ? '<div class="caso__detras" aria-hidden="true">' + window.Presenta.postIG({ src: detras, alt: '' }, p).replace('class="pieza__btn ig__media"', 'class="ig__media" tabindex="-1"') + '</div>' : '') +
+        '<div class="caso__frente">' + window.Presenta.postIG({ src: p.portada, alt: 'Portada de ' + titulo(p) }, p) + '</div>' +
+      '</div>';
+    }
+    var html = '<header class="caso__cabeza t-' + esc(p.tono) + ' obra--tipo' + (visual ? ' con-visual' : '') + '">' +
       '<div class="obra__portada"><span class="obra__numero" aria-hidden="true">' + numero(i) + '</span></div>' +
-      '<div class="caso__chips">' +
-        (rel ? '<span class="chip' + (fuerte ? ' chip--fuerte' : '') + '">' + esc(rel) + '</span>' : '<span class="chip-pendiente">Relación pendiente</span>') +
-        (p.agencia && porSlug(p.agencia) > -1 ? '<button type="button" class="chip chip--enlace" data-ir="' + porSlug(p.agencia) + '">Ver Ink House</button>' : '') +
-        p.categorias.map(function (c) { return '<span class="chip">' + esc(nombresCat[c] || c) + '</span>'; }).join('') +
+      '<div class="caso__hero">' +
+        '<div class="caso__textos">' +
+          '<div class="caso__chips">' +
+            (rel ? '<span class="chip' + (fuerte ? ' chip--fuerte' : '') + '">' + esc(rel) + '</span>' : '<span class="chip-pendiente">Relación pendiente</span>') +
+            (p.agencia && porSlug(p.agencia) > -1 ? '<button type="button" class="chip chip--enlace" data-ir="' + porSlug(p.agencia) + '">Ver Ink House</button>' : '') +
+            p.categorias.map(function (c) { return '<span class="chip">' + esc(nombresCat[c] || c) + '</span>'; }).join('') +
+          '</div>' +
+          (p.publicado === false ? '<p class="caso__aviso-borrador mono">Borrador: no se muestra al público</p>' : '') +
+          '<h2 class="caso__titulo" id="casoTitulo">' + esc(titulo(p)) + '</h2>' +
+          '<p class="caso__resumen">' + esc(p.resumen) + '</p>' +
+          (p.aclaracion ? '<p class="caso__aclaracion">' + esc(p.aclaracion) + '</p>' : '') +
+        '</div>' + visual +
       '</div>' +
-      (p.publicado === false ? '<p class="caso__aviso-borrador mono">Borrador: no se muestra al público</p>' : '') +
-      '<h2 class="caso__titulo" id="casoTitulo">' + esc(titulo(p)) + '</h2>' +
-      '<p class="caso__resumen">' + esc(p.resumen) + '</p>' +
+      '<span class="caso__explora" aria-hidden="true">Explora el proyecto <svg><use href="#i-abajo"/></svg></span>' +
     '</header>';
 
     var fichas = ficha('Contexto', p.contexto) + ficha('Objetivo', p.objetivo) + ficha('Mi participación', p.participacion) +
       ficha('Concepto creativo', p.concepto) + ficha('Decisiones de diseño', p.decisiones) + ficha('Entregables', p.entregables);
     var falta = faltantes(p);
-    html += '<section class="caso__seccion" aria-label="Información del proyecto">' +
+    html += '<section class="caso__seccion caso__seccion--fichas" aria-label="Información del proyecto">' +
       (fichas ? '<dl class="fichas">' + fichas + '</dl>' : '') +
       (falta.length ? '<p class="nota-pendiente">Pendiente en este proyecto: ' + esc(falta.join(', ')) + '.</p>' : '') +
     '</section>';
 
-    (p.secciones || []).forEach(function (s, k) {
+    function cabecera(s) {
+      return window.Presenta ? window.Presenta.encabezado(s) :
+        '<div class="bloque__cab"><h3 class="bloque__titulo">' + esc(s.titulo) + '</h3></div>';
+    }
+    (p.secciones || []).forEach(function (s) {
       var especial = window.Presenta && window.Presenta.html(s, p);
       if (especial) {
-        html += '<section class="caso__seccion caso__seccion--' + esc(s.tipo) + '">' +
-          '<div class="bloque__cab"><h3 class="bloque__titulo"><span>' + String(k + 1).padStart(2, '0') + '</span>' + esc(s.titulo) + '</h3>' +
-          (s.nota ? '<p class="bloque__nota">' + esc(s.nota) + '</p>' : '') + '</div>' + especial + '</section>';
+        html += '<section class="caso__seccion caso__seccion--' + esc(s.tipo) + '">' + cabecera(s) + especial + '</section>';
         return;
       }
       var normales = s.piezas.filter(function (x) { return x.formato !== 'ancho'; }).length;
       var historias = s.piezas.every(function (x) { return x.formato === 'historia'; });
       var cols = (historias && normales >= 4) ? 'c4' : 'c' + Math.max(1, Math.min(normales, 3)) + (normales === 0 ? ' solo-ancho' : '');
-      html += '<section class="caso__seccion">' +
-        '<div class="bloque__cab"><h3 class="bloque__titulo"><span>' + String(k + 1).padStart(2, '0') + '</span>' + esc(s.titulo) + '</h3>' +
-        (s.nota ? '<p class="bloque__nota">' + esc(s.nota) + '</p>' : '') + '</div>' +
+      html += '<section class="caso__seccion">' + cabecera(s) +
         '<div class="galeria ' + cols + '">' + s.piezas.map(function (x) { return piezaHTML(x, p.slug); }).join('') + '</div>' +
       '</section>';
     });
 
     var rel2 = (p.relacionados || []).map(porSlug).filter(function (k) { return k > -1; });
     if (rel2.length) {
-      html += '<section class="caso__seccion"><div class="bloque__cab"><h3 class="bloque__titulo">Clientes que atendí aquí</h3>' +
-        '<p class="bloque__nota">Cada uno tiene su propio caso.</p></div><div class="relacionados">' +
+      html += '<section class="caso__seccion caso__seccion--relacionados">' +
+        cabecera({ encabezado: { ante: 'Desde la agencia', linea1: 'Clientes que', linea2: 'atendí aquí' }, nota: 'Cada uno tiene su propio caso.', unidad: rel2.length === 1 ? 'caso' : 'casos', piezas: rel2 }) +
+        '<div class="relacionados">' +
         rel2.map(function (k) {
           var r = PROYECTOS[k];
           return '<button type="button" class="relacionado t-' + esc(r.tono) + '" data-ir="' + k + '"><span class="mono">' + esc(r.disciplina) + '</span><strong>' + esc(titulo(r)) +
@@ -341,7 +356,7 @@
     html += '<button type="button" class="caso__sig" data-ir="' + ((i + 1) % PROYECTOS.length) + '">' +
       '<span><span class="mono">Siguiente proyecto</span><strong>' + esc(titulo(sig)) + '</strong></span>' +
       '<svg aria-hidden="true"><use href="#i-flecha"/></svg></button>';
-    return html;
+    return '<div class="caso__lienzo" data-titulos="' + esc(p.estiloTitulos || 'contorno') + '"' + (p.acento ? ' style="--proy:' + esc(p.acento) + '"' : '') + '>' + html + '</div>';
   }
 
   function mostrar(i) {
@@ -350,7 +365,6 @@
     cuerpo.innerHTML = casoHTML(actual);
     if (window.Presenta) window.Presenta.iniciar(cuerpo);
     cuerpo.scrollTop = 0;
-    $('#casoContador').textContent = numero(actual) + ' / ' + String(PROYECTOS.length).padStart(2, '0');
     history.replaceState(null, '', '#caso/' + PROYECTOS[actual].slug);
   }
 
@@ -361,7 +375,7 @@
       if (typeof caso.showModal === 'function') caso.showModal(); else caso.setAttribute('open', '');
       raiz.style.overflow = 'hidden';
     }
-    $('#casoCerrar').focus();
+    $('#casoVolver').focus();
   }
 
   function cerrar() { if (caso.open) caso.close(); }
@@ -429,13 +443,8 @@
       }
       return;
     }
-    if (/^(INPUT|TEXTAREA|VIDEO)$/.test(e.target.tagName)) return;
-    if (e.key === 'ArrowRight') { mostrar(actual + 1); }
-    if (e.key === 'ArrowLeft') { mostrar(actual - 1); }
   });
-  $('#casoCerrar').addEventListener('click', cerrar);
-  $('#casoPrev').addEventListener('click', function () { mostrar(actual - 1); });
-  $('#casoNext').addEventListener('click', function () { mostrar(actual + 1); });
+  $('#casoVolver').addEventListener('click', cerrar);
 
   obras.addEventListener('click', function (e) {
     var a = e.target.closest('.obra__enlace'); if (!a) return;
