@@ -1158,3 +1158,39 @@ code{font-family:var(--f-mono);font-size:.8em}
 /* Videos horizontales: proporción 16:9 completa, sin recortes */
 .pieza.f-ancho:has(video){aspect-ratio:16/9;background:#000}
 .pieza video{object-fit:contain;background:#000}
+
+/* =====================================================================
+   24. INTRO PARA CONGRESO: PALETA SEPIA Y VIDEO ENMARCADO
+   ===================================================================== */
+.paleta-intro{
+  --fondo:#f7f2ea;--fondo-2:#efe6d7;--superficie:#fffaf2;
+  --texto:#2b2119;--texto-suave:#6e5e4d;--linea:rgba(43,33,25,.14);
+  --proy:#8a5a2b;--proy-2:#b8863f;--proy-3:#8a5a2b;--acento:#8a5a2b;
+  --hero:radial-gradient(circle at 82% 28%,rgba(184,134,63,.20),transparent 42%),radial-gradient(circle at 10% 95%,rgba(138,90,43,.10),transparent 38%),linear-gradient(180deg,#f3ebde,#f7f2ea);
+}
+[data-theme="oscuro"] .paleta-intro{
+  --fondo:#15110d;--fondo-2:#1c1712;--superficie:#231d17;
+  --texto:#f3ebdf;--texto-suave:#b6a690;--linea:rgba(243,235,223,.12);
+  --proy:#d6a46a;--proy-2:#e6c08a;--proy-3:#d6a46a;--acento:#d6a46a;
+  --hero:radial-gradient(circle at 82% 28%,rgba(214,164,106,.14),transparent 44%),radial-gradient(circle at 10% 95%,rgba(138,90,43,.14),transparent 40%),#15110d;
+}
+.paleta-intro .paleta-hero .chip--fuerte{background:var(--proy);border-color:var(--proy);color:var(--fondo)}
+
+/* Portada con video: el texto a la izquierda y la pantalla con más ancho */
+.portada-pantalla .caso__hero{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+.portada-pantalla .caso__visual{max-width:none;align-self:center}
+.portada-pantalla .caso__titulo{font-size:clamp(2.8rem,5.4vw,5.6rem)}
+
+/* Marco del video: borde fino, esquinas suaves, fondo y sombra discretos */
+.pantalla{margin:0;padding:10px;border-radius:22px;background:color-mix(in srgb,var(--superficie) 72%,transparent);border:1px solid var(--linea);box-shadow:0 34px 70px -44px rgba(43,33,25,.6);animation:visualEntra 1s var(--ease) .2s both}
+[data-theme="oscuro"] .pantalla{box-shadow:0 34px 80px -40px rgba(0,0,0,.8)}
+.pantalla__marco{aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
+.pantalla__marco video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.pantalla figcaption{display:flex;justify-content:space-between;gap:12px;padding:12px 8px 4px;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-suave)}
+
+/* Cuadros 16:9 y galería amplia de dos columnas */
+.f-panoramico{aspect-ratio:16/9}
+.galeria.c2.amplia{max-width:none}
+@media (max-width:980px){.portada-pantalla .caso__hero{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:620px){.galeria.c2.amplia{grid-template-columns:minmax(0,1fr)}.pantalla{padding:6px;border-radius:16px}.pantalla__marco{border-radius:11px}}
+@media (prefers-reduced-motion:reduce){.pantalla{animation:none}}

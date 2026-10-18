@@ -434,6 +434,17 @@
     '</div>';
   }
 
+  /* ---------- Pantalla: video enmarcado en la portada del caso ---------- */
+  function pantalla(p) {
+    var v = p.video || {};
+    if (!v.src) return '';
+    return '<figure class="pantalla">' +
+      '<div class="pantalla__marco"><video src="' + esc(v.src) + '"' + (v.poster ? ' poster="' + esc(v.poster) + '"' : '') +
+        ' controls playsinline preload="none" aria-label="' + esc(v.etiqueta || p.titulo) + '"></video></div>' +
+      '<figcaption><span>' + esc(v.etiqueta || '') + '</span>' + (v.duracion ? '<span>' + esc(v.duracion) + '</span>' : '') + '</figcaption>' +
+    '</figure>';
+  }
+
   /* ---------- Cinta con los servicios de la marca ---------- */
   var TIJERAS = '<svg class="franja__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.6 7.6 20 18M8.6 16.4 20 6"/></svg>';
   function cinta(p) {
@@ -521,7 +532,7 @@
   window.Presenta = {
     html: function (s, p) { var f = TIPOS[s.tipo]; return f ? f(s, p) : null; },
     encabezado: encabezado,
-    collage: function (p) { return p.portadaEstilo === 'columnas' ? columnas(p) : collage(p); },
+    collage: function (p) { return p.portadaEstilo === 'columnas' ? columnas(p) : p.portadaEstilo === 'pantalla' ? pantalla(p) : collage(p); },
     cinta: cinta,
     postIG: function (x, p) { return postIG(x, p, cuentaDe(p)); },
     iniciar: function (raiz) {

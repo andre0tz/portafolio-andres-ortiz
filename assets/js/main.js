@@ -264,7 +264,7 @@
     var visual = (p.portada && window.Presenta) ? '<div class="caso__visual">' + window.Presenta.collage(p) + '</div>' : '';
     var paleta = p.paleta ? ' paleta-hero' : ' t-' + esc(p.tono) + ' obra--tipo';
     var fichasHero = ficha('Contexto', p.contexto) + ficha('Objetivo', p.objetivo) + ficha('Mi aportación', p.participacion);
-    var html = '<header class="caso__cabeza' + paleta + (visual ? ' con-visual' : '') + '">' +
+    var html = '<header class="caso__cabeza' + paleta + (visual ? ' con-visual' : '') + (p.portadaEstilo ? ' portada-' + esc(p.portadaEstilo) : '') + '">' +
       (p.paleta ? '' : '<div class="obra__portada"></div>') +
       '<div class="caso__hero">' +
         '<div class="caso__textos">' +
@@ -308,7 +308,7 @@
       }
       var normales = s.piezas.filter(function (x) { return x.formato !== 'ancho'; }).length;
       var historias = s.piezas.every(function (x) { return x.formato === 'historia'; });
-      var cols = (historias && normales >= 4) ? 'c4' : 'c' + Math.max(1, Math.min(normales, 3)) + (normales === 0 ? ' solo-ancho' : '');
+      var cols = s.columnas ? 'c' + s.columnas + ' amplia' : (historias && normales >= 4) ? 'c4' : 'c' + Math.max(1, Math.min(normales, 3)) + (normales === 0 ? ' solo-ancho' : '');
       html += '<section class="caso__seccion">' + cabecera(s) +
         '<div class="galeria ' + cols + '" data-grupo>' + s.piezas.map(function (x) { return piezaHTML(x, p.slug, s.nota, (s.encabezado && s.encabezado.ante) || s.titulo); }).join('') + '</div>' +
       '</section>';
