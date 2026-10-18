@@ -166,8 +166,13 @@ window.FILTROS = [
    agencia: slug del proyecto de la agencia donde se hizo (ej. "ink-house").
    relacionados: slugs de proyectos que se enlazan dentro del caso.
    secciones: bloques de piezas que aparecen dentro del caso.
+   vistazo: hasta 3 imágenes que se asoman en la tarjeta al pasar el cursor.
+   cuenta: { nombre, iniciales, color } para los marcos de Instagram.
    formato de pieza: "cuadrado", "vertical", "horizontal", "ancho", "historia"
-   tipo de pieza: "imagen" (por defecto) o "video" */
+   tipo de pieza: "imagen" (por defecto) o "video"
+   tipo de sección (ver assets/js/presentaciones.js):
+     "mazo", "historias", "carruseles" (usa carruseles: [...]),
+     "campana" (usa capitulos: [...]) o nada para una galería normal. */
 window.PROYECTOS = [
   {
     slug: "moncar",
@@ -222,45 +227,51 @@ window.PROYECTOS = [
     relacion: "profesional",
     tono: "cielo",
     portada: "assets/proyectos/ink-house/apps-1.webp",
-    resumen: "Campañas, promociones, invitaciones digitales y carruseles para las redes de una agencia de diseño y publicidad.",
+    // Piezas que se asoman en la tarjeta al pasar el cursor.
+    vistazo: ["assets/proyectos/ink-house/invitaciones-2.webp", "assets/proyectos/ink-house/promocion-5.webp", "assets/proyectos/ink-house/carrusel-dali-2.webp"],
+    // Nombre que aparece en los marcos de Instagram.
+    cuenta: { nombre: "Ink House", iniciales: "IH", color: "#f2a900" },
+    resumen: "Una campaña de servicios en tres frentes (apps digitales, invitaciones y promociones) y carruseles para las redes de una agencia de diseño y publicidad.",
     contexto: "Ink House Diseño y Publicidad es una agencia en Pachuca. Trabajé ahí de enero de 2025 a febrero de 2026 como diseñador gráfico y community manager.",
     objetivo: "",
     participacion: "Planeé parrillas de contenido, diseñé publicaciones y materiales de marketing, edité videos, redacté copies y programé las publicaciones, tanto para la agencia como para sus clientes.",
     concepto: "",
     decisiones: [],
-    entregables: ["Campaña de apps digitales", "Invitaciones digitales", "Promociones", "Carruseles para redes"],
+    entregables: ["Campaña de servicios", "Apps digitales", "Invitaciones digitales", "Promociones", "Carruseles para redes"],
     resultados: [],
     // Clientes de la agencia que tienen su propio caso en el portafolio.
     relacionados: ["blefaroplastia-pachuca", "bailoterapia", "nutriologa-amparo-valdez"],
     secciones: [
-      { titulo: "Campaña de apps digitales", nota: "Campaña para dar a conocer el servicio de apps digitales para restaurantes.", piezas: [
-        { src: "assets/proyectos/ink-house/apps-1.webp", archivo: "apps-1.webp", alt: "Pieza 1 de la campaña de apps digitales para restaurantes", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/apps-2.webp", archivo: "apps-2.webp", alt: "Pieza 2 de la campaña de apps digitales para restaurantes", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/apps-3.webp", archivo: "apps-3.webp", alt: "Pieza 3 de la campaña de apps digitales para restaurantes", formato: "vertical" } ] },
-      { titulo: "Invitaciones digitales", nota: "Paquetes de invitaciones digitales interactivas.", piezas: [
-        { src: "assets/proyectos/ink-house/invitaciones-1.webp", archivo: "invitaciones-1.webp", alt: "Paquete de invitaciones digitales, pieza 1", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/invitaciones-2.webp", archivo: "invitaciones-2.webp", alt: "Paquete de invitaciones digitales, pieza 2", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/invitaciones-3.webp", archivo: "invitaciones-3.webp", alt: "Paquete de invitaciones digitales, pieza 3", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/invitaciones-4.webp", archivo: "invitaciones-4.webp", alt: "Paquete de invitaciones digitales, pieza 4", formato: "vertical" } ] },
-      { titulo: "Promociones", nota: "Impresión y productos personalizados, varias de ellas para el Buen Fin.", piezas: [
-        { src: "assets/proyectos/ink-house/promocion-1.webp", archivo: "promocion-1.webp", alt: "Promoción de Ink House, pieza 1", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/promocion-2.webp", archivo: "promocion-2.webp", alt: "Promoción de Ink House, pieza 2", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/promocion-3.webp", archivo: "promocion-3.webp", alt: "Promoción de Ink House, pieza 3", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/promocion-4.webp", archivo: "promocion-4.webp", alt: "Promoción de Ink House, pieza 4", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/promocion-5.webp", archivo: "promocion-5.webp", alt: "Promoción de Ink House, pieza 5", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/promocion-6.webp", archivo: "promocion-6.webp", alt: "Promoción de Ink House, pieza 6", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/promocion-7.webp", archivo: "promocion-7.webp", alt: "Promoción de Ink House, pieza 7", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/promocion-8.webp", archivo: "promocion-8.webp", alt: "Promoción de Ink House, pieza 8", formato: "vertical" } ] },
-      { titulo: "Carrusel sobre Dalí", piezas: [
-        { src: "assets/proyectos/ink-house/carrusel-dali-1.webp", archivo: "carrusel-dali-1.webp", alt: "Carrusel sobre Dalí, lámina 1", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/carrusel-dali-2.webp", archivo: "carrusel-dali-2.webp", alt: "Carrusel sobre Dalí, lámina 2", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/carrusel-dali-3.webp", archivo: "carrusel-dali-3.webp", alt: "Carrusel sobre Dalí, lámina 3", formato: "vertical" } ] },
-      { titulo: "Carrusel: diseñar también es expresarse", piezas: [
-        { src: "assets/proyectos/ink-house/carrusel-expresarse-1.webp", archivo: "carrusel-expresarse-1.webp", alt: "Carrusel diseñar también es expresarse, lámina 1", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/carrusel-expresarse-2.webp", archivo: "carrusel-expresarse-2.webp", alt: "Carrusel diseñar también es expresarse, lámina 2", formato: "vertical" },
-        { src: "assets/proyectos/ink-house/carrusel-expresarse-3.webp", archivo: "carrusel-expresarse-3.webp", alt: "Carrusel diseñar también es expresarse, lámina 3", formato: "vertical" } ] },
-      { titulo: "Maqueta del feed", piezas: [
-        { src: "", archivo: "feed.webp", alt: "Maqueta del feed de Ink House", formato: "vertical" } ] }
+      { titulo: "Campaña de servicios", tipo: "campana", nota: "Tres frentes de una misma campaña para dar a conocer los servicios de la agencia.", capitulos: [
+        { titulo: "Apps digitales", nota: "Apps de pedidos y menú digital para restaurantes.", piezas: [
+          { src: "assets/proyectos/ink-house/apps-1.webp", archivo: "apps-1.webp", alt: "Pieza 1 de la campaña de apps digitales para restaurantes", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/apps-2.webp", archivo: "apps-2.webp", alt: "Pieza 2 de la campaña de apps digitales para restaurantes", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/apps-3.webp", archivo: "apps-3.webp", alt: "Pieza 3 de la campaña de apps digitales para restaurantes", formato: "vertical" } ] },
+        { titulo: "Invitaciones digitales", nota: "Paquetes de invitaciones digitales interactivas.", piezas: [
+          { src: "assets/proyectos/ink-house/invitaciones-1.webp", archivo: "invitaciones-1.webp", alt: "Paquete de invitaciones digitales, pieza 1", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/invitaciones-2.webp", archivo: "invitaciones-2.webp", alt: "Paquete de invitaciones digitales, pieza 2", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/invitaciones-3.webp", archivo: "invitaciones-3.webp", alt: "Paquete de invitaciones digitales, pieza 3", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/invitaciones-4.webp", archivo: "invitaciones-4.webp", alt: "Paquete de invitaciones digitales, pieza 4", formato: "vertical" } ] },
+        { titulo: "Promociones", nota: "Impresión y productos personalizados, varias de ellas para el Buen Fin.", piezas: [
+          { src: "assets/proyectos/ink-house/promocion-1.webp", archivo: "promocion-1.webp", alt: "Promoción de Ink House, pieza 1", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-2.webp", archivo: "promocion-2.webp", alt: "Promoción de Ink House, pieza 2", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-3.webp", archivo: "promocion-3.webp", alt: "Promoción de Ink House, pieza 3", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-4.webp", archivo: "promocion-4.webp", alt: "Promoción de Ink House, pieza 4", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-5.webp", archivo: "promocion-5.webp", alt: "Promoción de Ink House, pieza 5", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-6.webp", archivo: "promocion-6.webp", alt: "Promoción de Ink House, pieza 6", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-7.webp", archivo: "promocion-7.webp", alt: "Promoción de Ink House, pieza 7", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/promocion-8.webp", archivo: "promocion-8.webp", alt: "Promoción de Ink House, pieza 8", formato: "vertical" } ] }
+      ] },
+      { titulo: "Carruseles para redes", tipo: "carruseles", nota: "Desliza cada carrusel como en Instagram.", carruseles: [
+        { titulo: "Dalí", piezas: [
+          { src: "assets/proyectos/ink-house/carrusel-dali-1.webp", archivo: "carrusel-dali-1.webp", alt: "Carrusel sobre Dalí, lámina 1", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/carrusel-dali-2.webp", archivo: "carrusel-dali-2.webp", alt: "Carrusel sobre Dalí, lámina 2", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/carrusel-dali-3.webp", archivo: "carrusel-dali-3.webp", alt: "Carrusel sobre Dalí, lámina 3", formato: "vertical" } ] },
+        { titulo: "Diseñar también es expresarse", piezas: [
+          { src: "assets/proyectos/ink-house/carrusel-expresarse-1.webp", archivo: "carrusel-expresarse-1.webp", alt: "Carrusel diseñar también es expresarse, lámina 1", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/carrusel-expresarse-2.webp", archivo: "carrusel-expresarse-2.webp", alt: "Carrusel diseñar también es expresarse, lámina 2", formato: "vertical" },
+          { src: "assets/proyectos/ink-house/carrusel-expresarse-3.webp", archivo: "carrusel-expresarse-3.webp", alt: "Carrusel diseñar también es expresarse, lámina 3", formato: "vertical" } ] }
+      ] }
     ],
     proceso: []
   },
@@ -273,37 +284,39 @@ window.PROYECTOS = [
     relacion: "agencia",
     agencia: "ink-house",
     tono: "cobalto",
-    portada: "assets/proyectos/blefaroplastia-pachuca/feed.webp",
+    portada: "assets/proyectos/blefaroplastia-pachuca/publicacion-3.webp",
+    // Parte de la imagen que se ve en la tarjeta (posición CSS).
+    portadaPos: "center 6%",
+    vistazo: ["assets/proyectos/blefaroplastia-pachuca/publicacion-8.webp", "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", "assets/proyectos/blefaroplastia-pachuca/publicacion-7.webp"],
+    cuenta: { nombre: "Blefaroplastia Pachuca", iniciales: "BP", color: "#1257c9" },
     resumen: "Publicaciones e historias educativas y promociones para una clínica de cirugía de párpados.",
     contexto: "Cliente que atendí en Ink House. La clínica realiza blefaroplastia superior e inferior.",
     objetivo: "Explicar el procedimiento a la audiencia y dar a conocer sus promociones.",
     participacion: "Diseño de publicaciones e historias para redes sociales.",
     concepto: "",
     decisiones: [],
-    entregables: ["Publicaciones educativas", "Promociones", "Historias", "Maqueta del feed"],
+    entregables: ["Publicaciones educativas", "Promociones", "Historias"],
     resultados: [],
     secciones: [
-      { titulo: "Vista del feed", piezas: [
-        { src: "assets/proyectos/blefaroplastia-pachuca/feed.webp", archivo: "feed.webp", alt: "Maqueta del feed de Blefaroplastia Pachuca con nueve publicaciones", formato: "vertical" } ] },
-      { titulo: "Publicaciones", piezas: [
-        { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-1.webp", archivo: "publicacion-1.webp", alt: "Publicación 1 de Blefaroplastia Pachuca", formato: "vertical" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-2.webp", archivo: "publicacion-2.webp", alt: "Publicación 2 de Blefaroplastia Pachuca", formato: "vertical" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-3.webp", archivo: "publicacion-3.webp", alt: "Publicación 3 de Blefaroplastia Pachuca", formato: "vertical" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-4.webp", archivo: "publicacion-4.webp", alt: "Publicación 4 de Blefaroplastia Pachuca", formato: "vertical" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-5.webp", archivo: "publicacion-5.webp", alt: "Publicación 5 de Blefaroplastia Pachuca", formato: "vertical" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-6.webp", archivo: "publicacion-6.webp", alt: "Publicación 6 de Blefaroplastia Pachuca", formato: "vertical" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-7.webp", archivo: "publicacion-7.webp", alt: "Publicación 7 de Blefaroplastia Pachuca", formato: "vertical" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-8.webp", archivo: "publicacion-8.webp", alt: "Publicación 8 de Blefaroplastia Pachuca", formato: "vertical" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-9.webp", archivo: "publicacion-9.webp", alt: "Publicación 9 de Blefaroplastia Pachuca", formato: "vertical" } ] },
-      { titulo: "Historias", piezas: [
-        { src: "assets/proyectos/blefaroplastia-pachuca/historia-1.webp", archivo: "historia-1.webp", alt: "Historia 1 de Blefaroplastia Pachuca", formato: "historia" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/historia-2.webp", archivo: "historia-2.webp", alt: "Historia 2 de Blefaroplastia Pachuca", formato: "historia" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/historia-3.webp", archivo: "historia-3.webp", alt: "Historia 3 de Blefaroplastia Pachuca", formato: "historia" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/historia-4.webp", archivo: "historia-4.webp", alt: "Historia 4 de Blefaroplastia Pachuca", formato: "historia" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/historia-5.webp", archivo: "historia-5.webp", alt: "Historia 5 de Blefaroplastia Pachuca", formato: "historia" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/historia-6.webp", archivo: "historia-6.webp", alt: "Historia 6 de Blefaroplastia Pachuca", formato: "historia" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/historia-7.webp", archivo: "historia-7.webp", alt: "Historia 7 de Blefaroplastia Pachuca", formato: "historia" },
-        { src: "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", archivo: "historia-8.webp", alt: "Historia 8 de Blefaroplastia Pachuca", formato: "historia" } ] }
+      { titulo: "Publicaciones", tipo: "mazo", piezas: [
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-1.webp", archivo: "publicacion-1.webp", alt: "Publicación 1 de Blefaroplastia Pachuca", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-2.webp", archivo: "publicacion-2.webp", alt: "Publicación 2 de Blefaroplastia Pachuca", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-3.webp", archivo: "publicacion-3.webp", alt: "Publicación 3 de Blefaroplastia Pachuca", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-4.webp", archivo: "publicacion-4.webp", alt: "Publicación 4 de Blefaroplastia Pachuca", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-5.webp", archivo: "publicacion-5.webp", alt: "Publicación 5 de Blefaroplastia Pachuca", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-6.webp", archivo: "publicacion-6.webp", alt: "Publicación 6 de Blefaroplastia Pachuca", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-7.webp", archivo: "publicacion-7.webp", alt: "Publicación 7 de Blefaroplastia Pachuca", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-8.webp", archivo: "publicacion-8.webp", alt: "Publicación 8 de Blefaroplastia Pachuca", formato: "vertical" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-9.webp", archivo: "publicacion-9.webp", alt: "Publicación 9 de Blefaroplastia Pachuca", formato: "vertical" } ] },
+      { titulo: "Historias", tipo: "historias", nota: "Así se ven publicadas. Cambia entre Instagram y Facebook, o toca los lados de la pantalla para avanzar.", piezas: [
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-1.webp", archivo: "historia-1.webp", alt: "Historia 1 de Blefaroplastia Pachuca", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-2.webp", archivo: "historia-2.webp", alt: "Historia 2 de Blefaroplastia Pachuca", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-3.webp", archivo: "historia-3.webp", alt: "Historia 3 de Blefaroplastia Pachuca", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-4.webp", archivo: "historia-4.webp", alt: "Historia 4 de Blefaroplastia Pachuca", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-5.webp", archivo: "historia-5.webp", alt: "Historia 5 de Blefaroplastia Pachuca", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-6.webp", archivo: "historia-6.webp", alt: "Historia 6 de Blefaroplastia Pachuca", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-7.webp", archivo: "historia-7.webp", alt: "Historia 7 de Blefaroplastia Pachuca", formato: "historia" },
+          { src: "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", archivo: "historia-8.webp", alt: "Historia 8 de Blefaroplastia Pachuca", formato: "historia" } ] }
     ],
     proceso: []
   },

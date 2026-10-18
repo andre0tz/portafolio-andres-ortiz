@@ -177,7 +177,7 @@
   ];
 
   function portadaHTML(p, i) {
-    if (p.portada) return '<div class="obra__portada"><img src="' + esc(p.portada) + '" alt="" loading="lazy" decoding="async"></div>';
+    if (p.portada) return '<div class="obra__portada"><img src="' + esc(p.portada) + '" alt="" loading="lazy" decoding="async"' + (p.portadaPos ? ' style="object-position:' + esc(p.portadaPos) + '"' : '') + '></div>';
     return '<div class="obra__portada"><span class="obra__numero" aria-hidden="true">' + numero(i) + '</span></div>';
   }
 
@@ -195,6 +195,9 @@
         (rel ? '<span class="obra__rel">' + esc(rel) + '</span>' : '') +
       '</div>' +
       '<span class="obra__flecha" aria-hidden="true"><svg><use href="#i-flecha"/></svg></span>' +
+      (p.vistazo && p.vistazo.length ? '<div class="obra__vistazo" aria-hidden="true">' + p.vistazo.slice(0, 3).map(function (v, k) {
+        return '<img src="' + esc(v) + '" alt="" loading="lazy" decoding="async" style="--k:' + k + '">';
+      }).join('') + '</div>' : '') +
       '<span class="obra__chip">' + (p.publicado === false ? '<span class="chip-borrador">Borrador</span>' : '') +
         (p.portada ? '' : '<span class="chip-pendiente">Portada pendiente</span>') + '</span>' +
     '</article>';
@@ -260,8 +263,7 @@
     if (vacio(p.decisiones)) f.push('decisiones de diseño');
     if (vacio(p.entregables)) f.push('entregables');
     if (!p.portada) f.push('portada de la tarjeta');
-    var piezas = 0;
-    (p.secciones || []).forEach(function (s) { s.piezas.forEach(function (x) { if (!x.src) piezas++; }); });
+    var piezas = (window.Presenta ? window.Presenta.piezas(p) : []).filter(function (x) { return !x.src; }).length;
     if (piezas) f.push(piezas + (piezas === 1 ? ' pieza' : ' piezas') + ' sin imagen o video');
     return f;
   }
@@ -294,6 +296,13 @@
     '</section>';
 
     (p.secciones || []).forEach(function (s, k) {
+      var especial = window.Presenta && window.Presenta.html(s, p);
+      if (especial) {
+        html += '<section class="caso__seccion caso__seccion--' + esc(s.tipo) + '">' +
+          '<div class="bloque__cab"><h3 class="bloque__titulo"><span>' + String(k + 1).padStart(2, '0') + '</span>' + esc(s.titulo) + '</h3>' +
+          (s.nota ? '<p class="bloque__nota">' + esc(s.nota) + '</p>' : '') + '</div>' + especial + '</section>';
+        return;
+      }
       var normales = s.piezas.filter(function (x) { return x.formato !== 'ancho'; }).length;
       var historias = s.piezas.every(function (x) { return x.formato === 'historia'; });
       var cols = (historias && normales >= 4) ? 'c4' : 'c' + Math.max(1, Math.min(normales, 3)) + (normales === 0 ? ' solo-ancho' : '');
@@ -337,7 +346,9 @@
 
   function mostrar(i) {
     actual = (i + PROYECTOS.length) % PROYECTOS.length;
+    if (window.Presenta) window.Presenta.detener();
     cuerpo.innerHTML = casoHTML(actual);
+    if (window.Presenta) window.Presenta.iniciar(cuerpo);
     cuerpo.scrollTop = 0;
     $('#casoContador').textContent = numero(actual) + ' / ' + String(PROYECTOS.length).padStart(2, '0');
     history.replaceState(null, '', '#caso/' + PROYECTOS[actual].slug);
@@ -357,6 +368,7 @@
 
   caso.addEventListener('close', function () {
     if (visorAbierto()) { visor.hidden = true; visorImg.removeAttribute('src'); }
+    if (window.Presenta) window.Presenta.detener();
     raiz.style.overflow = '';
     cuerpo.innerHTML = '';
     history.replaceState(null, '', '#proyectos');
@@ -369,19 +381,23 @@
   var visor = $('#visor'), visorImg = $('#visorImg'), visorPie = $('#visorPie'), visorLista = [], visorPos = 0, visorOrigen = null;
   function visorAbierto() { return !visor.hidden; }
   function pintarVisor() {
-    var img = $('img', visorLista[visorPos]);
-    visorImg.src = img.currentSrc || img.src;
-    visorImg.alt = img.alt;
-    visorPie.textContent = img.alt + '  ·  ' + (visorPos + 1) + ' de ' + visorLista.length;
+    var it = visorLista[visorPos];
+    visorImg.src = it.src;
+    visorImg.alt = it.alt;
+    visorPie.textContent = it.alt + '  ·  ' + (visorPos + 1) + ' de ' + visorLista.length;
     $('#visorPrev').hidden = $('#visorNext').hidden = visorLista.length < 2;
   }
-  function abrirVisor(btn) {
-    visorLista = $$('.pieza__btn', btn.closest('.galeria'));
-    visorPos = visorLista.indexOf(btn);
-    visorOrigen = btn;
+  function abrirVisorLista(lista, pos, origen) {
+    visorLista = lista; visorPos = pos || 0; visorOrigen = origen || null;
     pintarVisor();
     visor.hidden = false;
     $('#visorCerrar').focus();
+  }
+  window.abrirVisorLista = abrirVisorLista;
+  function abrirVisor(btn) {
+    var grupo = btn.closest('[data-grupo]') || btn.closest('.galeria') || btn.parentNode;
+    var botones = $$('.pieza__btn', grupo);
+    abrirVisorLista(botones.map(function (b) { var im = $('img', b); return { src: im.currentSrc || im.src, alt: im.alt }; }), botones.indexOf(btn), btn);
   }
   function cerrarVisor() {
     visor.hidden = true;

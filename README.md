@@ -44,13 +44,26 @@ Para videos usa `tipo: "video"`, el MP4 en `src` y una imagen opcional en `poste
 
 Recomendación de peso: exporta en WebP a 1600 px del lado mayor (portadas) y 1200 px (piezas). Los videos en MP4 H.264, de menos de 8 MB.
 
+## Tipos de presentación
+
+Cada sección de un proyecto puede usar un `tipo` distinto (ver `assets/js/presentaciones.js`):
+
+1. `mazo`: publicaciones en marcos de Instagram apiladas; se abren en abanico al pasar el cursor.
+2. `historias`: historias dentro de un teléfono que las reproduce, con vista de Instagram o de Facebook.
+3. `carruseles`: carruseles de Instagram que se deslizan. Usa `carruseles: [{ titulo, piezas }]`.
+4. `campana`: campaña por capítulos con un muro en perspectiva. Usa `capitulos: [{ titulo, nota, piezas }]`.
+5. Sin `tipo`: galería normal.
+
+Cada proyecto puede tener `cuenta` (nombre e iniciales para los marcos), `vistazo` (hasta 3 imágenes que se asoman en la tarjeta) y `portadaPos` (qué parte de la portada se ve).
+
 ## Estructura
 
 ```
 index.html                 página principal
 assets/css/estilos.css     estilos, temas claro y oscuro, responsive
 assets/js/proyectos.js     perfil, experiencia, formación, herramientas, habilidades y proyectos
-assets/js/main.js          filtros, casos, tema, menú y animaciones
+assets/js/presentaciones.js mazo, historias, carruseles y campaña
+assets/js/main.js          filtros, casos, visor, tema, menú y animaciones
 assets/fonts/              Anton, Manrope, Caveat Brush, JetBrains Mono (OFL)
 assets/proyectos/<slug>/   imágenes y videos de cada proyecto
 assets/perfil/             tu foto y CV
@@ -64,4 +77,4 @@ Sube la carpeta completa a Netlify (arrastrar y soltar), GitHub Pages o Vercel. 
 
 ## Al publicar cambios
 
-En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261017f` a `20261018a`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
+En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261017h` a `20261018a`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
