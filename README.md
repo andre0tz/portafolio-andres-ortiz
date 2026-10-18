@@ -49,14 +49,15 @@ Recomendación de peso: exporta en WebP a 1600 px del lado mayor (portadas) y 12
 Cada sección de un proyecto puede usar un `tipo` distinto (ver `assets/js/presentaciones.js`):
 
 1. `feed`: publicaciones en marcos de Instagram, en un muro de tres columnas desfasadas que se mueven a distinta velocidad.
-2. `escenario`: publicaciones en marcos de Instagram que pasan en un carrusel con profundidad. Admite `capitulos: [{ titulo, nota, piezas }]`.
-3. `historias`: historias dentro de un teléfono que las reproduce, con vista de Instagram o de Facebook.
-4. `carruseles`: carruseles de Instagram que se deslizan. Usa `carruseles: [{ titulo, piezas }]`.
-5. Sin `tipo`: galería normal.
+2. `abanico`: publicaciones superpuestas en abanico que se abren al pasar el cursor.
+3. `escenario`: publicaciones en marcos de Instagram que pasan en un carrusel con profundidad. Admite `capitulos: [{ titulo, nota, piezas }]`.
+4. `historias`: historias dentro de un teléfono que las reproduce, con vista de Instagram o de Facebook.
+5. `carruseles`: carruseles de Instagram que se deslizan. Usa `carruseles: [{ titulo, piezas }]`.
+6. Sin `tipo`: galería normal.
 
 Cada sección puede tener `encabezado: { ante, linea1, linea2 }` y `unidad` ("publicaciones", "historias"...).
 
-Cada proyecto puede tener `cuenta` (nombre, iniciales y `foto` de perfil para los marcos), `acento` (color del proyecto), `estiloTitulos` ("contorno" o "marcador"), `aclaracion`, `vistazo` (hasta 3 imágenes que se asoman en la tarjeta) y `portadaPos` (qué parte de la portada se ve).
+Cada proyecto puede tener `paleta` ("ink" o "blef", colores del caso en claro y oscuro), `collage` (hasta 4 publicaciones junto a la portada), `cuenta` (nombre, iniciales y `foto` de perfil para los marcos), `acento` (color del proyecto), `estiloTitulos` ("contorno" o "marcador"), `aclaracion`, `vistazo` (hasta 3 imágenes que se asoman en la tarjeta) y `portadaPos` (qué parte de la portada se ve).
 
 ## Estructura
 
@@ -64,7 +65,7 @@ Cada proyecto puede tener `cuenta` (nombre, iniciales y `foto` de perfil para lo
 index.html                 página principal
 assets/css/estilos.css     estilos, temas claro y oscuro, responsive
 assets/js/proyectos.js     perfil, experiencia, formación, herramientas, habilidades y proyectos
-assets/js/presentaciones.js mazo, historias, carruseles y campaña
+assets/js/presentaciones.js feed, abanico, escenario, historias, carruseles y collage
 assets/js/main.js          filtros, casos, visor, tema, menú y animaciones
 assets/fonts/              Anton, Manrope, Caveat Brush, JetBrains Mono (OFL)
 assets/proyectos/<slug>/   imágenes y videos de cada proyecto
@@ -79,4 +80,4 @@ Sube la carpeta completa a Netlify (arrastrar y soltar), GitHub Pages o Vercel. 
 
 ## Al publicar cambios
 
-En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261017j` a `20261018a`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
+En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261017l` a `20261018a`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.

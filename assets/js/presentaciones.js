@@ -84,10 +84,7 @@
         (e.ante ? '<p class="sec-cab__ante">' + esc(e.ante) + '</p>' : '') +
         '<h3 class="sec-cab__titulo"><span class="l1"><span>' + esc(l1) + '</span></span>' + (l2 ? '<span class="l2"><span>' + esc(l2) + '</span></span>' : '') + '</h3>' +
       '</div>' +
-      '<div class="sec-cab__lado">' +
-        (n ? '<span class="sec-cab__meta"><b>' + n + '</b> ' + esc(unidad) + '</span>' : '') +
-        (s.nota ? '<p class="sec-cab__nota">' + esc(s.nota) + '</p>' : '') +
-      '</div>' +
+      (s.nota ? '<div class="sec-cab__lado"><p class="sec-cab__nota">' + esc(s.nota) + '</p></div>' : '') +
     '</header>';
   }
 
@@ -134,7 +131,7 @@
         piezas.map(function (x, k) { return '<div class="escena__item">' + postIG(x, p, cu, ' style="--k:' + k + '"') + '</div>'; }).join('') +
       '</div>' +
       '<button type="button" class="escena__flecha escena__flecha--next" data-paso="1" aria-label="Publicación siguiente">' + icono('i-flecha', 'ico gira-der') + '</button>' +
-      '<p class="escena__cuenta" aria-hidden="true"><b data-actual>01</b> / ' + dos(piezas.length) + '</p>' +
+      '<p class="escena__puntos" aria-hidden="true">' + piezas.map(function (_, k) { return '<i' + (k === 0 ? ' class="on"' : '') + '></i>'; }).join('') + '</p>' +
     '</div>';
   }
   function escenario(s, p) {
@@ -156,7 +153,7 @@
   }
 
   function iniciarEscena(esc_) {
-    var tr = $('.escena__pista', esc_), items = $$('.escena__item', tr), cont = $('[data-actual]', esc_);
+    var tr = $('.escena__pista', esc_), items = $$('.escena__item', tr), puntos = $$('.escena__puntos i', esc_);
     var prev = $('[data-paso="-1"]', esc_), next = $('[data-paso="1"]', esc_), pend = false, actual = 0;
     function pintar() {
       pend = false;
@@ -173,7 +170,7 @@
         it.classList.toggle('es-centro', Math.abs(d) < 0.5);
       });
       actual = mejor;
-      cont.textContent = dos(actual + 1);
+      puntos.forEach(function (pt, k) { pt.classList.toggle('on', k === actual); });
       prev.disabled = actual === 0; next.disabled = actual === items.length - 1;
     }
     function programar() { if (!pend) { pend = true; requestAnimationFrame(pintar); } }
@@ -254,7 +251,6 @@
           '<button type="button" data-plat="ig" aria-pressed="true">Instagram</button>' +
           '<button type="button" data-plat="fb" aria-pressed="false">Facebook</button>' +
         '</div>' +
-        '<p class="historias__contador" aria-live="polite">Historia <b data-actual>1</b> de ' + con.length + '</p>' +
         '<div class="historias__ctrl">' +
           '<button type="button" class="redondo" data-pausa aria-label="Pausar">' + icono('i-pausa', 'ico ico-pausa') + icono('i-play', 'ico ico-play') + '</button>' +
           '<button type="button" class="enlace-mono" data-ampliar>Ver en grande</button>' +
@@ -265,7 +261,7 @@
 
   function iniciarHistorias(el) {
     var imgs = $$('.historia__img', el), segs = $$('.seg', el), minis = $$('[data-ir-historia]', el), n = imgs.length, actual = 0;
-    var contador = $('[data-actual]', el), pausa = $('[data-pausa]', el);
+    var pausa = $('[data-pausa]', el);
     function ir(k) {
       actual = (k + n) % n;
       imgs.forEach(function (im, i) { im.classList.toggle('activa', i === actual); });
@@ -273,7 +269,6 @@
       void segs[actual].offsetWidth;
       segs[actual].classList.add('activa');
       minis.forEach(function (m, i) { if (i === actual) m.setAttribute('aria-current', 'true'); else m.removeAttribute('aria-current'); });
-      contador.textContent = actual + 1;
     }
     segs.forEach(function (sg) { $('i', sg).addEventListener('animationend', function () { if (sg.classList.contains('activa')) ir(actual + 1); }); });
     $$('[data-paso]', el).forEach(function (b) { b.addEventListener('click', function (e) { e.stopPropagation(); ir(actual + Number(b.dataset.paso)); }); });
@@ -343,12 +338,32 @@
     pintar();
   }
 
+  /* ---------- Abanico: piezas superpuestas que se abren ---------- */
+  function abanico(s, p) {
+    var cu = cuentaDe(p), n = s.piezas.length;
+    return '<div class="abanico" data-grupo style="--n:' + n + '">' +
+      s.piezas.map(function (x, k) { return postIG(x, p, cu, ' style="--i:' + k + ';--d:' + (k - (n - 1) / 2) + '"'); }).join('') +
+    '</div>';
+  }
+
+  /* ---------- Collage de portada ---------- */
+  function collage(p) {
+    var cu = cuentaDe(p), lista = [p.portada].concat(p.collage || p.vistazo || []).filter(Boolean).slice(0, 5);
+    var nombre = p.titulo || '';
+    return '<div class="collage collage--' + lista.length + '" data-grupo>' +
+      lista.map(function (src, k) {
+        return '<div class="collage__p" style="--k:' + k + '">' + postIG({ src: src, alt: 'Publicación de ' + nombre }, p, cu) + '</div>';
+      }).join('') +
+    '</div>';
+  }
+
   /* ---------- Interfaz pública ---------- */
-  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles };
+  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico };
 
   window.Presenta = {
     html: function (s, p) { var f = TIPOS[s.tipo]; return f ? f(s, p) : null; },
     encabezado: encabezado,
+    collage: collage,
     postIG: function (x, p) { return postIG(x, p, cuentaDe(p)); },
     iniciar: function (raiz) {
       $$('[data-feed]', raiz).forEach(function (el) { iniciarFeed(el, raiz); });

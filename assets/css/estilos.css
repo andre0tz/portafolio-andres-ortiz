@@ -591,8 +591,9 @@ code{font-family:var(--f-mono);font-size:.8em}
 
 /* Carruseles de Instagram */
 .carruseles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,64px);padding:8px clamp(0px,4vw,40px) 24px}
-.carrusel-pieza{margin:0;transform:rotate(calc(var(--j) * 4deg - 2deg)) translateY(calc(var(--j) * 28px));transition:transform .7s var(--ease)}
-.carrusel-pieza:hover,.carrusel-pieza:focus-within{transform:none}
+.carrusel-pieza{margin:0;transform:rotate(-2deg);transition:transform .7s var(--ease)}
+.carrusel-pieza:nth-child(even){transform:rotate(2deg) translateY(36px)}
+.carrusel-pieza:hover,.carrusel-pieza:focus-within,.carrusel-pieza:nth-child(even):hover,.carrusel-pieza:nth-child(even):focus-within{transform:none}
 .carrusel-pieza figcaption{margin-top:16px;display:flex;flex-direction:column;gap:4px;font-family:var(--f-display);text-transform:uppercase;font-size:1.6rem;line-height:1}
 .carrusel-pieza figcaption .mono{color:var(--acento);font-size:.66rem}
 .carrusel{aspect-ratio:4/5}
@@ -612,8 +613,6 @@ code{font-family:var(--f-mono);font-size:.8em}
 .carrusel__puntos i.on{background:#0095f6;transform:scale(1.15)}
 
 /* Variaciones de fondo por tipo de sección */
-.caso__seccion--historias{background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--azul-cobalto) 9%,transparent))}
-.caso__seccion--carruseles{background:var(--fondo-2)}
 
 /* Vistazo en las tarjetas de la galería */
 .obra__vistazo{position:absolute;right:18px;bottom:0;z-index:1;width:min(24%,130px);height:72%;pointer-events:none}
@@ -710,13 +709,12 @@ code{font-family:var(--f-mono);font-size:.8em}
 .feed .ig.visto:hover{transform:translateY(-10px) rotate(-1.2deg);box-shadow:0 40px 70px -30px rgba(13,23,51,.6)}
 
 /* Escenario: carrusel con profundidad */
-.caso__seccion--escenario{--texto:#eef2fb;--texto-suave:#aeb8d2;--linea:rgba(255,255,255,.18);color:var(--texto);background:radial-gradient(ellipse 70% 55% at 50% 62%,color-mix(in srgb,var(--proy) 26%,transparent),transparent 70%),#0b1226}
 .capitulos{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:10px}
 .capitulos [role="tab"]{padding:12px 20px 11px;border-radius:999px;border:1.5px solid var(--linea);font-family:var(--f-display);text-transform:uppercase;font-size:clamp(1.05rem,1.6vw,1.3rem);letter-spacing:.02em;color:var(--texto-suave);transition:background-color .3s,color .3s,border-color .3s}
 .capitulos [role="tab"]:hover{color:var(--texto);border-color:var(--texto-suave)}
 .capitulos [role="tab"] sup{top:-.55em;margin-left:5px;font-family:var(--f-mono);font-size:.6rem;color:var(--proy)}
-.capitulos [role="tab"][aria-selected="true"]{background:var(--proy);border-color:var(--proy);color:#0b1226}
-.capitulos [role="tab"][aria-selected="true"] sup{color:#0b1226}
+.capitulos [role="tab"][aria-selected="true"]{background:var(--proy);border-color:var(--proy);color:#fff}
+.capitulos [role="tab"][aria-selected="true"] sup{color:#fff}
 .escenario__nota{margin:6px 0 0;text-align:center;color:var(--texto-suave)}
 .escenario__panel.entra .escena__item{animation:fundido .7s var(--ease) both}
 @keyframes fundido{from{opacity:0}}
@@ -733,8 +731,6 @@ code{font-family:var(--f-mono);font-size:.8em}
 .escena__flecha:disabled{opacity:.25;cursor:default}
 .escena__flecha--prev{left:max(8px,calc(50% - var(--w) / 2 - 96px))}
 .escena__flecha--next{right:max(8px,calc(50% - var(--w) / 2 - 96px))}
-.escena__cuenta{margin:0;text-align:center;font-family:var(--f-mono);font-size:.8rem;color:var(--texto-suave)}
-.escena__cuenta b{font-family:var(--f-display);font-weight:400;font-size:2.2rem;color:var(--proy);vertical-align:-4px}
 
 /* Historias en teléfono (v2: la interfaz no tapa la historia) */
 .historias{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center}
@@ -789,7 +785,6 @@ code{font-family:var(--f-mono);font-size:.8em}
 .historias:not(.pausado) .ico-play,.historias.pausado .ico-pausa{display:none}
 
 /* Carruseles (v2) */
-.caso__seccion--carruseles{background:color-mix(in srgb,var(--proy) 20%,var(--fondo))}
 .carruseles{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));max-width:1080px;margin:0 auto}
 .carrusel-pieza figcaption{margin-top:18px;font-family:var(--f-display);text-transform:uppercase;font-size:clamp(1.4rem,2.2vw,1.9rem);line-height:1}
 
@@ -822,3 +817,108 @@ code{font-family:var(--f-mono);font-size:.8em}
 }
 
 @media (max-width:620px){.caso__volver{background:color-mix(in srgb,var(--azul-tinta) 88%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}}
+
+/* =====================================================================
+   21. PALETAS POR PROYECTO, PORTADA EN COLLAGE Y ABANICO
+   Cada paleta define los colores del caso en modo claro y oscuro.
+   ===================================================================== */
+.caso__lienzo[class*="paleta-"]{background:var(--fondo);color:var(--texto)}
+.caso__lienzo[class*="paleta-"] .caso__seccion:nth-of-type(odd){background:var(--fondo-2)}
+
+/* Ink House: blanco, azul, naranja y amarillo */
+.paleta-ink{
+  --fondo:#ffffff;--fondo-2:#fff6ec;--superficie:#ffffff;
+  --texto:#14213d;--texto-suave:#57627c;--linea:rgba(20,33,61,.13);
+  --proy:#ff6a13;--proy-2:#ffb000;--proy-3:#1f4fe0;--acento:#ff6a13;
+  --hero:radial-gradient(circle at 88% 18%,rgba(255,176,0,.22),transparent 34%),radial-gradient(circle at 70% 92%,rgba(255,106,19,.16),transparent 38%),radial-gradient(circle at 6% 100%,rgba(31,79,224,.10),transparent 36%),#ffffff;
+}
+[data-theme="oscuro"] .paleta-ink{
+  --fondo:#11151f;--fondo-2:#161b28;--superficie:#1b2130;
+  --texto:#f4f5f8;--texto-suave:#a9b0c0;--linea:rgba(255,255,255,.11);
+  --proy:#ff7a2e;--proy-2:#ffbe33;--proy-3:#6d8dff;--acento:#ff7a2e;
+  --hero:radial-gradient(circle at 88% 18%,rgba(255,176,0,.13),transparent 36%),radial-gradient(circle at 70% 92%,rgba(255,106,19,.12),transparent 40%),radial-gradient(circle at 6% 100%,rgba(77,111,255,.12),transparent 38%),#11151f;
+}
+/* Blefaroplastia Pachuca: azul clínico, blanco y beige de las historias */
+.paleta-blef{
+  --fondo:#f7f9fd;--fondo-2:#edf2fb;--superficie:#ffffff;
+  --texto:#0d2552;--texto-suave:#52617e;--linea:rgba(13,37,82,.13);
+  --proy:#1257c9;--proy-2:#d8c3a0;--proy-3:#1257c9;--acento:#1257c9;
+  --hero:radial-gradient(circle at 86% 20%,rgba(18,87,201,.16),transparent 38%),radial-gradient(circle at 74% 96%,rgba(216,195,160,.32),transparent 36%),linear-gradient(180deg,#eef3fc,#f7f9fd);
+}
+[data-theme="oscuro"] .paleta-blef{
+  --fondo:#0d1424;--fondo-2:#111a2e;--superficie:#16203a;
+  --texto:#eef3fb;--texto-suave:#a2b1cc;--linea:rgba(255,255,255,.11);
+  --proy:#6f9bff;--proy-2:#d8c3a0;--proy-3:#6f9bff;--acento:#6f9bff;
+  --hero:radial-gradient(circle at 86% 20%,rgba(64,120,255,.18),transparent 40%),radial-gradient(circle at 74% 96%,rgba(216,195,160,.10),transparent 36%),#0d1424;
+}
+
+/* Portada del caso con paleta */
+.caso__cabeza.paleta-hero{background:var(--hero);color:var(--texto)}
+.paleta-hero .chip{border-color:var(--linea);color:var(--texto)}
+.paleta-hero .chip--fuerte{background:var(--proy);border-color:var(--proy);color:#fff}
+.paleta-hero .chip--enlace:hover{background:var(--texto);color:var(--fondo)}
+.paleta-hero .caso__titulo{color:var(--texto)}
+.paleta-hero .caso__resumen{color:var(--texto-suave);opacity:1}
+.paleta-hero .caso__aclaracion{color:var(--texto-suave);border-left-color:var(--proy-2,var(--proy))}
+.paleta-hero .caso__explora{color:var(--texto-suave)}
+.caso__cabeza{min-height:100dvh}
+.caso__hero{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)}
+.con-visual .caso__titulo{font-size:clamp(3rem,6vw,6.2rem)}
+.caso__fichas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:22px 32px;margin:30px 0 0;padding-top:24px;border-top:1.5px solid var(--linea,rgba(255,255,255,.2))}
+.caso__fichas .ficha dt{color:var(--proy,currentColor);margin-bottom:6px}
+.caso__fichas .ficha dd{font-size:.95rem;line-height:1.55;color:var(--texto-suave,inherit)}
+.caso__cabeza:not(.paleta-hero) .caso__fichas .ficha dd,.caso__cabeza:not(.paleta-hero) .caso__fichas .ficha dt{color:inherit;opacity:.88}
+.caso__fichas .ficha:last-child dt{color:var(--proy-2,var(--proy,currentColor))}
+.paleta-blef .caso__fichas .ficha:last-child dt{color:var(--proy)}
+
+/* Collage de publicaciones en la portada */
+.caso__visual{width:100%;max-width:640px;animation:none}
+.caso__visual .collage{position:relative;width:100%;aspect-ratio:1/1.02}
+.collage__p{position:absolute;width:44%;transition:transform .9s var(--ease),filter .4s;animation:collageEntra 1s var(--ease) both;animation-delay:calc(.15s + var(--k) * .09s)}
+.collage__p .ig{box-shadow:0 30px 60px -28px rgba(13,23,51,.55)}
+.collage__p:nth-child(1){left:28%;top:12%;width:46%;z-index:5;transform:rotate(2deg)}
+.collage__p:nth-child(2){left:0;top:4%;width:38%;z-index:3;transform:rotate(-8deg)}
+.collage__p:nth-child(3){left:63%;top:0;width:37%;z-index:2;transform:rotate(7deg)}
+.collage__p:nth-child(4){left:3%;top:52%;width:35%;z-index:4;transform:rotate(-4deg)}
+.collage__p:nth-child(5){left:64%;top:50%;width:35%;z-index:4;transform:rotate(6deg)}
+.collage:hover .collage__p:nth-child(2){transform:translate(-5%,-3%) rotate(-11deg)}
+.collage:hover .collage__p:nth-child(3){transform:translate(5%,-4%) rotate(10deg)}
+.collage:hover .collage__p:nth-child(4){transform:translate(-6%,4%) rotate(-7deg)}
+.collage:hover .collage__p:nth-child(5){transform:translate(6%,5%) rotate(9deg)}
+.collage:hover .collage__p:nth-child(1){transform:rotate(0) scale(1.03)}
+.collage__p:hover{z-index:6}
+@keyframes collageEntra{from{opacity:0;translate:0 60px}}
+
+/* Abanico */
+.abanico{display:flex;justify-content:center;align-items:flex-start;padding:30px 0 60px}
+.abanico>.ig{flex:0 0 min(270px,38vw);margin-left:-80px;transform:translateY(calc(var(--d) * var(--d) * 8px)) rotate(calc(var(--d) * 6deg));transform-origin:50% 120%;transition:transform .7s var(--ease),margin .7s var(--ease),box-shadow .4s}
+.abanico>.ig:first-child{margin-left:0}
+.abanico:hover>.ig,.abanico:focus-within>.ig{margin-left:22px;transform:none}
+.abanico:hover>.ig:first-child,.abanico:focus-within>.ig:first-child{margin-left:0}
+.abanico>.ig:hover{transform:translateY(-14px)!important;box-shadow:0 40px 70px -30px rgba(13,23,51,.6);z-index:2}
+
+/* Escenario y carruseles sobre las paletas */
+.escena__puntos{display:flex;justify-content:center;gap:8px;margin:0}
+.escena__puntos i{width:8px;height:8px;border-radius:50%;background:var(--linea);transition:background-color .3s,width .4s var(--ease)}
+.escena__puntos i.on{width:26px;border-radius:5px;background:var(--proy)}
+.caso__seccion--escenario{background:radial-gradient(ellipse 60% 50% at 50% 58%,color-mix(in srgb,var(--proy-2,var(--proy)) 16%,transparent),transparent 70%),var(--fondo-2)!important}
+.escena__flecha{background:var(--proy);color:#fff}
+.escena__item.es-centro .ig{box-shadow:0 46px 80px -34px rgba(13,23,51,.6)}
+.carruseles{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,6vw,80px) clamp(28px,5vw,64px)}
+.carrusel-pieza figcaption{color:var(--texto)}
+.paleta-ink .carrusel__puntos i.on{background:var(--proy)}
+
+@media (prefers-reduced-motion:reduce){
+  .collage__p{animation:none}
+}
+@media (max-width:980px){
+  .caso__hero{grid-template-columns:minmax(0,1fr)}
+  .caso__visual{max-width:520px;justify-self:center;margin-top:12px}
+}
+@media (max-width:620px){
+  .caso__fichas{grid-template-columns:minmax(0,1fr);gap:18px}
+  .carruseles{grid-template-columns:minmax(0,1fr);max-width:400px}
+  .carrusel-pieza,.carrusel-pieza:nth-child(even){transform:none}
+  .abanico{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px 4px 40px;margin-inline:calc(-1 * var(--margen));padding-inline:var(--margen);scrollbar-width:none}
+  .abanico>.ig,.abanico:hover>.ig{flex:0 0 72%;margin-left:16px;transform:none;scroll-snap-align:center}
+}

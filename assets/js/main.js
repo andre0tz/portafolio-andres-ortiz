@@ -275,16 +275,11 @@
     var nombresCat = {};
     FILTROS.forEach(function (f) { nombresCat[f.id] = f.nombre; });
 
-    var visual = '';
-    if (p.portada && window.Presenta) {
-      var detras = (p.vistazo || [])[0];
-      visual = '<div class="caso__visual">' +
-        (detras ? '<div class="caso__detras" aria-hidden="true">' + window.Presenta.postIG({ src: detras, alt: '' }, p).replace('class="pieza__btn ig__media"', 'class="ig__media" tabindex="-1"') + '</div>' : '') +
-        '<div class="caso__frente">' + window.Presenta.postIG({ src: p.portada, alt: 'Portada de ' + titulo(p) }, p) + '</div>' +
-      '</div>';
-    }
-    var html = '<header class="caso__cabeza t-' + esc(p.tono) + ' obra--tipo' + (visual ? ' con-visual' : '') + '">' +
-      '<div class="obra__portada"><span class="obra__numero" aria-hidden="true">' + numero(i) + '</span></div>' +
+    var visual = (p.portada && window.Presenta) ? '<div class="caso__visual">' + window.Presenta.collage(p) + '</div>' : '';
+    var paleta = p.paleta ? ' paleta-hero' : ' t-' + esc(p.tono) + ' obra--tipo';
+    var fichasHero = ficha('Contexto', p.contexto) + ficha('Objetivo', p.objetivo) + ficha('Mi participación', p.participacion);
+    var html = '<header class="caso__cabeza' + paleta + (visual ? ' con-visual' : '') + '">' +
+      (p.paleta ? '' : '<div class="obra__portada"></div>') +
       '<div class="caso__hero">' +
         '<div class="caso__textos">' +
           '<div class="caso__chips">' +
@@ -295,19 +290,21 @@
           (p.publicado === false ? '<p class="caso__aviso-borrador mono">Borrador: no se muestra al público</p>' : '') +
           '<h2 class="caso__titulo" id="casoTitulo">' + esc(titulo(p)) + '</h2>' +
           '<p class="caso__resumen">' + esc(p.resumen) + '</p>' +
+          (fichasHero ? '<dl class="caso__fichas">' + fichasHero + '</dl>' : '') +
           (p.aclaracion ? '<p class="caso__aclaracion">' + esc(p.aclaracion) + '</p>' : '') +
         '</div>' + visual +
       '</div>' +
       '<span class="caso__explora" aria-hidden="true">Explora el proyecto <svg><use href="#i-abajo"/></svg></span>' +
     '</header>';
 
-    var fichas = ficha('Contexto', p.contexto) + ficha('Objetivo', p.objetivo) + ficha('Mi participación', p.participacion) +
-      ficha('Concepto creativo', p.concepto) + ficha('Decisiones de diseño', p.decisiones) + ficha('Entregables', p.entregables);
+    var fichas = ficha('Concepto creativo', p.concepto) + ficha('Decisiones de diseño', p.decisiones) + ficha('Entregables', p.entregables);
     var falta = faltantes(p);
-    html += '<section class="caso__seccion caso__seccion--fichas" aria-label="Información del proyecto">' +
-      (fichas ? '<dl class="fichas">' + fichas + '</dl>' : '') +
-      (falta.length ? '<p class="nota-pendiente">Pendiente en este proyecto: ' + esc(falta.join(', ')) + '.</p>' : '') +
-    '</section>';
+    if (fichas || (falta.length && raiz.classList.contains('ver-pendientes'))) {
+      html += '<section class="caso__seccion caso__seccion--fichas" aria-label="Más sobre el proyecto">' +
+        (fichas ? '<dl class="fichas">' + fichas + '</dl>' : '') +
+        (falta.length ? '<p class="nota-pendiente">Pendiente en este proyecto: ' + esc(falta.join(', ')) + '.</p>' : '') +
+      '</section>';
+    }
 
     function cabecera(s) {
       return window.Presenta ? window.Presenta.encabezado(s) :
@@ -356,7 +353,7 @@
     html += '<button type="button" class="caso__sig" data-ir="' + ((i + 1) % PROYECTOS.length) + '">' +
       '<span><span class="mono">Siguiente proyecto</span><strong>' + esc(titulo(sig)) + '</strong></span>' +
       '<svg aria-hidden="true"><use href="#i-flecha"/></svg></button>';
-    return '<div class="caso__lienzo" data-titulos="' + esc(p.estiloTitulos || 'contorno') + '"' + (p.acento ? ' style="--proy:' + esc(p.acento) + '"' : '') + '>' + html + '</div>';
+    return '<div class="caso__lienzo' + (p.paleta ? ' paleta-' + esc(p.paleta) : '') + '" data-titulos="' + esc(p.estiloTitulos || 'contorno') + '"' + (p.acento && !p.paleta ? ' style="--proy:' + esc(p.acento) + '"' : '') + '>' + html + '</div>';
   }
 
   function mostrar(i) {
