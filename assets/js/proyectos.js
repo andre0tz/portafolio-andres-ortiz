@@ -270,7 +270,7 @@ window.PROYECTOS = [
       { titulo: "Promociones", tipo: "feed",
         encabezado: { ante: "Promociones de temporada", linea1: "Precios que", linea2: "saltan a la vista" },
         nota: "Para El Buen Fin y la temporada navideña, Ink House necesitaba que sus ofertas se entendieran en el segundo que alguien tarda en pasar una publicación. Elegí una comunicación directa a propósito: el precio en tipografía grande y en el color de acento es lo primero que se lee, el producto queda en segundo nivel y las condiciones al final. Los copos de nieve y el sello del Buen Fin ubican la temporada sin competir con la oferta.",
-        ayuda: "Toca cualquier publicación para verla en grande",
+        ayuda: "Cada publicación se amplía al seleccionarla",
         piezas: [
           { src: "assets/proyectos/ink-house/promocion-8.webp", archivo: "promocion-8.webp", titulo: "Playeras para parejas personalizadas", alt: "Playeras para parejas personalizadas", formato: "vertical" },
           { src: "assets/proyectos/ink-house/promocion-1.webp", archivo: "promocion-1.webp", titulo: "Tarjetas de presentación: 100 por $100", alt: "Tarjetas de presentación: 100 por $100", formato: "vertical" },
@@ -283,7 +283,7 @@ window.PROYECTOS = [
       { titulo: "Carruseles para redes", tipo: "carruseles",
         encabezado: { ante: "Carruseles de diseño gráfico", linea1: "Ideas que", linea2: "se deslizan" },
         nota: "La agencia ya tenía una línea gráfica para este contenido: ilustración en blanco y negro, naranja y amarillo, y frases con palabras resaltadas. El reto era respetarla y aun así variar los temas. Propuse partir de fechas conmemorativas y referencias cercanas para conectarlas con el diseño gráfico, y así mostrar que la disciplina aparece en más lugares de la vida diaria de los que parece.",
-        ayuda: "Desliza cada carrusel como en Instagram",
+        ayuda: "Cada carrusel se desliza como en Instagram",
         carruseles: [
         { titulo: "Comunicólogos", desc: "Felicitación por el día del comunicólogo que pasa del humor al reconocimiento: sin comunicólogos no hay marcas ni medios.", piezas: [
             { src: "assets/proyectos/ink-house/carrusel-comunicologos-1.webp", archivo: "carrusel-comunicologos-1.webp", titulo: "Sin comunicólogos no hay nada", alt: "Sin comunicólogos no hay nada", formato: "vertical" },
@@ -307,7 +307,7 @@ window.PROYECTOS = [
       { titulo: "Apps digitales", tipo: "escenario",
         encabezado: { ante: "Campaña de apps para negocios", linea1: "Del antojo", linea2: "al pedido" },
         nota: "Ink House iba a sumar un servicio nuevo: crear aplicaciones para negocios. Un servicio tecnológico cuesta trabajo explicarlo en abstracto, así que la campaña lo aterrizó en un caso de uso concreto, una app para restaurantes. La primera pieza presenta la idea; las otras dos explican qué gana el restaurante y qué gana su cliente, con la interfaz de la app al centro para que el servicio se entienda sin tecnicismos.",
-        ayuda: "Desliza o usa las flechas; toca la pieza del centro para verla en grande",
+        ayuda: "Avanza con deslizamiento o con las flechas; la pieza central se amplía al seleccionarla",
         piezas: [
           { src: "assets/proyectos/ink-house/apps-1.webp", archivo: "apps-1.webp", titulo: "Haz que tus clientes pidan con solo un clic", alt: "Haz que tus clientes pidan con solo un clic", formato: "vertical" },
           { src: "assets/proyectos/ink-house/apps-2.webp", archivo: "apps-2.webp", titulo: "Beneficios para tu restaurante", alt: "Beneficios para tu restaurante", formato: "vertical" },
@@ -315,7 +315,7 @@ window.PROYECTOS = [
       { titulo: "Invitaciones digitales", tipo: "abanico",
         encabezado: { ante: "Lanzamiento de invitaciones digitales", linea1: "Un paquete", linea2: "para cada fiesta" },
         nota: "Las invitaciones digitales eran otro servicio nuevo de la agencia y había que presentarlas como una opción moderna y práctica frente a la invitación impresa. Cada pieza muestra el diseño dentro de un celular, que es donde la recibe el invitado. Los paquetes se distinguen por color y precio, y unos íconos resumen lo que incluye cada uno, como cuenta regresiva, música o confirmación por WhatsApp, sin saturar la publicación.",
-        ayuda: "Pasa el cursor o desliza para ver los cuatro paquetes",
+        ayuda: "Los cuatro paquetes se despliegan al pasar el cursor o al deslizar",
         piezas: [
           { src: "assets/proyectos/ink-house/invitaciones-1.webp", archivo: "invitaciones-1.webp", titulo: "Paquete Elite", alt: "Paquete Elite", formato: "vertical" },
           { src: "assets/proyectos/ink-house/invitaciones-2.webp", archivo: "invitaciones-2.webp", titulo: "Paquete Premium", alt: "Paquete Premium", formato: "vertical" },
@@ -358,7 +358,7 @@ window.PROYECTOS = [
       { titulo: "Publicaciones", tipo: "feed",
         encabezado: { ante: "Publicaciones para el feed", linea1: "Lo que vive", linea2: "en el feed" },
         nota: "Las publicaciones presentan el procedimiento paso a paso: qué es, por qué se hace, quién puede ser candidato y qué cambios atiende. Las promociones del Buen Fin conservan la misma estructura gráfica para que se reconozcan como parte de la cuenta y no como un anuncio aislado.",
-        ayuda: "Toca cualquier publicación para verla en grande",
+        ayuda: "Cada publicación se amplía al seleccionarla",
         piezas: [
           { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-1.webp", archivo: "publicacion-1.webp", titulo: "¿Por qué hacerse una blefaroplastia?", alt: "¿Por qué hacerse una blefaroplastia?", formato: "vertical" },
           { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-2.webp", archivo: "publicacion-2.webp", titulo: "Qué puede atender el procedimiento", alt: "Qué puede atender el procedimiento", formato: "vertical" },
@@ -372,7 +372,7 @@ window.PROYECTOS = [
       { titulo: "Historias", tipo: "historias",
         encabezado: { ante: "Historias de Instagram y Facebook", linea1: "24 horas", linea2: "en pantalla" },
         nota: "Las historias funcionan como una conversación: abren con una pregunta, desmienten un mito, explican el procedimiento con palabras sencillas y terminan con una invitación a agendar una valoración.",
-        ayuda: "Cambia entre Instagram y Facebook o toca los lados de la pantalla para avanzar",
+        ayuda: "Vista disponible en Instagram y Facebook; los lados de la pantalla permiten avanzar",
         piezas: [
           { src: "assets/proyectos/blefaroplastia-pachuca/historia-1.webp", archivo: "historia-1.webp", titulo: "¿Qué te gustaría mejorar de tu mirada?", alt: "¿Qué te gustaría mejorar de tu mirada?", formato: "historia", sticker: { texto: "¿Cuál es tu duda?", x: 50, y: 81, w: 50, escala: 0.9 } },
           { src: "assets/proyectos/blefaroplastia-pachuca/historia-2.webp", archivo: "historia-2.webp", titulo: "¿Qué es la blefaroplastia?", alt: "¿Qué es la blefaroplastia?", formato: "historia", sticker: { texto: "¿Qué más quieres saber?", x: 50, y: 93.6, w: 54, escala: 0.86 } },
@@ -418,7 +418,7 @@ window.PROYECTOS = [
       { titulo: "Cuadros clave", columnas: 2,
         encabezado: { ante: "Cuadros clave", linea1: "Cada palabra", linea2: "en su lugar" },
         nota: "Cuatro momentos del video donde se ve cómo la jerarquía tipográfica y la composición acompañan la narración.",
-        ayuda: "Toca un cuadro para verlo en grande",
+        ayuda: "Cada cuadro se amplía al seleccionarlo",
         piezas: [
         { src: "assets/proyectos/intro-congreso/cuadro-1.webp", archivo: "cuadro-1.webp", titulo: "Ninguna medida puede definir los límites de su amor", alt: "Cuadro del video: ninguna medida puede definir los límites de su amor", formato: "panoramico" },
         { src: "assets/proyectos/intro-congreso/cuadro-2.webp", archivo: "cuadro-2.webp", titulo: "Él es la doctrina fundamental de la verdadera teología", alt: "Cuadro del video: Él es la doctrina fundamental de la verdadera teología", formato: "panoramico" },
@@ -446,7 +446,7 @@ window.PROYECTOS = [
     cuenta: { nombre: "Generación Diferente", iniciales: "GD", foto: "assets/proyectos/generacion-diferente/perfil-2.webp", color: "#0b0b0c" },
     cinta: ["Concepto", "Logotipo", "Retícula", "Color", "Tipografía", "Guía de uso", "Redes sociales", "Aplicaciones"],
     resumen: "Identidad visual completa para un grupo de jóvenes cristianos: símbolo, logotipo, color, tipografía, guía de uso y aplicaciones en redes y objetos.",
-    contexto: "Generación Diferente es un grupo juvenil cristiano que vive en Facebook e Instagram. Necesitaba una identidad propia que se reconociera igual en una foto de perfil que en una playera.",
+    contexto: "Generación Diferente reúne a jóvenes cristianos que comparten su fe en reuniones, cultos y redes sociales. La identidad debía transmitir energía y convicción, hablarle a un público joven con su propio lenguaje y mantenerse reconocible en Facebook, Instagram, impresos y objetos.",
     objetivo: "Crear un símbolo con significado para el grupo y un sistema visual que funcione en redes, impresos y objetos sin perder coherencia.",
     participacion: "Diseñé toda la identidad: concepto, logotipo y sus versiones, retícula, paleta, tipografía, guía de uso, portada y foto de perfil, publicaciones y aplicaciones.",
     concepto: "Una llama encendida: el fuego del Espíritu Santo que se reparte entre muchas personas y que no se apaga cuando se comparte.",
@@ -460,34 +460,31 @@ window.PROYECTOS = [
     entregables: ["Concepto y narrativa de marca", "Logotipo principal, horizontal, tipográfico e isotipo", "Variaciones de color", "Retícula y área de seguridad", "Paleta y tipografía", "Guía de usos incorrectos", "Portada y foto de perfil", "Publicaciones", "Aplicaciones en objetos"],
     resultados: [],
     secciones: [
-      { titulo: "Redes sociales",
+      { titulo: "Redes sociales", tipo: "facebook",
         encabezado: { ante: "Facebook", linea1: "Portada y", linea2: "foto de perfil" },
-        nota: "La portada pone el nombre al centro y lejos de los bordes, para que se lea completo aunque el celular recorte los lados. La foto de perfil usa el logotipo principal sobre una foto oscurecida del público.",
-        ayuda: "Toca una imagen para verla en grande",
+        nota: "La portada centra el nombre y lo enmarca con tres figuras: dos jóvenes en oración, contorneados en naranja y azul, y una figura central con los brazos en alto. Las tiras de papel rasgado dividen la escena y conectan con las publicaciones. La foto de perfil repite la llama sobre el público y cierra el conjunto.",
         piezas: [
-          { src: "assets/proyectos/generacion-diferente/portada-facebook.webp", archivo: "portada-facebook.webp", titulo: "Portada de Facebook", alt: "Portada de Facebook de Generación Diferente", formato: "ancho" },
+          { src: "assets/proyectos/generacion-diferente/portada-facebook.webp", archivo: "portada-facebook.webp", titulo: "Portada de Facebook", alt: "Portada de Facebook de Generación Diferente", formato: "portada" },
           { src: "assets/proyectos/generacion-diferente/perfil-2.webp", archivo: "perfil-2.webp", titulo: "Foto de perfil", alt: "Foto de perfil de Generación Diferente", formato: "cuadrado" } ] },
       { titulo: "Publicaciones", tipo: "feed",
-        encabezado: { ante: "Publicaciones para Instagram", linea1: "Tres piezas,", linea2: "un sistema" },
-        nota: "Una reunión, un culto y un momento compartido. Cambian el formato y la foto, pero el negro, el naranja, la letra gastada y la llama al pie se mantienen.",
-        ayuda: "Toca cualquier publicación para verla en grande",
+        encabezado: { ante: "Publicaciones para Instagram", linea1: "Se reconoce", linea2: "antes de leerse" },
+        nota: "Anunciar una reunión, invitar a un culto o compartir un momento: cada publicación resuelve una necesidad distinta. Cambian el formato y la fotografía, pero el negro, el naranja, la letra gastada y la llama al pie se mantienen, y el feed se identifica a primera vista.",
         piezas: [
-          { src: "assets/proyectos/generacion-diferente/post-1.webp", archivo: "post-1.webp", titulo: "Reunión de jóvenes", alt: "Publicación: Reunión de jóvenes", formato: "vertical" },
-          { src: "assets/proyectos/generacion-diferente/post-2.webp", archivo: "post-2.webp", titulo: "Culto de jóvenes", alt: "Publicación: Culto de jóvenes", formato: "vertical" },
-          { src: "assets/proyectos/generacion-diferente/post-3.webp", archivo: "post-3.webp", titulo: "La llama como marco", alt: "Publicación con la llama como marco", formato: "vertical" } ] },
-      { titulo: "Aplicaciones",
+          { src: "assets/proyectos/generacion-diferente/post-1.webp", archivo: "post-1.webp", titulo: "Reunión de jóvenes", alt: "Publicación: Reunión de jóvenes", desc: "Collage de papel rasgado con fotografías del público y la fecha en grande. Retoma las tiras rasgadas de la portada de Facebook.", formato: "vertical" },
+          { src: "assets/proyectos/generacion-diferente/post-2.webp", archivo: "post-2.webp", titulo: "Culto de jóvenes", alt: "Publicación: Culto de jóvenes", desc: "Invitación directa: título en blanco y naranja, y los datos organizados en tres bloques que se leen de un vistazo.", formato: "vertical" },
+          { src: "assets/proyectos/generacion-diferente/post-3.webp", archivo: "post-3.webp", titulo: "La llama como marco", alt: "Publicación con la llama como marco", desc: "La llama se convierte en un trazo naranja que envuelve la fotografía. El isotipo firma la pieza al pie.", formato: "vertical" } ] },
+      { titulo: "Aplicaciones", tipo: "objetos",
         encabezado: { ante: "Aplicaciones", linea1: "La llama fuera", linea2: "de la pantalla" },
-        nota: "Cada objeto usa la versión del logotipo que mejor aguanta su material y su tamaño: la llama sola en la gorra y el pin, la versión horizontal en la pulsera y el logotipo completo en cuadernos, vasos y playeras.",
-        ayuda: "Toca una pieza para verla en grande",
+        nota: "Cada objeto utiliza la versión del logotipo que mejor responde a su material, tamaño y uso: la llama sola donde el espacio es reducido, la versión horizontal en soportes alargados y el logotipo completo donde hay superficie suficiente.",
         piezas: [
-          { src: "assets/proyectos/generacion-diferente/cuaderno-1.webp", archivo: "cuaderno-1.webp", titulo: "Cuaderno", alt: "Cuaderno con la identidad de Generación Diferente", formato: "vertical" },
-          { src: "assets/proyectos/generacion-diferente/playeras.webp", archivo: "playeras.webp", titulo: "Playeras", alt: "Playeras con la identidad de Generación Diferente", formato: "horizontal" },
-          { src: "assets/proyectos/generacion-diferente/gorra.webp", archivo: "gorra.webp", titulo: "Gorra bordada", alt: "Gorra bordada con el isotipo", formato: "horizontal" },
-          { src: "assets/proyectos/generacion-diferente/pin.webp", archivo: "pin.webp", titulo: "Pin metálico", alt: "Pin metálico con el isotipo", formato: "vertical" },
-          { src: "assets/proyectos/generacion-diferente/vaso.webp", archivo: "vaso.webp", titulo: "Vaso", alt: "Vaso con el logotipo principal", formato: "vertical" },
-          { src: "assets/proyectos/generacion-diferente/pulsera.webp", archivo: "pulsera.webp", titulo: "Pulsera de silicón", alt: "Pulsera con la versión horizontal", formato: "horizontal" },
-          { src: "assets/proyectos/generacion-diferente/llavero.webp", archivo: "llavero.webp", titulo: "Llavero", alt: "Llavero con el logotipo principal", formato: "vertical" },
-          { src: "assets/proyectos/generacion-diferente/sticker.webp", archivo: "sticker.webp", titulo: "Sticker", alt: "Sticker con el logotipo principal", formato: "vertical" } ] }
+          { src: "assets/proyectos/generacion-diferente/cuaderno-1.webp", archivo: "cuaderno-1.webp", titulo: "Cuaderno", alt: "Cuaderno con la identidad de Generación Diferente", desc: "Para notas de estudio y reuniones. El logotipo ocupa el centro y las salpicaduras naranjas traducen la energía de la llama a una textura.", formato: "vertical" },
+          { src: "assets/proyectos/generacion-diferente/playeras.webp", archivo: "playeras.webp", titulo: "Playeras", alt: "Playeras con la identidad de Generación Diferente", desc: "Logotipo pequeño al frente para el uso diario y completo en la espalda, para identificar al grupo a distancia.", formato: "horizontal" },
+          { src: "assets/proyectos/generacion-diferente/gorra.webp", archivo: "gorra.webp", titulo: "Gorra bordada", alt: "Gorra bordada con el isotipo", desc: "El isotipo resuelve el espacio reducido del frente y su trazo grueso se conserva con nitidez en el bordado.", formato: "horizontal" },
+          { src: "assets/proyectos/generacion-diferente/pin.webp", archivo: "pin.webp", titulo: "Pin metálico", alt: "Pin metálico con el isotipo", desc: "La llama esmaltada en blanco: un distintivo pequeño para quien forma parte del grupo.", formato: "vertical" },
+          { src: "assets/proyectos/generacion-diferente/vaso.webp", archivo: "vaso.webp", titulo: "Vaso", alt: "Vaso con el logotipo principal", desc: "Logotipo principal sobre negro mate. Lleva la identidad a la rutina diaria.", formato: "vertical" },
+          { src: "assets/proyectos/generacion-diferente/llavero.webp", archivo: "llavero.webp", titulo: "Llavero", alt: "Llavero con el logotipo principal", desc: "Recortado siguiendo la silueta del logotipo, con un borde negro que lo separa de cualquier superficie.", formato: "vertical" },
+          { src: "assets/proyectos/generacion-diferente/sticker.webp", archivo: "sticker.webp", titulo: "Sticker", alt: "Sticker con el logotipo principal", desc: "Troquel con borde blanco que extiende la marca a laptops, cuadernos y botellas.", formato: "vertical" },
+          { src: "assets/proyectos/generacion-diferente/pulsera.webp", archivo: "pulsera.webp", titulo: "Pulsera de silicón", alt: "Pulsera con la versión horizontal", desc: "La versión horizontal se adapta a un soporte largo y estrecho.", formato: "horizontal" } ] }
     ],
     proceso: []
   },
@@ -526,7 +523,7 @@ window.PROYECTOS = [
         encabezado: { ante: "Publicaciones para el feed", linea1: "Cinco motivos", linea2: "para sentarse" },
         unidad: "publicaciones",
         nota: "Cada publicación cumple una tarea distinta: presentar un servicio, organizar una dinámica, dar un consejo, lanzar una promoción o recordar que hay que agendar. Todas usan fondo oscuro, amarillo y la mezcla de letra condensada con letra manuscrita, así que se reconocen como de la misma barbería aunque cambie el mensaje.",
-        ayuda: "Elige una publicación de la lista o espera a que cambie sola",
+        ayuda: "La vitrina avanza sola o desde la lista de publicaciones",
         piezas: [
           { src: "assets/proyectos/the-old-barber/publicacion-1.webp", archivo: "publicacion-1.webp", etiqueta: "Agenda", titulo: "Inicia la semana con estilo", alt: "Inicia la semana con estilo", formato: "vertical",
             desc: "Pensada para publicarse en lunes. Cierra con los datos de contacto en una sola franja y el botón para agendar." },

@@ -226,6 +226,15 @@
     btnInvadir.textContent = on ? 'Devolverle su espacio' : 'Probar qué pasa si se invade';
   });
 
+  /* ---------- Área de seguridad: casos invadidos y respetados ---------- */
+  var invasion = $('#invasion');
+  $$('[data-zona]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      invasion.dataset.estado = b.dataset.zona;
+      $$('[data-zona]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    });
+  });
+
   /* ---------- Usos incorrectos ---------- */
   $$('.error__carta').forEach(function (c) {
     c.addEventListener('click', function () {

@@ -408,6 +408,33 @@
     '</div>';
   }
 
+  /* ---------- Facebook: portada completa con su foto de perfil ---------- */
+  /* La portada se muestra entera, en su proporción original, y la foto de
+     perfil se superpone como en la plataforma. */
+  function facebook(s, p) {
+    var sec = (s.encabezado && s.encabezado.ante) || s.titulo;
+    var portada = s.piezas[0], perfil = s.piezas[1];
+    var cu = cuentaDe(p);
+    return '<div class="fbcaso" data-grupo>' +
+      '<button type="button" class="pieza__btn fbcaso__portada"' + datos(portada, s.nota, sec, 0) + ' aria-label="Ampliar: ' + esc(portada.titulo) + '">' + imagen(portada) + '</button>' +
+      '<div class="fbcaso__pie">' +
+        (perfil ? '<button type="button" class="pieza__btn fbcaso__perfil"' + datos(perfil, s.nota, sec, 1) + ' aria-label="Ampliar: ' + esc(perfil.titulo) + '">' + imagen(perfil) + '</button>' : '') +
+        '<div class="fbcaso__nombre"><strong>' + esc(p.titulo) + '</strong><span>' + esc(cu.descripcion || 'Grupo juvenil cristiano') + '</span></div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  /* ---------- Objetos: aplicaciones sobre fondo transparente ---------- */
+  function objetos(s, p) {
+    var sec = (s.encabezado && s.encabezado.ante) || s.titulo;
+    return '<div class="objetos" data-grupo>' + s.piezas.map(function (x, k) {
+      return '<figure class="objeto objeto--' + esc(x.formato || 'vertical') + '" style="--k:' + k + '">' +
+        '<button type="button" class="pieza__btn objeto__img"' + datos(x, s.nota, sec, k) + ' aria-label="Ampliar: ' + esc(x.titulo || x.alt) + '">' + imagen(x) + '</button>' +
+        '<figcaption><span class="objeto__num">' + String(k + 1).padStart(2, '0') + '</span><strong>' + esc(x.titulo) + '</strong>' + (x.desc ? '<span class="objeto__desc">' + esc(x.desc) + '</span>' : '') + '</figcaption>' +
+      '</figure>';
+    }).join('') + '</div>';
+  }
+
   /* ---------- Portada que abre un brandbook interactivo ---------- */
   /* Se activa con portadaEstilo: "brandbook" y el campo brandbook: { href, texto }. */
   function portalBrandbook(p) {
@@ -538,7 +565,7 @@
   }
 
   /* ---------- Interfaz pública ---------- */
-  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina };
+  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina, facebook: facebook, objetos: objetos };
 
   window.Presenta = {
     html: function (s, p) { var f = TIPOS[s.tipo]; return f ? f(s, p) : null; },
