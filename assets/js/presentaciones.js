@@ -408,6 +408,17 @@
     '</div>';
   }
 
+  /* ---------- Portada que abre un brandbook interactivo ---------- */
+  /* Se activa con portadaEstilo: "brandbook" y el campo brandbook: { href, texto }. */
+  function portalBrandbook(p) {
+    var bb = p.brandbook || {};
+    return '<a class="portal" href="' + esc(bb.href || '#') + '">' +
+      '<span class="portal__marco"><img src="' + esc(p.portada) + '" alt="Portada del brandbook de ' + esc(p.titulo) + '" loading="lazy" decoding="async"></span>' +
+      '<span class="portal__pie"><span class="portal__etq">Brandbook interactivo</span>' +
+      '<span class="portal__accion">' + esc(bb.texto || 'Abrir brandbook') + ' ' + icono('i-flecha', 'ico') + '</span></span>' +
+    '</a>';
+  }
+
   /* ---------- Portada en columnas que suben y bajan ---------- */
   /* Dos columnas de publicaciones que se desplazan sin fin en sentidos
      opuestos, inclinadas, con un poste de barbería girando detrás.
@@ -532,7 +543,7 @@
   window.Presenta = {
     html: function (s, p) { var f = TIPOS[s.tipo]; return f ? f(s, p) : null; },
     encabezado: encabezado,
-    collage: function (p) { return p.portadaEstilo === 'columnas' ? columnas(p) : p.portadaEstilo === 'pantalla' ? pantalla(p) : collage(p); },
+    collage: function (p) { return p.portadaEstilo === 'columnas' ? columnas(p) : p.portadaEstilo === 'pantalla' ? pantalla(p) : p.portadaEstilo === 'brandbook' ? portalBrandbook(p) : collage(p); },
     cinta: cinta,
     postIG: function (x, p) { return postIG(x, p, cuentaDe(p)); },
     iniciar: function (raiz) {

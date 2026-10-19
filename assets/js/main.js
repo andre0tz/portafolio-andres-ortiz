@@ -280,6 +280,7 @@
           '<p class="caso__resumen">' + esc(p.resumen) + '</p>' +
           (fichasHero ? '<dl class="caso__fichas">' + fichasHero + '</dl>' : '') +
           (p.aclaracion ? '<p class="caso__aclaracion">' + esc(p.aclaracion) + '</p>' : '') +
+          (p.brandbook && p.brandbook.href ? '<a class="caso__brandbook" href="' + esc(p.brandbook.href) + '">' + esc(p.brandbook.texto || 'Abrir brandbook') + ' <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>' : '') +
         '</div>' + visual +
       '</div>' +
       '<span class="caso__explora" aria-hidden="true">Explora el proyecto <svg><use href="#i-abajo"/></svg></span>' +

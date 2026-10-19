@@ -58,7 +58,11 @@ Cada sección de un proyecto puede usar un `tipo` distinto (ver `assets/js/prese
 
 Cada sección puede tener `encabezado: { ante, linea1, linea2 }` y `unidad` ("publicaciones", "historias"...).
 
-Cada proyecto puede tener `paleta` ("ink", "blef", "barber" o "intro", colores del caso en claro y oscuro), `portadaEstilo` ("columnas": publicaciones que suben y bajan en la portada del caso; "pantalla": el `video` enmarcado en la portada), `tituloFirma` (parte final del título en letra manuscrita), `cinta` (textos de la franja bajo la portada), `collage` (hasta 4 publicaciones junto a la portada), `cuenta` (nombre, iniciales y `foto` de perfil para los marcos), `acento` (color del proyecto), `estiloTitulos` ("contorno", "marcador" o "firma"), `aclaracion`, `vistazo` (hasta 3 imágenes que se asoman en la tarjeta) y `portadaPos` (qué parte de la portada se ve).
+Cada proyecto puede tener `paleta` ("ink", "blef", "barber", "intro" o "gdi", colores del caso en claro y oscuro), `portadaEstilo` ("columnas": publicaciones que suben y bajan en la portada del caso; "pantalla": el `video` enmarcado en la portada; "brandbook": una tarjeta que abre el brandbook del proyecto), `brandbook` (`href` y `texto` del botón que abre un brandbook propio), `tituloFirma` (parte final del título en letra manuscrita), `cinta` (textos de la franja bajo la portada), `collage` (hasta 4 publicaciones junto a la portada), `cuenta` (nombre, iniciales y `foto` de perfil para los marcos), `acento` (color del proyecto), `estiloTitulos` ("contorno", "marcador" o "firma"), `aclaracion`, `vistazo` (hasta 3 imágenes que se asoman en la tarjeta) y `portadaPos` (qué parte de la portada se ve).
+
+## Brandbook de Generación Diferente
+
+Vive en `brandbook/generacion-diferente/` como página propia (`index.html`, `brandbook.css` y `brandbook.js`). Los trazos del logotipo están dentro del HTML como símbolos SVG. Las imágenes y los SVG del logotipo sin fondo están en `assets/proyectos/generacion-diferente/`.
 
 ## Estructura
 
@@ -81,4 +85,4 @@ Sube la carpeta completa a Netlify (arrastrar y soltar), GitHub Pages o Vercel. 
 
 ## Al publicar cambios
 
-En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261018e` a `20261018f`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
+En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261019a` a `20261019b`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.

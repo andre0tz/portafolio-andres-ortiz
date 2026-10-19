@@ -1194,3 +1194,50 @@ code{font-family:var(--f-mono);font-size:.8em}
 @media (max-width:980px){.portada-pantalla .caso__hero{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:620px){.galeria.c2.amplia{grid-template-columns:minmax(0,1fr)}.pantalla{padding:6px;border-radius:16px}.pantalla__marco{border-radius:11px}}
 @media (prefers-reduced-motion:reduce){.pantalla{animation:none}}
+
+/* =====================================================================
+   25. GENERACIÓN DIFERENTE: PALETA, PORTADA QUE ABRE EL BRANDBOOK
+   ===================================================================== */
+/* Paleta: negro, naranja de la marca y crema */
+.paleta-gdi{
+  --naranja:#f76515;
+  --fondo:#f1ece2;--fondo-2:#e7dfd1;--superficie:#fbf8f2;
+  --texto:#17140f;--texto-suave:#5a5348;--linea:rgba(23,20,15,.14);
+  --proy:#c24a0a;--proy-2:#f76515;--proy-3:#17140f;--acento:#c24a0a;
+}
+[data-theme="oscuro"] .paleta-gdi{
+  --fondo:#0b0b0c;--fondo-2:#141416;--superficie:#1b1b1e;
+  --texto:#f3efe6;--texto-suave:#a9a49b;--linea:rgba(255,255,255,.12);
+  --proy:#f76515;--proy-2:#f76515;--proy-3:#f3efe6;--acento:#f76515;
+}
+.caso__lienzo.paleta-gdi{overflow-x:clip}
+/* La portada del caso siempre es de noche, como la marca */
+.paleta-gdi .caso__cabeza.paleta-hero{
+  --texto:#f3efe6;--texto-suave:#a9a49b;--linea:rgba(255,255,255,.14);--proy:#f76515;--proy-2:#f76515;
+  background:radial-gradient(circle at 74% 40%,rgba(247,101,21,.2),transparent 45%),radial-gradient(circle at 8% 110%,rgba(247,101,21,.1),transparent 40%),#0b0b0c;
+  overflow:hidden}
+.paleta-gdi .paleta-hero .chip--fuerte{background:var(--naranja);border-color:var(--naranja);color:#0b0b0c}
+.portada-brandbook .caso__hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.portada-brandbook .caso__visual{width:100%;max-width:620px;align-self:center}
+
+/* Tarjeta que abre el brandbook */
+.portal{display:block;text-decoration:none;color:inherit;border-radius:24px;padding:10px;background:rgba(255,255,255,.04);border:1px solid var(--linea);
+  box-shadow:0 40px 80px -40px rgba(0,0,0,.8);animation:visualEntra 1s var(--ease) .2s both;transition:transform .5s var(--ease),border-color .3s}
+.portal__marco{display:block;border-radius:16px;overflow:hidden;aspect-ratio:16/10;background:#000}
+.portal__marco img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.portal__pie{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 8px 6px}
+.portal__etq{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-suave)}
+.portal__accion{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:#f76515}
+.portal__accion .ico{width:16px;height:16px;transition:transform .3s var(--ease)}
+.portal:hover{transform:translateY(-4px);border-color:#f76515}
+.portal:hover .portal__marco img{transform:scale(1.04)}
+.portal:hover .portal__accion .ico{transform:translate(3px,-3px)}
+.portal:focus-visible{outline:2px solid #f76515;outline-offset:4px}
+
+/* Botón del brandbook junto a las fichas del caso */
+.caso__brandbook{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:14px 22px;border-radius:999px;
+  background:var(--proy-2,var(--proy));color:#0b0b0c;font-weight:800;text-decoration:none;transition:transform .25s var(--ease),box-shadow .25s}
+.caso__brandbook svg{width:16px;height:16px}
+.caso__brandbook:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(247,101,21,.7)}
+@media (max-width:980px){.portada-brandbook .caso__hero{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.portal,.portal__marco img{transition:none;animation:none}}
