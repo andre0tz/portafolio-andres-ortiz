@@ -443,7 +443,7 @@ window.PROYECTOS = [
     portadaPos: "center 30%",
     brandbook: { href: "brandbook/generacion-diferente/", texto: "Abrir el brandbook interactivo" },
     vistazo: ["assets/proyectos/generacion-diferente/post-2.webp", "assets/proyectos/generacion-diferente/cuaderno-1.webp", "assets/proyectos/generacion-diferente/post-3.webp"],
-    cuenta: { nombre: "Generación Diferente", iniciales: "GD", foto: "assets/proyectos/generacion-diferente/perfil-2.webp", color: "#0b0b0c" },
+    cuenta: { nombre: "generacióndiferente", iniciales: "GD", foto: "assets/proyectos/generacion-diferente/perfil-2.webp", color: "#0b0b0c", descripcion: "Grupo juvenil cristiano" },
     cinta: ["Concepto", "Logotipo", "Retícula", "Color", "Tipografía", "Guía de uso", "Redes sociales", "Aplicaciones"],
     resumen: "Identidad visual completa para un grupo de jóvenes cristianos: símbolo, logotipo, color, tipografía, guía de uso y aplicaciones en redes y objetos.",
     contexto: "Generación Diferente reúne a jóvenes cristianos que comparten su fe en reuniones, cultos y redes sociales. La identidad debía transmitir energía y convicción, hablarle a un público joven con su propio lenguaje y mantenerse reconocible en Facebook, Instagram, impresos y objetos.",

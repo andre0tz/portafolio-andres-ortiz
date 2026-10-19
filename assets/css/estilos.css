@@ -1269,3 +1269,16 @@ code{font-family:var(--f-mono);font-size:.8em}
 @media (max-width:900px){.objeto,.objeto--horizontal{grid-column:span 6}}
 @media (max-width:600px){.objeto,.objeto--horizontal{grid-column:1/-1}}
 .objeto--horizontal:last-child{grid-column:3/11}@media (max-width:900px){.objeto--horizontal:last-child{grid-column:1/-1}}
+
+/* Generación Diferente: franja visible e interfaces en modo oscuro */
+.paleta-gdi .franja{background:#f76515;color:#0b0b0c;box-shadow:0 18px 40px -18px rgba(0,0,0,.75)}
+.paleta-gdi .franja__ico{display:none}
+.paleta-gdi .franja span::after{content:"";display:inline-block;width:10px;height:10px;margin-left:28px;border-radius:50%;background:#0b0b0c;vertical-align:middle}
+.paleta-gdi .ig{background:#000;color:#f5f5f5;box-shadow:0 0 0 1px #262626,0 28px 60px -28px rgba(0,0,0,.8)}
+.paleta-gdi .ig__mas,.paleta-gdi .ig__acciones,.paleta-gdi .ig__like{color:#f5f5f5}
+.paleta-gdi .ig__media{background:#121212}
+.paleta-gdi .ig__avatar span{border-color:#000}
+.paleta-gdi .fbcaso{background:#242526;border-color:#3a3b3c;color:#e4e6eb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.paleta-gdi .fbcaso__perfil{border-color:#242526}
+.paleta-gdi .fbcaso__nombre strong{color:#e4e6eb}
+.paleta-gdi .fbcaso__nombre span{color:#b0b3b8}

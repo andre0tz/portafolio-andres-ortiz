@@ -259,16 +259,8 @@
     });
   });
 
-  /* ---------- Facebook: dispositivo y zonas ---------- */
-  var fbEscena = $('#fbEscena'), notas = $('.fb__notas');
-  function dispositivo(d) {
-    fbEscena.dataset.disp = d;
-    notas.classList.toggle('web', d === 'web');
-    notas.classList.toggle('movil', d === 'movil');
-    $$('.interruptor button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.disp === d)); });
-  }
-  $$('.interruptor button').forEach(function (b) { b.addEventListener('click', function () { dispositivo(b.dataset.disp); }); });
-  if (fbEscena) dispositivo(fbEscena.dataset.disp);
+  /* ---------- Facebook: zonas seguras ---------- */
+  var fbEscena = $('#fbEscena');
   var verZonas = $('#verZonas');
   if (verZonas) verZonas.addEventListener('change', function () { fbEscena.classList.toggle('ver-zonas', verZonas.checked); });
 
