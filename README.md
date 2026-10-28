@@ -44,6 +44,17 @@ Para videos usa `tipo: "video"`, el MP4 en `src` y una imagen opcional en `poste
 
 Recomendación de peso: exporta en WebP a 1600 px del lado mayor (portadas) y 1200 px (piezas). Los videos en MP4 H.264, de menos de 8 MB.
 
+## Videos
+
+Los videos tienen su propia sección en la página principal (`#videos`), separada de los proyectos. Para agregar uno:
+
+1. Copia el MP4 (H.264) y una imagen de póster a `assets/proyectos/<nombre-del-video>/`.
+2. En `assets/js/videos.js`, copia un bloque `{ ... }` completo, pégalo al principio de la lista y cambia sus datos. El primero de la lista es el que se muestra al abrir la sección.
+3. Usa `formato: "vertical"` para Reels e historias (9:16) y `formato: "horizontal"` para videos de 16:9.
+4. Sube el número de versión de `videos.js` en `index.html`.
+
+Desde el segundo video aparece la lista "Todos los videos" debajo del reproductor. Cada video tiene enlace directo: `index.html#video/slug`.
+
 ## Tipos de presentación
 
 Cada sección de un proyecto puede usar un `tipo` distinto (ver `assets/js/presentaciones.js`):
@@ -72,6 +83,8 @@ assets/css/estilos.css     estilos, temas claro y oscuro, responsive
 assets/js/proyectos.js     perfil, experiencia, formación, herramientas, habilidades y proyectos
 assets/js/presentaciones.js feed, abanico, escenario, historias, carruseles y collage
 assets/js/main.js          filtros, casos, visor, tema, menú y animaciones
+assets/js/videos.js        datos de la sección Videos
+assets/js/videoteca.js     reproductor y lista de la sección Videos
 assets/fonts/              Anton, Manrope, Caveat Brush, Great Vibes, JetBrains Mono (OFL)
 assets/proyectos/<slug>/   imágenes y videos de cada proyecto
 assets/perfil/             tu foto y CV
@@ -85,4 +98,4 @@ Sube la carpeta completa a Netlify (arrastrar y soltar), GitHub Pages o Vercel. 
 
 ## Al publicar cambios
 
-En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261019c` a `20261019d`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
+En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261028a` a `20261028b`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.

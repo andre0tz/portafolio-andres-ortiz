@@ -386,48 +386,6 @@ window.PROYECTOS = [
     proceso: []
   },
   {
-    slug: "intro-congreso",
-    publicado: true,
-    titulo: "Intro para congreso cristiano",
-    categorias: ["video"],
-    disciplina: "Animación tipográfica y video",
-    relacion: "evento",
-    tono: "tinta",
-    paleta: "intro",
-    estiloTitulos: "contorno",
-    // Portada del caso: el video dentro de un marco (ver "pantalla" en presentaciones.js).
-    portadaEstilo: "pantalla",
-    video: { src: "assets/proyectos/intro-congreso/intro-congreso.mp4", poster: "assets/proyectos/intro-congreso/poster.webp", etiqueta: "Introducción del congreso", duracion: "3:02" },
-    portada: "assets/proyectos/intro-congreso/poster.webp",
-    vistazo: ["assets/proyectos/intro-congreso/cuadro-1.webp", "assets/proyectos/intro-congreso/cuadro-3.webp", "assets/proyectos/intro-congreso/cuadro-4.webp"],
-    resumen: "Pieza audiovisual con animación tipográfica que se proyectó como introducción de un congreso cristiano.",
-    contexto: "El video se creó para un evento de la iglesia y se usó para abrir un congreso cristiano. Su mensaje central es quién es Jesús, contado frase por frase.",
-    objetivo: "Presentar el mensaje del congreso de forma clara y emotiva desde los primeros minutos, para que el público lo escuchara y lo leyera al mismo tiempo en la pantalla del evento.",
-    participacion: "Desarrollé la animación tipográfica: elegí qué palabras destacar, compuse cada frase sobre las escenas y sincronicé la aparición de los textos con el audio.",
-    solucion: "La tipografía guía la lectura. Cada frase entra al ritmo del audio y las palabras que cargan el mensaje crecen en tamaño, así el público capta la idea aunque no alcance a leer cada palabra.",
-    decisiones: [
-      { titulo: "Jerarquía en cada frase", texto: "Las palabras clave, como amor, hijo o débiles, aparecen más grandes que los conectores. La frase se entiende de un vistazo y el énfasis acompaña al de la voz." },
-      { titulo: "Serifa clásica", texto: "Una tipografía con serifa y alto contraste remite a los textos bíblicos y le da a la pieza un tono solemne sin perder legibilidad en pantalla." },
-      { titulo: "Paleta sepia", texto: "Tonos cálidos y texturas de pergamino unifican las escenas y dejan que el texto destaque sin competir con la imagen." },
-      { titulo: "Texto en el espacio libre", texto: "Cada frase ocupa la zona vacía del encuadre, junto al rostro y nunca encima, para que imagen y mensaje se lean juntos." }
-    ],
-    encabezadoDecisiones: { ante: "Decisiones de diseño", linea1: "Por qué", linea2: "se mueve así" },
-    entregables: [],
-    resultados: [],
-    secciones: [
-      { titulo: "Cuadros clave", columnas: 2,
-        encabezado: { ante: "Cuadros clave", linea1: "Cada palabra", linea2: "en su lugar" },
-        nota: "Cuatro momentos del video donde se ve cómo la jerarquía tipográfica y la composición acompañan la narración.",
-        ayuda: "Cada cuadro se amplía al seleccionarlo",
-        piezas: [
-        { src: "assets/proyectos/intro-congreso/cuadro-1.webp", archivo: "cuadro-1.webp", titulo: "Ninguna medida puede definir los límites de su amor", alt: "Cuadro del video: ninguna medida puede definir los límites de su amor", formato: "panoramico" },
-        { src: "assets/proyectos/intro-congreso/cuadro-2.webp", archivo: "cuadro-2.webp", titulo: "Él es la doctrina fundamental de la verdadera teología", alt: "Cuadro del video: Él es la doctrina fundamental de la verdadera teología", formato: "panoramico" },
-        { src: "assets/proyectos/intro-congreso/cuadro-3.webp", archivo: "cuadro-3.webp", titulo: "Él defiende a los débiles", alt: "Cuadro del video: Él defiende a los débiles", formato: "panoramico" },
-        { src: "assets/proyectos/intro-congreso/cuadro-4.webp", archivo: "cuadro-4.webp", titulo: "Desearía poder describirlo, pero Él es indescriptible", alt: "Cuadro del video: desearía poder describirlo, pero Él es indescriptible", formato: "panoramico" } ] }
-    ],
-    proceso: []
-  },
-  {
     slug: "generacion-diferente",
     publicado: true,
     titulo: "Generación Diferente",

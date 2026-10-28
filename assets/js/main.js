@@ -86,7 +86,7 @@
         enlaces.forEach(function (a) { a.classList.toggle('activo', a.dataset.seccion === en.target.id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['proyectos', 'servicios', 'trayectoria', 'sobre-mi', 'contacto'].forEach(function (id) {
+    ['proyectos', 'videos', 'servicios', 'trayectoria', 'sobre-mi', 'contacto'].forEach(function (id) {
       var s = document.getElementById(id); if (s) ioSeccion.observe(s);
     });
   }

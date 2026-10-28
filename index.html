@@ -24,7 +24,7 @@
     if (/[?&]pendientes\b/.test(location.search)) d.classList.add('ver-pendientes');
   })();
 </script>
-<link rel="stylesheet" href="assets/css/estilos.css?v=20261019c">
+<link rel="stylesheet" href="assets/css/estilos.css?v=20261028a">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -61,6 +61,7 @@
     </a>
     <nav class="nav__links" id="menu" aria-label="Principal">
       <a href="#proyectos" data-seccion="proyectos">Proyectos</a>
+      <a href="#videos" data-seccion="videos">Videos</a>
       <a href="#servicios" data-seccion="servicios">Qué hago</a>
       <a href="#trayectoria" data-seccion="trayectoria">Trayectoria</a>
       <a href="#sobre-mi" data-seccion="sobre-mi">Sobre mí</a>
@@ -162,6 +163,23 @@
 
     <div class="obras" id="obras">
       <noscript><p>Activa JavaScript para ver la galería de proyectos.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<!-- El contenido se arma desde assets/js/videos.js (datos) y assets/js/videoteca.js (reproductor y lista). -->
+<section class="seccion videos" id="videos" aria-labelledby="videos-titulo">
+  <div class="contenedor">
+    <header class="cabecera" data-reveal>
+      <div>
+        <p class="script kicker">En movimiento</p>
+        <h2 class="titulo-seccion" id="videos-titulo">Videos</h2>
+      </div>
+      <p class="cabecera__texto">Piezas audiovisuales para eventos, campañas y redes sociales: animación tipográfica, edición y videos promocionales.</p>
+    </header>
+    <div class="videoteca" id="videoteca">
+      <noscript><p>Activa JavaScript para ver los videos.</p></noscript>
     </div>
   </div>
 </section>
@@ -268,7 +286,7 @@
     <p class="pie__gigante" aria-hidden="true">ANDRES ORTIZ<svg><use href="#i-estallido"/></svg></p>
     <div class="pie__fila">
       <span>Diseño gráfico y contenido para redes sociales</span>
-      <nav aria-label="Pie de página"><a href="#proyectos">Proyectos</a><a href="#servicios">Qué hago</a><a href="#trayectoria">Trayectoria</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav>
+      <nav aria-label="Pie de página"><a href="#proyectos">Proyectos</a><a href="#videos">Videos</a><a href="#servicios">Qué hago</a><a href="#trayectoria">Trayectoria</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav>
       <span>© <span id="anio">2026</span> Andres Ortiz</span>
     </div>
   </div>
@@ -298,8 +316,10 @@
 
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
-<script src="assets/js/proyectos.js?v=20261019c"></script>
-<script src="assets/js/presentaciones.js?v=20261019c"></script>
-<script src="assets/js/main.js?v=20261019c"></script>
+<script src="assets/js/proyectos.js?v=20261028a"></script>
+<script src="assets/js/videos.js?v=20261028a"></script>
+<script src="assets/js/presentaciones.js?v=20261028a"></script>
+<script src="assets/js/main.js?v=20261028a"></script>
+<script src="assets/js/videoteca.js?v=20261028a"></script>
 </body>
 </html>
