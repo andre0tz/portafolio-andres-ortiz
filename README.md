@@ -46,14 +46,14 @@ Recomendación de peso: exporta en WebP a 1600 px del lado mayor (portadas) y 12
 
 ## Videos
 
-Los videos tienen su propia sección en la página principal (`#videos`), separada de los proyectos. Para agregar uno:
+"Videos" es un proyecto más de la galería. Al abrirlo, cada video aparece como un subproyecto con su reproductor, su ficha y sus cuadros clave. Para agregar uno:
 
 1. Copia el MP4 (H.264) y una imagen de póster a `assets/proyectos/<nombre-del-video>/`.
-2. En `assets/js/videos.js`, copia un bloque `{ ... }` completo, pégalo al principio de la lista y cambia sus datos. El primero de la lista es el que se muestra al abrir la sección.
-3. Usa `formato: "vertical"` para Reels e historias (9:16) y `formato: "horizontal"` para videos de 16:9.
+2. En `assets/js/videos.js`, copia un bloque `{ ... }` completo, pégalo al principio de la lista y cambia sus datos. El primero de la lista es el que se abre por defecto y su póster puede usarse como portada del proyecto (`portada` del proyecto "videos" en `proyectos.js`).
+3. Usa `formato: "vertical"` para Reels e historias (9:16) y `formato: "horizontal"` para 16:9.
 4. Sube el número de versión de `videos.js` en `index.html`.
 
-Desde el segundo video aparece la lista "Todos los videos" debajo del reproductor. Cada video tiene enlace directo: `index.html#video/slug`.
+Cada subproyecto tiene enlace directo: `index.html#caso/videos/slug`.
 
 ## Tipos de presentación
 
@@ -98,4 +98,4 @@ Sube la carpeta completa a Netlify (arrastrar y soltar), GitHub Pages o Vercel. 
 
 ## Al publicar cambios
 
-En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261028a` a `20261028b`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.
+En `index.html` los archivos de estilos y scripts llevan `?v=` con un número de versión. Cuando cambies `proyectos.js`, `main.js` o `estilos.css`, sube ese número (por ejemplo de `20261028b` a `20261028c`). Así los visitantes reciben la versión nueva en lugar de la que su navegador tenía guardada.

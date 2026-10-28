@@ -86,7 +86,7 @@
         enlaces.forEach(function (a) { a.classList.toggle('activo', a.dataset.seccion === en.target.id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['proyectos', 'videos', 'servicios', 'trayectoria', 'sobre-mi', 'contacto'].forEach(function (id) {
+    ['proyectos', 'servicios', 'trayectoria', 'sobre-mi', 'contacto'].forEach(function (id) {
       var s = document.getElementById(id); if (s) ioSeccion.observe(s);
     });
   }
@@ -240,6 +240,8 @@
 
   function faltantes(p) {
     var f = [];
+    // El proyecto Videos solo agrupa subproyectos; cada video trae su propia ficha
+    if (p.portadaEstilo === 'videos') return f;
     if (!p.titulo) f.push('nombre del proyecto');
     if (!RELACIONES[p.relacion]) f.push('tipo de relación (cliente, profesional, colaboración...)');
     if (!p.contexto) f.push('contexto');
@@ -364,7 +366,8 @@
     cuerpo.innerHTML = casoHTML(actual);
     if (window.Presenta) window.Presenta.iniciar(cuerpo);
     cuerpo.scrollTop = 0;
-    history.replaceState(null, '', '#caso/' + PROYECTOS[actual].slug);
+    // El proyecto Videos actualiza el enlace con su subproyecto desde videoteca.js
+    if (!$('[data-videoteca]', cuerpo)) history.replaceState(null, '', '#caso/' + PROYECTOS[actual].slug);
   }
 
   function abrir(i, desde) {
@@ -485,10 +488,16 @@
   });
 
   function desdeHash() {
-    var m = location.hash.match(/^#caso\/([\w-]+)/);
+    // #caso/proyecto o #caso/videos/video. Los enlaces #caso/video y #video/video
+    // de cuando un video era proyecto propio abren su subproyecto dentro de Videos.
+    var m = location.hash.match(/^#(caso|video)\/([\w-]+)(?:\/([\w-]+))?/);
     if (!m) return;
-    var i = PROYECTOS.findIndex(function (p) { return p.slug === m[1]; });
-    if (i > -1) abrir(i);
+    var slug = m[2], sub = m[3];
+    if (m[1] === 'video' || (PROYECTOS.every(function (p) { return p.slug !== slug; }) && window.Videoteca && window.Videoteca.existe(slug))) { sub = slug; slug = 'videos'; }
+    var i = PROYECTOS.findIndex(function (p) { return p.slug === slug; });
+    if (i < 0) return;
+    if (sub) window.__subproyecto = sub;
+    if (i === actual && sub) mostrar(i); else abrir(i);
   }
   window.addEventListener('hashchange', desdeHash);
   desdeHash();

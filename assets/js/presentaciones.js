@@ -435,6 +435,21 @@
     }).join('') + '</div>';
   }
 
+  /* ---------- Videos: cada video es un subproyecto (ver videoteca.js) ---------- */
+  function videoteca() { return window.Videoteca ? window.Videoteca.html() : ''; }
+
+  /* Portada del proyecto Videos: los pósters apilados dentro de un marco */
+  function portadaVideos(p) {
+    var V = (window.VIDEOS || []).filter(function (v) { return v.publicado !== false; });
+    var n = V.length;
+    return '<figure class="pila-videos" aria-label="' + n + (n === 1 ? ' video' : ' videos') + '">' +
+      V.slice(0, 3).map(function (v, k) {
+        return '<span class="pila-videos__p" style="--k:' + k + '"><img src="' + esc(v.poster) + '" alt="" loading="lazy" decoding="async"></span>';
+      }).join('') +
+      '<figcaption><span class="pila-videos__play" aria-hidden="true"></span><span>' + n + (n === 1 ? ' subproyecto' : ' subproyectos') + '</span></figcaption>' +
+    '</figure>';
+  }
+
   /* ---------- Portada que abre un brandbook interactivo ---------- */
   /* Se activa con portadaEstilo: "brandbook" y el campo brandbook: { href, texto }. */
   function portalBrandbook(p) {
@@ -565,12 +580,12 @@
   }
 
   /* ---------- Interfaz pública ---------- */
-  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina, facebook: facebook, objetos: objetos };
+  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina, facebook: facebook, objetos: objetos, videoteca: videoteca };
 
   window.Presenta = {
     html: function (s, p) { var f = TIPOS[s.tipo]; return f ? f(s, p) : null; },
     encabezado: encabezado,
-    collage: function (p) { return p.portadaEstilo === 'columnas' ? columnas(p) : p.portadaEstilo === 'pantalla' ? pantalla(p) : p.portadaEstilo === 'brandbook' ? portalBrandbook(p) : collage(p); },
+    collage: function (p) { return p.portadaEstilo === 'columnas' ? columnas(p) : p.portadaEstilo === 'pantalla' ? pantalla(p) : p.portadaEstilo === 'brandbook' ? portalBrandbook(p) : p.portadaEstilo === 'videos' ? portadaVideos(p) : collage(p); },
     cinta: cinta,
     postIG: function (x, p) { return postIG(x, p, cuentaDe(p)); },
     iniciar: function (raiz) {
@@ -580,6 +595,7 @@
       $$('[data-carrusel]', raiz).forEach(iniciarCarrusel);
       $$('[data-fila]', raiz).forEach(iniciarFila);
       $$('[data-vitrina]', raiz).forEach(iniciarVitrina);
+      if (window.Videoteca) $$('[data-videoteca]', raiz).forEach(window.Videoteca.iniciar);
       var aparecen = $$('[data-aparece], .feed .ig', raiz);
       if ('IntersectionObserver' in window && !reducir) {
         var io = new IntersectionObserver(function (en) {

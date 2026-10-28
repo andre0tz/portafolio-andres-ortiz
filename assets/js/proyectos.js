@@ -146,6 +146,7 @@ window.RELACIONES = {
   cliente: "Proyecto para cliente",
   colaboracion: "Colaboración",
   evento: "Pieza para evento",
+  coleccion: "Colección de videos",
   conceptual: "Proyecto conceptual",
   personal: "Ejercicio personal",
   pendiente: ""
@@ -382,6 +383,35 @@ window.PROYECTOS = [
           { src: "assets/proyectos/blefaroplastia-pachuca/historia-6.webp", archivo: "historia-6.webp", titulo: "El primer paso es conocer tu caso", alt: "El primer paso es conocer tu caso", formato: "historia", sticker: { texto: "¿Qué te gustaría preguntar?", x: 54, y: 37, w: 36, escala: 0.92 } },
           { src: "assets/proyectos/blefaroplastia-pachuca/historia-7.webp", archivo: "historia-7.webp", titulo: "¿Qué quieres saber sobre la blefaroplastia?", alt: "¿Qué quieres saber sobre la blefaroplastia?", formato: "historia", sticker: { texto: "Escribe aquí tu pregunta", x: 50, y: 89, w: 60 } },
           { src: "assets/proyectos/blefaroplastia-pachuca/historia-8.webp", archivo: "historia-8.webp", titulo: "Tu mirada merece atención", alt: "Tu mirada merece atención", formato: "historia", sticker: { texto: "¿Tienes dudas antes de agendar?", x: 79, y: 64.5, w: 38 } } ] }
+    ],
+    proceso: []
+  },
+  {
+    // Proyecto contenedor: cada video vive en assets/js/videos.js y se
+    // muestra como subproyecto dentro de este caso (ver videoteca.js).
+    slug: "videos",
+    publicado: true,
+    titulo: "Videos",
+    categorias: ["video"],
+    disciplina: "Edición y animación",
+    relacion: "coleccion",
+    tono: "tinta",
+    portada: "assets/proyectos/intro-congreso/poster.webp",
+    portadaEstilo: "videos",
+    vistazo: ["assets/proyectos/intro-congreso/cuadro-1.webp", "assets/proyectos/intro-congreso/cuadro-3.webp", "assets/proyectos/intro-congreso/cuadro-4.webp"],
+    resumen: "Piezas audiovisuales para eventos, campañas y redes sociales. Cada video se presenta como un subproyecto con su contexto, mi aportación y sus decisiones de diseño.",
+    contexto: "",
+    objetivo: "",
+    participacion: "",
+    concepto: "",
+    decisiones: [],
+    entregables: [],
+    resultados: [],
+    secciones: [
+      { titulo: "Subproyectos", tipo: "videoteca",
+        encabezado: { ante: "Subproyectos", linea1: "Cada video,", linea2: "su propia historia" },
+        nota: "Animación tipográfica, edición y videos promocionales. Al elegir un subproyecto se muestran su reproductor, su ficha y sus cuadros clave.",
+        piezas: [] }
     ],
     proceso: []
   },
