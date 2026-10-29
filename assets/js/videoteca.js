@@ -1,9 +1,9 @@
 /* ==========================================================
    VIDEOTECA
-   Dentro del proyecto "Videos", cada video es un subproyecto.
-   Este archivo arma esa vista a partir de window.VIDEOS (videos.js):
-   1. Una cuadrícula con todos los subproyectos (miniatura, tipo, título).
-   2. El detalle del subproyecto elegido: reproductor, ficha y cuadros clave.
+   Dentro del proyecto "Videos", cada video es una tarjeta.
+   Al abrir una tarjeta, se expande y dentro aparecen el video,
+   su información (contexto, aportación, decisiones) y sus cuadros
+   clave. Los datos vienen de window.VIDEOS (videos.js).
    Enlace directo a un video: index.html#caso/videos/slug
    presentaciones.js llama a Videoteca.html() para pintar la sección
    y a Videoteca.iniciar() cuando el caso se abre.
@@ -26,97 +26,99 @@
   }
   function dos(n) { return String(n).padStart(2, '0'); }
 
-  /* ---------- Estructura: subproyectos arriba, detalle abajo ---------- */
-  function html() {
-    var V = lista();
-    if (!V.length) return '<p class="vt__vacio">Próximamente.</p>';
-    return '<div class="videoteca" data-videoteca>' +
-      '<ul class="vt__lista">' + V.map(function (v, k) {
-        return '<li><button type="button" class="vt__item vt__item--' + esc(v.formato || 'horizontal') + '" data-v="' + k + '" aria-pressed="false" aria-controls="vtDetalle">' +
-          '<span class="vt__mini"><img src="' + esc(v.poster) + '" alt="" loading="lazy" decoding="async"><span class="vt__play" aria-hidden="true"></span>' +
-          (v.duracion ? '<span class="vt__dur">' + esc(v.duracion) + '</span>' : '') + '</span>' +
-          '<span class="vt__item-txt"><span class="vt__item-etq">Subproyecto ' + dos(k + 1) + ' · ' + esc(v.etiqueta || 'Video') + '</span><strong>' + esc(v.titulo) + '</strong>' +
-          (v.resumen ? '<span class="vt__item-res">' + esc(v.resumen) + '</span>' : '') + '</span>' +
-        '</button></li>';
-      }).join('') + '</ul>' +
-      '<div class="vt__detalle" id="vtDetalle">' +
-        '<div class="vt__principal">' +
-          '<figure class="vt__pantalla">' +
-            '<div class="vt__marco"><video class="vt__video" controls playsinline preload="none"></video></div>' +
-            '<figcaption class="vt__pie"><span class="vt__pie-izq"></span><span class="vt__pie-der"></span></figcaption>' +
-          '</figure>' +
-          '<article class="vt__ficha" aria-live="polite"></article>' +
-        '</div>' +
-        '<div class="vt__cuadros" data-grupo></div>' +
-      '</div>' +
-    '</div>';
-  }
-
-  /* ---------- Interacción ---------- */
-  function iniciar(el) {
-    var V = lista();
-    if (!V.length) return;
-    var video = el.querySelector('.vt__video');
-    var detalle = el.querySelector('.vt__detalle');
-    var pantalla = el.querySelector('.vt__pantalla');
-    var ficha = el.querySelector('.vt__ficha');
-    var cuadros = el.querySelector('.vt__cuadros');
-    var botones = Array.prototype.slice.call(el.querySelectorAll('.vt__item'));
-    var actual = -1;
-
-    // Muestra un subproyecto en el detalle
-    function mostrar(k, desplazar) {
-      var v = V[k];
-      if (!v) return;
-      if (k !== actual) {
-        actual = k;
-        pantalla.classList.toggle('vt__pantalla--vertical', v.formato === 'vertical');
-        video.pause();
-        video.poster = v.poster || '';
-        video.src = v.src;
-        video.setAttribute('aria-label', v.titulo);
-        el.querySelector('.vt__pie-izq').textContent = v.cliente || v.etiqueta || '';
-        el.querySelector('.vt__pie-der').textContent = v.duracion || '';
-
-        var decisiones = (v.decisiones || []).map(function (d, i) {
-          return '<li><span class="vt__num">' + dos(i + 1) + '</span><div><strong>' + esc(d.titulo) + '</strong><p>' + esc(d.texto) + '</p></div></li>';
-        }).join('');
-        ficha.innerHTML =
-          '<p class="vt__etq"><span class="vt__sub">Subproyecto ' + dos(k + 1) + '</span><span class="chip chip--fuerte">' + esc(v.etiqueta || 'Video') + '</span></p>' +
-          '<h3 class="vt__titulo">' + esc(v.titulo) + '</h3>' +
-          (v.resumen ? '<p class="vt__resumen">' + esc(v.resumen) + '</p>' : '') +
+  /* ---------- Contenido interior de una tarjeta abierta ---------- */
+  function interior(v) {
+    var decisiones = (v.decisiones || []).map(function (d, i) {
+      return '<li><span class="vt__num">' + dos(i + 1) + '</span><div><strong>' + esc(d.titulo) + '</strong><p>' + esc(d.texto) + '</p></div></li>';
+    }).join('');
+    var cuadros = (v.cuadros || []).map(function (c, i) {
+      return '<button type="button" class="pieza__btn vt__cuadro" data-src="' + esc(c.src) + '" data-alt="' + esc('Cuadro del video: ' + c.titulo) +
+        '" data-titulo="' + esc(c.titulo) + '" data-desc="' + esc(v.resumen || '') + '" data-seccion="' + esc(v.titulo) + '" data-k="' + i + '" aria-label="Ampliar: ' + esc(c.titulo) + '">' +
+        '<img src="' + esc(c.src) + '" alt="" loading="lazy" decoding="async"></button>';
+    }).join('');
+    return '<div class="vt__principal">' +
+        '<figure class="vt__pantalla' + (v.formato === 'vertical' ? ' vt__pantalla--vertical' : '') + '">' +
+          '<div class="vt__marco"><video class="vt__video" src="' + esc(v.src) + '"' + (v.poster ? ' poster="' + esc(v.poster) + '"' : '') +
+            ' controls playsinline preload="metadata" aria-label="' + esc(v.titulo) + '"></video></div>' +
+          '<figcaption class="vt__pie"><span>' + esc(v.cliente || v.etiqueta || '') + '</span><span>' + esc(v.duracion || '') + '</span></figcaption>' +
+        '</figure>' +
+        '<div class="vt__ficha">' +
           '<dl class="vt__datos">' +
             (v.contexto ? '<div><dt>Contexto</dt><dd>' + esc(v.contexto) + '</dd></div>' : '') +
             (v.participacion ? '<div><dt>Mi aportación</dt><dd>' + esc(v.participacion) + '</dd></div>' : '') +
           '</dl>' +
-          (decisiones ? '<p class="vt__sub">Decisiones de diseño</p><ol class="vt__decisiones">' + decisiones + '</ol>' : '');
+          (decisiones ? '<p class="vt__sub">Decisiones de diseño</p><ol class="vt__decisiones">' + decisiones + '</ol>' : '') +
+        '</div>' +
+      '</div>' +
+      (cuadros ? '<div class="vt__cuadros" data-grupo><p class="vt__sub">Cuadros clave</p><div class="vt__cuadros-fila">' + cuadros + '</div></div>' : '');
+  }
 
-        // Fotogramas: se amplían con el visor del portafolio (data-src)
-        var cs = v.cuadros || [];
-        cuadros.hidden = !cs.length;
-        cuadros.innerHTML = cs.length
-          ? '<p class="vt__sub">Cuadros clave</p><div class="vt__cuadros-fila">' + cs.map(function (c, i) {
-              return '<button type="button" class="pieza__btn vt__cuadro" data-src="' + esc(c.src) + '" data-alt="' + esc('Cuadro del video: ' + c.titulo) +
-                '" data-titulo="' + esc(c.titulo) + '" data-desc="' + esc(v.resumen || '') + '" data-seccion="' + esc(v.titulo) + '" data-k="' + i + '" aria-label="Ampliar: ' + esc(c.titulo) + '">' +
-                '<img src="' + esc(c.src) + '" alt="" loading="lazy" decoding="async"></button>';
-            }).join('') + '</div>'
-          : '';
+  /* ---------- Una tarjeta por video ---------- */
+  function html() {
+    var V = lista();
+    if (!V.length) return '<p class="vt__vacio">Próximamente.</p>';
+    return '<ul class="videoteca" data-videoteca>' + V.map(function (v, k) {
+      var id = 'vt-' + esc(v.slug);
+      return '<li class="vt__tarjeta vt__tarjeta--' + esc(v.formato || 'horizontal') + '" data-v="' + k + '" id="' + id + '">' +
+        // Cabecera: siempre visible; al pulsarla abre o cierra la tarjeta
+        '<button type="button" class="vt__abrir" aria-expanded="false" aria-controls="' + id + '-cont">' +
+          '<span class="vt__mini"><img src="' + esc(v.poster) + '" alt="" loading="lazy" decoding="async"><span class="vt__play" aria-hidden="true"></span>' +
+            (v.duracion ? '<span class="vt__dur">' + esc(v.duracion) + '</span>' : '') + '</span>' +
+          '<span class="vt__txt">' +
+            '<span class="vt__etq">' + esc(v.etiqueta || 'Video') + '</span>' +
+            '<strong class="vt__titulo">' + esc(v.titulo) + '</strong>' +
+            (v.resumen ? '<span class="vt__resumen">' + esc(v.resumen) + '</span>' : '') +
+            '<span class="vt__accion" aria-hidden="true"><span class="vt__accion-abrir">Ver video</span><span class="vt__accion-cerrar">Cerrar</span></span>' +
+          '</span>' +
+        '</button>' +
+        // Interior: se llena al abrir la tarjeta (así el video no se descarga antes)
+        '<div class="vt__contenido" id="' + id + '-cont" hidden></div>' +
+      '</li>';
+    }).join('') + '</ul>';
+  }
 
-        botones.forEach(function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.v) === k)); });
-        history.replaceState(null, '', '#caso/videos/' + v.slug);
-      }
-      if (desplazar) detalle.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  /* ---------- Abrir y cerrar tarjetas ---------- */
+  function iniciar(el) {
+    var V = lista();
+    if (!V.length) return;
+    var tarjetas = Array.prototype.slice.call(el.querySelectorAll('.vt__tarjeta'));
+    var suave = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function cerrar(t) {
+      var b = t.querySelector('.vt__abrir'), c = t.querySelector('.vt__contenido');
+      var video = c.querySelector('video'); if (video) video.pause();
+      b.setAttribute('aria-expanded', 'false');
+      t.classList.remove('abierta');
+      c.hidden = true;
     }
 
-    botones.forEach(function (b) {
-      b.addEventListener('click', function () { mostrar(Number(b.dataset.v), true); });
+    function abrir(t, reproducir) {
+      // Solo una tarjeta abierta a la vez
+      tarjetas.forEach(function (o) { if (o !== t && o.classList.contains('abierta')) cerrar(o); });
+      var v = V[Number(t.dataset.v)];
+      var b = t.querySelector('.vt__abrir'), c = t.querySelector('.vt__contenido');
+      if (!c.firstChild) c.innerHTML = interior(v);
+      b.setAttribute('aria-expanded', 'true');
+      t.classList.add('abierta');
+      c.hidden = false;
+      history.replaceState(null, '', '#caso/videos/' + v.slug);
+      t.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
+      if (reproducir) { var video = c.querySelector('video'); var p = video && video.play(); if (p && p.catch) p.catch(function () {}); }
+    }
+
+    tarjetas.forEach(function (t) {
+      t.querySelector('.vt__abrir').addEventListener('click', function () {
+        if (t.classList.contains('abierta')) { cerrar(t); history.replaceState(null, '', '#caso/videos'); }
+        else abrir(t, true);
+      });
     });
 
-    // Subproyecto inicial: el del enlace (#caso/videos/slug) o el primero
+    // Enlace directo: #caso/videos/slug abre esa tarjeta (sin reproducir)
     var pedido = window.__subproyecto; window.__subproyecto = null;
-    var k = pedido ? V.findIndex(function (v) { return v.slug === pedido; }) : -1;
-    mostrar(k > -1 ? k : 0, false);
-    if (k > -1) setTimeout(function () { detalle.scrollIntoView({ block: 'start' }); }, 80);
+    if (pedido) {
+      var t = tarjetas.filter(function (x) { return V[Number(x.dataset.v)].slug === pedido; })[0];
+      if (t) setTimeout(function () { abrir(t, false); }, 80);
+    }
   }
 
   // ¿El slug corresponde a un video? (lo usa main.js para enlaces antiguos)

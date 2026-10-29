@@ -1,13 +1,12 @@
 /* ==========================================================
    VIDEOS
-   Cada video de la sección "Videos" vive aquí. Para agregar uno
+   Cada video del proyecto "Videos" vive aquí. Para agregar uno
    nuevo, copia un bloque { ... } completo, pégalo al principio
-   de la lista (el primero es el que se muestra al abrir la
-   sección) y cambia sus datos.
+   de la lista (aparece como la primera tarjeta) y cambia sus datos.
 
    Campos:
    slug          Nombre corto sin espacios. Sirve para el enlace
-                 directo: index.html#video/slug
+                 directo: index.html#caso/videos/slug
    publicado     true se muestra; false queda oculto (se ve con ?borrador)
    titulo        Nombre del video
    etiqueta      Tipo de pieza: "Pieza para evento", "Reel", "Anuncio"...

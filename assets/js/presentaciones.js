@@ -435,7 +435,7 @@
     }).join('') + '</div>';
   }
 
-  /* ---------- Videos: cada video es un subproyecto (ver videoteca.js) ---------- */
+  /* ---------- Videos: una tarjeta por video (ver videoteca.js) ---------- */
   function videoteca() { return window.Videoteca ? window.Videoteca.html() : ''; }
 
   /* Portada del proyecto Videos: los pósters apilados dentro de un marco */
@@ -446,7 +446,7 @@
       V.slice(0, 3).map(function (v, k) {
         return '<span class="pila-videos__p" style="--k:' + k + '"><img src="' + esc(v.poster) + '" alt="" loading="lazy" decoding="async"></span>';
       }).join('') +
-      '<figcaption><span class="pila-videos__play" aria-hidden="true"></span><span>' + n + (n === 1 ? ' subproyecto' : ' subproyectos') + '</span></figcaption>' +
+      '<figcaption><span class="pila-videos__play" aria-hidden="true"></span><span>' + n + (n === 1 ? ' video' : ' videos') + '</span></figcaption>' +
     '</figure>';
   }
 

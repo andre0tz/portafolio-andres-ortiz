@@ -388,7 +388,7 @@ window.PROYECTOS = [
   },
   {
     // Proyecto contenedor: cada video vive en assets/js/videos.js y se
-    // muestra como subproyecto dentro de este caso (ver videoteca.js).
+    // muestra como una tarjeta dentro de este caso (ver videoteca.js).
     slug: "videos",
     publicado: true,
     titulo: "Videos",
@@ -399,7 +399,7 @@ window.PROYECTOS = [
     portada: "assets/proyectos/intro-congreso/poster.webp",
     portadaEstilo: "videos",
     vistazo: ["assets/proyectos/intro-congreso/cuadro-1.webp", "assets/proyectos/intro-congreso/cuadro-3.webp", "assets/proyectos/intro-congreso/cuadro-4.webp"],
-    resumen: "Piezas audiovisuales para eventos, campañas y redes sociales. Cada video se presenta como un subproyecto con su contexto, mi aportación y sus decisiones de diseño.",
+    resumen: "Piezas audiovisuales para eventos, campañas y redes sociales. Cada video reúne su contexto, mi aportación, sus decisiones de diseño y sus cuadros clave.",
     contexto: "",
     objetivo: "",
     participacion: "",
@@ -408,9 +408,9 @@ window.PROYECTOS = [
     entregables: [],
     resultados: [],
     secciones: [
-      { titulo: "Subproyectos", tipo: "videoteca",
-        encabezado: { ante: "Subproyectos", linea1: "Cada video,", linea2: "su propia historia" },
-        nota: "Animación tipográfica, edición y videos promocionales. Al elegir un subproyecto se muestran su reproductor, su ficha y sus cuadros clave.",
+      { titulo: "Videos", tipo: "videoteca",
+        encabezado: { ante: "Videos", linea1: "Cada video,", linea2: "su propia historia" },
+        nota: "Animación tipográfica, edición y videos promocionales. Cada tarjeta se abre para mostrar el video, su información y sus cuadros clave.",
         piezas: [] }
     ],
     proceso: []

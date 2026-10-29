@@ -46,14 +46,14 @@ Recomendación de peso: exporta en WebP a 1600 px del lado mayor (portadas) y 12
 
 ## Videos
 
-"Videos" es un proyecto más de la galería. Al abrirlo, cada video aparece como un subproyecto con su reproductor, su ficha y sus cuadros clave. Para agregar uno:
+"Videos" es un proyecto más de la galería. Al abrirlo, cada video es una tarjeta; al abrir la tarjeta aparecen dentro el video, su información y sus cuadros clave. Para agregar uno:
 
 1. Copia el MP4 (H.264) y una imagen de póster a `assets/proyectos/<nombre-del-video>/`.
 2. En `assets/js/videos.js`, copia un bloque `{ ... }` completo, pégalo al principio de la lista y cambia sus datos. El primero de la lista es el que se abre por defecto y su póster puede usarse como portada del proyecto (`portada` del proyecto "videos" en `proyectos.js`).
 3. Usa `formato: "vertical"` para Reels e historias (9:16) y `formato: "horizontal"` para 16:9.
 4. Sube el número de versión de `videos.js` en `index.html`.
 
-Cada subproyecto tiene enlace directo: `index.html#caso/videos/slug`.
+Cada video tiene enlace directo: `index.html#caso/videos/slug`.
 
 ## Tipos de presentación
 

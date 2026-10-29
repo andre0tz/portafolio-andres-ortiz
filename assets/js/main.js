@@ -240,7 +240,7 @@
 
   function faltantes(p) {
     var f = [];
-    // El proyecto Videos solo agrupa subproyectos; cada video trae su propia ficha
+    // El proyecto Videos solo agrupa videos; cada uno trae su propia ficha
     if (p.portadaEstilo === 'videos') return f;
     if (!p.titulo) f.push('nombre del proyecto');
     if (!RELACIONES[p.relacion]) f.push('tipo de relación (cliente, profesional, colaboración...)');
@@ -363,11 +363,12 @@
   function mostrar(i) {
     actual = (i + PROYECTOS.length) % PROYECTOS.length;
     if (window.Presenta) window.Presenta.detener();
+    var conVideo = !!window.__subproyecto;
     cuerpo.innerHTML = casoHTML(actual);
     if (window.Presenta) window.Presenta.iniciar(cuerpo);
     cuerpo.scrollTop = 0;
-    // El proyecto Videos actualiza el enlace con su subproyecto desde videoteca.js
-    if (!$('[data-videoteca]', cuerpo)) history.replaceState(null, '', '#caso/' + PROYECTOS[actual].slug);
+    // Si se pidió un video concreto (#caso/videos/slug), videoteca.js actualiza el enlace al abrirlo
+    if (!conVideo) history.replaceState(null, '', '#caso/' + PROYECTOS[actual].slug);
   }
 
   function abrir(i, desde) {
@@ -489,7 +490,7 @@
 
   function desdeHash() {
     // #caso/proyecto o #caso/videos/video. Los enlaces #caso/video y #video/video
-    // de cuando un video era proyecto propio abren su subproyecto dentro de Videos.
+    // de cuando un video era proyecto propio abren su tarjeta dentro de Videos.
     var m = location.hash.match(/^#(caso|video)\/([\w-]+)(?:\/([\w-]+))?/);
     if (!m) return;
     var slug = m[2], sub = m[3];
