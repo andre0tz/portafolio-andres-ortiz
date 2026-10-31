@@ -1363,3 +1363,9 @@ code{font-family:var(--f-mono);font-size:.8em}
 @media (max-width:640px){.abierta .vt__txt{grid-template-columns:minmax(0,1fr)}.abierta .vt__accion{grid-column:1;grid-row:auto;margin-top:6px}}
 @media (max-width:640px){.vt__cuadros-fila{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (prefers-reduced-motion:reduce){.vt__tarjeta,.vt__mini img,.vt__cuadro img,.vt__play{transition:none}.abierta .vt__contenido{animation:none}}
+
+/* The Old Barber: portada en negro; el amarillo solo como brillo muy sutil */
+.paleta-barber .caso__cabeza.paleta-hero{
+  background:radial-gradient(ellipse at 80% 20%,rgba(249,209,4,.045),transparent 50%),#0a0a0a}
+.paleta-barber .poste{opacity:.75;box-shadow:0 0 0 3px #0a0a0a,0 0 0 4px rgba(249,209,4,.3)}
+.paleta-barber .poste>i{background:repeating-linear-gradient(-35deg,#f9d104 0 14px,#0a0a0a 14px 28px,#f6f1e4 28px 34px,#0a0a0a 34px 48px)}
