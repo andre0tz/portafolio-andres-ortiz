@@ -1369,3 +1369,53 @@ code{font-family:var(--f-mono);font-size:.8em}
   background:radial-gradient(ellipse at 80% 20%,rgba(255,213,0,.045),transparent 50%),#0a0a0a}
 .paleta-barber .poste{opacity:.75;box-shadow:0 0 0 3px #0a0a0a,0 0 0 4px rgba(255,213,0,.3)}
 .paleta-barber .poste>i{background:repeating-linear-gradient(-35deg,#FFD500 0 14px,#0a0a0a 14px 28px,#f6f1e4 28px 34px,#0a0a0a 34px 48px)}
+
+/* =====================================================================
+   27. THE OLD BARBER: CASO EN NEGRO, PARRILLA Y ANIMACIONES FLUIDAS
+   ===================================================================== */
+/* El caso completo va en negro, sin degradados, en modo claro y oscuro */
+.paleta-barber,[data-theme="oscuro"] .paleta-barber{
+  --fondo:#000;--fondo-2:#0d0d0d;--superficie:#141414;
+  --texto:#fffeff;--texto-suave:#a8a49b;--linea:rgba(255,254,255,.12);
+  --proy:#FFD500;--proy-2:#FFD500;--proy-3:#fffeff;--acento:#FFD500}
+.caso__lienzo.paleta-barber{background:#000;color:var(--texto)}
+.paleta-barber .caso__cabeza.paleta-hero{background:#000}
+.paleta-barber .caso__seccion{background:#000}
+.paleta-barber .vitrina__item .chip,.paleta-barber .chip{border-color:currentColor}
+
+/* Títulos con acentos: más interlineado para que no choquen con la línea superior */
+.paleta-barber .caso__titulo{line-height:1}
+.paleta-barber .sec-cab__titulo{line-height:1.02}
+/* Aire entre la etiqueta y el título para que los acentos no toquen la línea superior */
+.paleta-barber .sec-cab__ante{margin-bottom:22px}
+
+/* Franja con las áreas de trabajo: separadores en punto y movimiento continuo */
+.paleta-barber .franja{background:#FFD500;color:#000;transform:rotate(-1.6deg);margin:-26px -2% -8px;box-shadow:none;contain:paint}
+.paleta-barber .franja__ico{display:none}
+.paleta-barber .franja span::after{content:"";display:inline-block;width:9px;height:9px;margin-left:28px;border-radius:50%;background:#000;vertical-align:middle}
+.franja__pista{will-change:transform;backface-visibility:hidden;transform:translate3d(0,0,0)}
+@keyframes cinta{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+/* Columnas de la portada: capas propias para un desplazamiento suave */
+.columnas__col{contain:layout paint}
+.columnas__pista{will-change:transform;backface-visibility:hidden}
+@keyframes sube{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-50%,0)}}
+@keyframes baja{from{transform:translate3d(0,-50%,0)}to{transform:translate3d(0,0,0)}}
+.columnas__p .ig{box-shadow:0 0 0 1px rgba(255,255,255,.06);transition:transform .6s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.columnas:hover .columnas__pista{animation-play-state:running}
+
+/* Parrilla de Instagram: dos publicaciones y una fotografía por fila */
+.parrilla{max-width:720px;margin:0 auto;border-radius:20px;overflow:hidden;background:#000;border:1px solid var(--linea)}
+.parrilla__cab{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:1px solid var(--linea)}
+.parrilla__cab strong{display:block;font-size:1rem}
+.parrilla__cab span{font-size:.85rem;color:var(--texto-suave)}
+.parrilla__avatar{width:48px;height:48px;border-radius:50%;padding:2px;display:grid;background:conic-gradient(from 200deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75)}
+.parrilla__avatar span{display:grid;border-radius:50%;overflow:hidden;border:2px solid #000;background:#000}
+.parrilla__avatar img{width:100%;height:100%;object-fit:cover}
+.parrilla__rejilla{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.parrilla__celda{aspect-ratio:4/5;overflow:hidden;background:#111}
+.parrilla__celda img{width:100%;height:100%;object-fit:cover;display:block}
+.parrilla__celda .pieza__btn{display:block;width:100%;height:100%;padding:0;border:0;cursor:zoom-in}
+.parrilla__celda .pieza__btn img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.parrilla__celda .pieza__btn:hover img{transform:scale(1.04)}
+@media (prefers-reduced-motion:reduce){.parrilla__celda .pieza__btn img{transition:none}}

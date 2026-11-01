@@ -435,6 +435,21 @@
     }).join('') + '</div>';
   }
 
+  /* ---------- Parrilla de Instagram ---------- */
+  /* Cuadrícula de 3 columnas como el perfil de Instagram. Las piezas con
+     foto: true son fotografías de apoyo: se muestran pero no se amplían. */
+  function parrilla(s, p) {
+    var cu = cuentaDe(p), sec = (s.encabezado && s.encabezado.ante) || s.titulo, k = 0;
+    var celdas = s.piezas.map(function (x) {
+      if (x.foto) return '<li class="parrilla__celda parrilla__celda--foto"><img src="' + esc(x.src) + '" alt="' + esc(x.alt) + '" loading="lazy" decoding="async"></li>';
+      return '<li class="parrilla__celda"><button type="button" class="pieza__btn"' + datos(x, s.nota, sec, k++) + ' aria-label="Ampliar: ' + esc(x.titulo || x.alt) + '">' + imagen(x) + '</button></li>';
+    }).join('');
+    return '<div class="parrilla" data-grupo>' +
+      '<div class="parrilla__cab">' + avatar(cu, 'parrilla__avatar') + '<div><strong>' + esc(cu.nombre) + '</strong><span>' + s.piezas.length + ' publicaciones</span></div></div>' +
+      '<ul class="parrilla__rejilla">' + celdas + '</ul>' +
+    '</div>';
+  }
+
   /* ---------- Videos: una tarjeta por video (ver videoteca.js) ---------- */
   function videoteca() { return window.Videoteca ? window.Videoteca.html() : ''; }
 
@@ -580,7 +595,7 @@
   }
 
   /* ---------- Interfaz pública ---------- */
-  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina, facebook: facebook, objetos: objetos, videoteca: videoteca };
+  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina, facebook: facebook, objetos: objetos, videoteca: videoteca, parrilla: parrilla };
 
   window.Presenta = {
     html: function (s, p) { var f = TIPOS[s.tipo]; return f ? f(s, p) : null; },
