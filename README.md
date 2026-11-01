@@ -75,6 +75,10 @@ Cada proyecto puede tener `paleta` ("ink", "blef", "barber", "intro" o "gdi", co
 
 Vive en `brandbook/generacion-diferente/` como página propia (`index.html`, `brandbook.css` y `brandbook.js`). Los trazos del logotipo están dentro del HTML como símbolos SVG. Las imágenes y los SVG del logotipo sin fondo están en `assets/proyectos/generacion-diferente/`.
 
+## Brandbook de The Old Barber
+
+Vive en `brandbook/the-old-barber/`. Reutiliza `brandbook.css` y `brandbook.js` de Generación Diferente y solo agrega su propio `brandbook.css` con los colores de la marca (negro, blanco #FFFEFF y amarillo #FFD500). Las imágenes y los SVG del logotipo están en `assets/proyectos/the-old-barber/`.
+
 ## Estructura
 
 ```

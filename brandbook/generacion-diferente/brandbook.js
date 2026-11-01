@@ -307,7 +307,7 @@
     b.addEventListener('click', function () {
       ultimo = b;
       visorImg.src = b.dataset.zoom;
-      visorImg.alt = b.dataset.titulo + ' con la identidad de Generación Diferente';
+      visorImg.alt = b.dataset.alt || (b.dataset.titulo + ' con la identidad de Generación Diferente');
       $('#visorTitulo').textContent = b.dataset.titulo;
       $('#visorDesc').textContent = b.dataset.desc;
       if (visor.showModal) visor.showModal(); else visor.setAttribute('open', '');

@@ -1,0 +1,149 @@
+/* ==========================================================
+   Brandbook · The Old Barber
+   Reutiliza la estructura del brandbook de Generación Diferente
+   (../generacion-diferente/brandbook.css) y aquí solo redefine
+   colores y componentes propios: negro como base, blanco para
+   leer y amarillo #FFD500 como acento.
+   ========================================================== */
+
+/* ---------- Colores de la marca ---------- */
+:root {
+  --naranja: #FFD500;          /* el acento del sistema base pasa a amarillo */
+  --amarillo: #FFD500;
+  --noche: #000000;
+  --noche-2: #121212;
+  --noche-3: #1c1c1c;
+  --grafito: #0a0a0a;
+  --papel: #111111;
+  --papel-2: #1b1b1b;
+  --papel-3: #262626;
+  --tinta: #FFFEFF;
+  --tinta-2: #a8a49b;
+  --hueso: #FFFEFF;
+  --hueso-2: #a8a49b;
+  --linea-noche: rgba(255, 254, 255, .12);
+  --linea-papel: rgba(255, 254, 255, .12);
+}
+.sec--papel { color-scheme: dark; color: var(--tinta); }
+::selection { background: var(--amarillo); color: #000; }
+
+/* Subrayado del título de concepto en amarillo */
+.trazo-naranja::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 20' preserveAspectRatio='none'%3E%3Cpath d='M3 13c40-6 92-9 148-8 52 1 98 4 146 9' fill='none' stroke='%23FFD500' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.trazo-naranja { color: var(--hueso); }
+
+/* ---------- Portada ---------- */
+.hero__fondo img { opacity: .42; filter: grayscale(1) contrast(1.15); object-position: center 30%; }
+.hero__logo { filter: none; height: min(70svh, 640px); }
+.js .hero__logo use:first-child { animation: encender 1.4s .15s var(--suave) both; }
+.hero__corte {
+  position: absolute; z-index: -1; left: 50%; top: 50%; width: 140vmax; height: clamp(14px, 1.6vw, 24px);
+  background: var(--amarillo); transform: translate(-50%, -50%) rotate(-43deg); opacity: .14;
+}
+.js .hero__corte { animation: cortar 1.2s .4s var(--suave) both; }
+@keyframes cortar { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* ---------- Concepto ---------- */
+.lectura__visual::before { background: radial-gradient(circle at 50% 55%, rgba(255, 213, 0, .14), transparent 62%); }
+.punto-lectura { background: var(--hueso); color: #000; box-shadow: 0 0 0 4px var(--papel); }
+.punto-lectura::before { border-color: var(--hueso); }
+.punto-lectura:hover, .punto-lectura.activo { background: var(--amarillo); color: #000; }
+.ideas { border-top-color: var(--hueso); }
+
+/* ---------- Estrategia: decisiones gráficas sobre amarillo ---------- */
+.bloque--graficas { background: var(--amarillo); color: #000; }
+.bloque--graficas .bloque__etiqueta { background: #000; color: var(--amarillo); }
+.bloque--graficas .decisiones li { border-top-color: rgba(0, 0, 0, .16); }
+.bloque--graficas .decisiones li::before { color: #000; }
+.bloque--graficas .decisiones span { color: rgba(0, 0, 0, .72); }
+
+/* ---------- Versiones ---------- */
+.panel__marca--apilado img { width: min(70%, 560px); height: auto; }
+.panel__marca--color { flex-wrap: wrap; gap: clamp(12px, 3vw, 28px); }
+.vc { display: grid; justify-items: center; gap: 12px; margin: 0; padding: clamp(14px, 2vw, 22px); border-radius: 16px; }
+.vc .marca { height: min(26vh, 220px) !important; width: auto; }
+.vc--negro { background: #000; box-shadow: inset 0 0 0 1px var(--linea-noche); }
+.vc--amarillo { background: var(--amarillo); }
+.vc--blanco { background: var(--hueso); }
+.vc--amarillo figcaption, .vc--blanco figcaption { color: #000; }
+
+/* ---------- Construcción ---------- */
+.capa--llama { fill: #f0ece0; }
+.angulo { fill: none; stroke: var(--amarillo); stroke-width: 5; }
+.cota-txt--chico { font-size: 44px; fill: var(--amarillo); }
+.capa--corte .trazo { stroke: var(--amarillo); }
+.capa--corte .punto { fill: var(--amarillo); }
+
+/* ---------- Área de seguridad y tamaños ---------- */
+.zona__caja { stroke: rgba(255, 254, 255, .3); }
+.zona__visual { max-width: 380px; }
+.x-nombre rect { fill: var(--amarillo); }
+.ejemplo { --x: calc(var(--h) * .1466); }
+.ejemplo__llama use { fill: var(--amarillo); }
+[data-estado="invadida"] .e-mal { color: #ff7a7f; }
+[data-estado="libre"] .e-bien { color: #5ee08f; }
+.minimo__muestra--iso-mm .marca { height: 10mm; }
+.minimo__muestra--iso-px .marca { height: 40px; }
+.minimo__muestra--iso-mm .minimo__cota { height: 10mm; align-self: center; }
+.minimo__muestra--iso-px .minimo__cota { height: 40px; align-self: center; }
+.minimo__muestra--mm .marca { height: 30mm; }
+.minimo__muestra--px .marca { height: 150px; }
+.minimo__muestra--px .minimo__cota { height: 150px; }
+.minimo__muestra { box-shadow: inset 0 0 0 1px var(--linea-noche); }
+
+/* ---------- Usos incorrectos ---------- */
+.error--reordenar .marca { height: 60%; }
+
+/* ---------- Color ---------- */
+.muestras--tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.muestra--oscuro .muestra__btn { color: #000; }
+.muestra--claro .muestra__btn { color: var(--hueso); }
+.muestra__btn { box-shadow: inset 0 0 0 1px rgba(255, 254, 255, .16); }
+.cx--aa em { color: #5ee08f; }
+.cx--no em { color: #ff7a7f; }
+.cx__lienzo { box-shadow: inset 0 0 0 1px rgba(255, 254, 255, .1); }
+.cx-naranja { color: var(--amarillo); }
+.color__nota { color: var(--tinta-2); }
+
+/* ---------- Tipografía ---------- */
+.fuente__muestra { background: radial-gradient(ellipse at 50% 120%, rgba(255, 213, 0, .12), transparent 60%), var(--noche-2); }
+.fuente__muestra img { width: 100%; height: auto; max-height: 220px; object-fit: contain; }
+.roles li { border-color: rgba(255, 213, 0, .55); }
+.pareja__visual--post { padding: 0; }
+.pareja__visual--post img { width: min(100%, 360px); height: auto; margin: 0 auto; border-radius: 14px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .9); }
+
+/* ---------- Publicaciones ---------- */
+.pubs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 48px) clamp(16px, 2.4vw, 28px); }
+.pub__btn { display: block; width: 100%; padding: 0; border: 0; border-radius: 14px; overflow: hidden; background: #111; cursor: zoom-in; box-shadow: 0 0 0 1px var(--linea-noche); }
+.pub__btn img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .6s var(--suave); }
+.pub__btn:hover img { transform: scale(1.03); }
+.pub__etq { color: var(--amarillo); margin: 14px 0 4px; }
+.pub__tit { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 22px; line-height: 1.1; margin-bottom: 4px; }
+.pub__desc { color: var(--hueso-2); font-size: 15px; }
+
+/* ---------- Instagram ---------- */
+.posts-info span:last-child { color: var(--amarillo); font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+
+/* ---------- Cierre ---------- */
+.cierre__llama { opacity: .06; }
+.firma__logo { height: 90px; }
+
+@media (max-width: 900px) {
+  .pubs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .pubs { grid-template-columns: 1fr; }
+  .muestras--tres { grid-template-columns: 1fr; }
+  .vc .marca { height: 150px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__corte { animation: none; }
+}
+.constr__svg .cota-txt:not(.cota-txt--chico) { font-size: 64px; }
+.cierre__llama { opacity: .045; }
+@media (max-width: 640px) {
+  .escala li:nth-child(1) .marca { height: 140px; }
+  .escala li:nth-child(2) .marca { height: 105px; }
+  .escala li:nth-child(3) .marca { height: 80px; }
+}

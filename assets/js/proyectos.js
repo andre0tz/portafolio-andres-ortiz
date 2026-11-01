@@ -486,48 +486,62 @@ window.PROYECTOS = [
     disciplina: "Marca y contenido",
     relacion: "conceptual",
     tono: "papel",
-    // Negro, amarillo y crema, tomados de las publicaciones (definida en estilos.css).
+    // Negro, amarillo #FFD500 y blanco de la marca (definida en estilos.css).
     paleta: "barber",
     estiloTitulos: "firma",
-    portada: "assets/proyectos/the-old-barber/publicacion-6.webp",
+    portada: "assets/proyectos/the-old-barber/post-6.webp",
     portadaPos: "center 18%",
     // Portada del caso: dos columnas de publicaciones en movimiento.
     portadaEstilo: "columnas",
-    collage: ["assets/proyectos/the-old-barber/publicacion-2.webp", "assets/proyectos/the-old-barber/publicacion-1.webp", "assets/proyectos/the-old-barber/publicacion-5.webp", "assets/proyectos/the-old-barber/publicacion-3.webp"],
-    vistazo: ["assets/proyectos/the-old-barber/publicacion-2.webp", "assets/proyectos/the-old-barber/publicacion-3.webp", "assets/proyectos/the-old-barber/publicacion-1.webp"],
-    cuenta: { nombre: "theoldbarber", iniciales: "OB", color: "#14110c" },
+    brandbook: { href: "brandbook/the-old-barber/", texto: "Abrir el brandbook interactivo" },
+    collage: ["assets/proyectos/the-old-barber/post-2.webp", "assets/proyectos/the-old-barber/post-1.webp", "assets/proyectos/the-old-barber/post-5.webp", "assets/proyectos/the-old-barber/post-3.webp", "assets/proyectos/the-old-barber/post-4.webp", "assets/proyectos/the-old-barber/post-8.webp"],
+    vistazo: ["assets/proyectos/the-old-barber/post-2.webp", "assets/proyectos/the-old-barber/post-4.webp", "assets/proyectos/the-old-barber/post-1.webp"],
+    cuenta: { nombre: "theoldbarber", iniciales: "OB", foto: "assets/proyectos/the-old-barber/perfil.webp", color: "#000000" },
     // Textos de la cinta que corre bajo la portada del caso.
     cinta: ["Corte de cabello", "Tratamiento de barba", "Limpieza facial", "Lunes a sábado", "Agenda tu cita"],
-    resumen: "Ejercicio de marca y parrilla de contenido para una barbería imaginaria que empieza en redes. No fue un encargo real.",
-    contexto: "Es un proyecto conceptual: la barbería no existe. Planteé el caso de un negocio que necesita arrancar su presencia en redes desde cero.",
-    objetivo: "Atraer nuevas visitas con mensajes claros y llamativos, apoyados en promociones.",
-    participacion: "Desarrollé la marca y una parrilla de contenido con promociones, consejos de cuidado y productos.",
-    concepto: "",
-    decisiones: [],
-    entregables: [],
+    resumen: "Identidad visual y sistema de publicaciones para una barbería conceptual que honra el oficio tradicional. No fue un encargo real.",
+    contexto: "Es un proyecto conceptual: la barbería no existe. Planteé el caso de un negocio que necesita una marca propia y arrancar su presencia en redes desde cero.",
+    objetivo: "Atraer nuevas visitas con una marca reconocible y mensajes claros y llamativos, apoyados en servicios, promociones y consejos.",
+    participacion: "Desarrollé el monograma, la paleta, el sistema tipográfico, la guía de uso y nueve publicaciones para Instagram.",
+    concepto: "Un monograma OB unido por un corte diagonal, como el trazo de una navaja, con textura gastada que habla de años de oficio.",
+    encabezadoDecisiones: { ante: "Decisiones de diseño", linea1: "Por qué", linea2: "se ve así" },
+    decisiones: [
+      { titulo: "Monograma OB", texto: "Un sello compacto que identifica la marca aun sin el nombre completo: perfil, firma de publicaciones y aplicaciones pequeñas." },
+      { titulo: "Amarillo sobre negro", texto: "El contraste más alto entre dos colores con presencia. El amarillo marca lo importante y el negro deja respirar la fotografía." },
+      { titulo: "Textura gastada", texto: "Traslada el desgaste de las herramientas al logotipo y une la marca con el oficio tradicional." },
+      { titulo: "Tres voces tipográficas", texto: "Oxxido para el nombre, Anton para la información y Aston Script para el acento emocional de cada mensaje." }
+    ],
+    entregables: ["Monograma y logotipo", "Versiones y variaciones de color", "Retícula y área de seguridad", "Paleta y tipografía", "Guía de usos incorrectos", "Foto de perfil", "Nueve publicaciones para Instagram"],
     resultados: [],
     secciones: [
       { titulo: "Publicaciones", tipo: "vitrina",
-        encabezado: { ante: "Publicaciones para el feed", linea1: "Cinco motivos", linea2: "para sentarse" },
+        encabezado: { ante: "Publicaciones para el feed", linea1: "Seis motivos", linea2: "para sentarse" },
         unidad: "publicaciones",
-        nota: "Cada publicación cumple una tarea distinta: presentar un servicio, organizar una dinámica, dar un consejo, lanzar una promoción o recordar que hay que agendar. Todas usan fondo oscuro, amarillo y la mezcla de letra condensada con letra manuscrita, así que se reconocen como de la misma barbería aunque cambie el mensaje.",
+        nota: "Cada publicación cumple una tarea distinta: invitar a agendar, presentar un servicio, organizar una dinámica, vender un producto, dar un consejo o lanzar una promoción. Todas usan fondo negro, amarillo y la mezcla de letra condensada con manuscrita, así que se reconocen como de la misma barbería aunque cambie el mensaje.",
         ayuda: "La vitrina avanza sola o desde la lista de publicaciones",
         piezas: [
-          { src: "assets/proyectos/the-old-barber/publicacion-1.webp", archivo: "publicacion-1.webp", etiqueta: "Agenda", titulo: "Inicia la semana con estilo", alt: "Inicia la semana con estilo", formato: "vertical",
-            desc: "Pensada para publicarse en lunes. Cierra con los datos de contacto en una sola franja y el botón para agendar." },
-          { src: "assets/proyectos/the-old-barber/publicacion-2.webp", archivo: "publicacion-2.webp", etiqueta: "Servicio", titulo: "Es hora de darle tratamiento a tu barba", alt: "Es hora de darle tratamiento a tu barba", formato: "vertical",
-            desc: "Presenta el servicio de barba y reúne en la misma pieza el horario, el teléfono, la dirección y el botón para agendar." },
-          { src: "assets/proyectos/the-old-barber/publicacion-3.webp", archivo: "publicacion-3.webp", etiqueta: "Dinámica", titulo: "Gana un corte de cabello", alt: "Gana un corte de cabello", formato: "vertical",
-            desc: "Invita a participar por un corte gratis. Las bases van en la descripción, así la imagen se queda con un solo mensaje." },
-          { src: "assets/proyectos/the-old-barber/publicacion-5.webp", archivo: "publicacion-5.webp", etiqueta: "Consejo", titulo: "Cómo mantener tu corte de cabello limpio", alt: "Cómo mantener tu corte de cabello limpio", formato: "vertical",
-            desc: "Contenido de cuidado personal. El perfil del cliente ocupa casi toda la pieza y el texto se acomoda en el espacio libre." },
-          { src: "assets/proyectos/the-old-barber/publicacion-6.webp", archivo: "publicacion-6.webp", etiqueta: "Promoción", titulo: "Limpieza facial gratis en tu corte de cabello", alt: "Limpieza facial gratis en tu corte de cabello", formato: "vertical",
-            desc: "La palabra «Gratis» va en manuscrita y amarillo para que sea lo primero que se lea. Abajo queda la vigencia: del 15 al 23 de enero." } ] },
-      { titulo: "Logotipo", piezas: [ { src: "", archivo: "logotipo.webp", alt: "Logotipo de The Old Barber", formato: "ancho" } ] },
-      { titulo: "Paleta y tipografía", piezas: [ { src: "", archivo: "paleta-tipografia.webp", alt: "Paleta y tipografía de The Old Barber", formato: "horizontal" } ] },
-      { titulo: "Aplicaciones", piezas: [
-        { src: "", archivo: "aplicacion-1.webp", alt: "Aplicación de marca", formato: "vertical" },
-        { src: "", archivo: "aplicacion-2.webp", alt: "Aplicación de marca", formato: "vertical" } ] }
+          { src: "assets/proyectos/the-old-barber/post-1.webp", archivo: "post-1.webp", etiqueta: "Agenda", titulo: "Inicia la semana con estilo", alt: "Inicia la semana con estilo", formato: "vertical", desc: "Pensada para los lunes. Cierra con horario, teléfono y dirección en una franja, y el botón para agendar." },
+          { src: "assets/proyectos/the-old-barber/post-2.webp", archivo: "post-2.webp", etiqueta: "Servicio", titulo: "Es hora de darle tratamiento a tu barba", alt: "Es hora de darle tratamiento a tu barba", formato: "vertical", desc: "Presenta el servicio de barba con la navaja como protagonista y reúne todos los datos de contacto." },
+          { src: "assets/proyectos/the-old-barber/post-3.webp", archivo: "post-3.webp", etiqueta: "Dinámica", titulo: "Gana un corte de cabello", alt: "Gana un corte de cabello", formato: "vertical", desc: "Invita a participar con una etiqueta amarilla de «¡Gratis!» y remite a la descripción para conocer las reglas." },
+          { src: "assets/proyectos/the-old-barber/post-4.webp", archivo: "post-4.webp", etiqueta: "Producto", titulo: "Polvo texturizador", alt: "Polvo texturizador por 119 pesos", formato: "vertical", desc: "Presenta el producto con tres beneficios breves y el precio destacado en amarillo." },
+          { src: "assets/proyectos/the-old-barber/post-5.webp", archivo: "post-5.webp", etiqueta: "Consejo", titulo: "Cómo mantener tu corte de cabello limpio", alt: "Cómo mantener tu corte de cabello limpio", formato: "vertical", desc: "Contenido útil que acerca la barbería a sus seguidores sin vender de forma directa." },
+          { src: "assets/proyectos/the-old-barber/post-6.webp", archivo: "post-6.webp", etiqueta: "Promoción", titulo: "Limpieza facial gratis", alt: "Limpieza facial gratis en tu corte de cabello", formato: "vertical", desc: "La palabra «Gratis» en manuscrita amarilla concentra la atención; la vigencia queda al pie." }
+        ] },
+      { titulo: "Fotografía de marca", columnas: 3,
+        encabezado: { ante: "Fotografía de marca", linea1: "El oficio", linea2: "sin palabras" },
+        nota: "Fotografías de servicio firmadas solo con el monograma. Se alternan con las piezas de texto para dar ritmo al feed y mostrar el trabajo tal como es.",
+        ayuda: "Cada imagen se amplía al seleccionarla",
+        piezas: [
+          { src: "assets/proyectos/the-old-barber/post-7.webp", archivo: "post-7.webp", titulo: "Detalle de trabajo", alt: "Fotografía de marca: barbero trabajando", formato: "vertical" },
+          { src: "assets/proyectos/the-old-barber/post-8.webp", archivo: "post-8.webp", titulo: "Afeitado clásico", alt: "Fotografía de marca: afeitado con brocha", formato: "vertical" },
+          { src: "assets/proyectos/the-old-barber/post-9.webp", archivo: "post-9.webp", titulo: "Corte con tijera", alt: "Fotografía de marca: corte con tijera", formato: "vertical" }
+        ] },
+      { titulo: "Logotipo",
+        encabezado: { ante: "Identidad", linea1: "Dos letras,", linea2: "un solo corte" },
+        nota: "El monograma une la O y la B con un corte diagonal y una textura gastada. El brandbook reúne su construcción, área de seguridad, color, tipografía y usos.",
+        piezas: [
+          { src: "assets/proyectos/the-old-barber/logotipo-presentacion.webp", archivo: "logotipo-presentacion.webp", titulo: "Logotipo principal", alt: "Logotipo de The Old Barber sobre negro", formato: "ancho" }
+        ] }
     ],
     proceso: []
   },

@@ -1029,21 +1029,21 @@ code{font-family:var(--f-mono);font-size:.8em}
    ===================================================================== */
 /* Paleta: negro, amarillo de la marca y crema */
 .paleta-barber{
-  --amarillo:#f9d104;--carbon:#0d0c0a;
+  --amarillo:#FFD500;--carbon:#0d0c0a;
   --fondo:#f5f1e8;--fondo-2:#ece5d5;--superficie:#fffdf7;
   --texto:#15120c;--texto-suave:#5c5546;--linea:rgba(21,18,12,.14);
-  --proy:#8a6a00;--proy-2:#f9d104;--proy-3:#15120c;--acento:#8a6a00;
+  --proy:#8a6a00;--proy-2:#FFD500;--proy-3:#15120c;--acento:#8a6a00;
 }
 [data-theme="oscuro"] .paleta-barber{
   --fondo:#0d0c0a;--fondo-2:#15130f;--superficie:#1c1914;
   --texto:#f6f1e4;--texto-suave:#b4ab98;--linea:rgba(255,255,255,.12);
-  --proy:#f9d104;--proy-2:#f9d104;--proy-3:#f6f1e4;--acento:#f9d104;
+  --proy:#FFD500;--proy-2:#FFD500;--proy-3:#f6f1e4;--acento:#FFD500;
 }
 .caso__lienzo.paleta-barber{overflow-x:clip}
 /* La portada del caso siempre es oscura, como las publicaciones */
 .paleta-barber .caso__cabeza.paleta-hero{
-  --texto:#f6f1e4;--texto-suave:#b4ab98;--linea:rgba(255,255,255,.14);--proy:#f9d104;--proy-2:#f9d104;
-  background:radial-gradient(circle at 78% 30%,rgba(249,209,4,.16),transparent 42%),radial-gradient(circle at 10% 110%,rgba(249,209,4,.08),transparent 40%),#0d0c0a;
+  --texto:#f6f1e4;--texto-suave:#b4ab98;--linea:rgba(255,255,255,.14);--proy:#FFD500;--proy-2:#FFD500;
+  background:radial-gradient(circle at 78% 30%,rgba(255,213,0,.16),transparent 42%),radial-gradient(circle at 10% 110%,rgba(255,213,0,.08),transparent 40%),#0d0c0a;
   overflow:hidden}
 .paleta-barber .paleta-hero .chip--fuerte{background:var(--amarillo);border-color:var(--amarillo);color:#15120c}
 .paleta-barber .caso__fichas .ficha:last-child dt{color:var(--amarillo)}
@@ -1076,7 +1076,7 @@ code{font-family:var(--f-mono);font-size:.8em}
 /* Poste de barbería que gira detrás de las columnas */
 .poste{position:absolute;left:50%;top:-12%;bottom:-12%;width:clamp(26px,3vw,40px);transform:translateX(-50%) rotate(-7deg);border-radius:999px;overflow:hidden;opacity:.9;
   box-shadow:0 0 0 3px #0d0c0a,0 0 0 5px rgba(249,209,4,.55),0 0 60px rgba(249,209,4,.25)}
-.poste>i{position:absolute;inset:-60px 0;background:repeating-linear-gradient(-35deg,#f9d104 0 14px,#0d0c0a 14px 28px,#f6f1e4 28px 34px,#0d0c0a 34px 48px);animation:poste 2.4s linear infinite}
+.poste>i{position:absolute;inset:-60px 0;background:repeating-linear-gradient(-35deg,#FFD500 0 14px,#0d0c0a 14px 28px,#f6f1e4 28px 34px,#0d0c0a 34px 48px);animation:poste 2.4s linear infinite}
 @keyframes poste{to{transform:translateY(58.6px)}}
 
 /* Franja de servicios (reutiliza la animación "cinta" de la portada) */
@@ -1366,6 +1366,6 @@ code{font-family:var(--f-mono);font-size:.8em}
 
 /* The Old Barber: portada en negro; el amarillo solo como brillo muy sutil */
 .paleta-barber .caso__cabeza.paleta-hero{
-  background:radial-gradient(ellipse at 80% 20%,rgba(249,209,4,.045),transparent 50%),#0a0a0a}
-.paleta-barber .poste{opacity:.75;box-shadow:0 0 0 3px #0a0a0a,0 0 0 4px rgba(249,209,4,.3)}
-.paleta-barber .poste>i{background:repeating-linear-gradient(-35deg,#f9d104 0 14px,#0a0a0a 14px 28px,#f6f1e4 28px 34px,#0a0a0a 34px 48px)}
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,213,0,.045),transparent 50%),#0a0a0a}
+.paleta-barber .poste{opacity:.75;box-shadow:0 0 0 3px #0a0a0a,0 0 0 4px rgba(255,213,0,.3)}
+.paleta-barber .poste>i{background:repeating-linear-gradient(-35deg,#FFD500 0 14px,#0a0a0a 14px 28px,#f6f1e4 28px 34px,#0a0a0a 34px 48px)}
