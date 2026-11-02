@@ -17,12 +17,12 @@
   --papel: #111111;
   --papel-2: #1b1b1b;
   --papel-3: #262626;
-  --tinta: #FFFEFF;
-  --tinta-2: #a8a49b;
-  --hueso: #FFFEFF;
-  --hueso-2: #a8a49b;
-  --linea-noche: rgba(255, 254, 255, .12);
-  --linea-papel: rgba(255, 254, 255, .12);
+  --tinta: #FFFFFF;             /* texto del cuerpo en blanco puro, sin matiz cálido */
+  --tinta-2: #FFFFFF;
+  --hueso: #FFFFFF;
+  --hueso-2: #FFFFFF;
+  --linea-noche: rgba(255, 255, 255, .14);
+  --linea-papel: rgba(255, 255, 255, .14);
 }
 .sec--papel { color-scheme: dark; color: var(--tinta); }
 ::selection { background: var(--amarillo); color: #000; }
@@ -45,7 +45,7 @@
 @keyframes cortar { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 
 /* ---------- Concepto ---------- */
-.lectura__visual::before { background: radial-gradient(circle at 50% 55%, rgba(255, 213, 0, .14), transparent 62%); }
+.lectura__visual::before { background: none; }
 .punto-lectura { background: var(--hueso); color: #000; box-shadow: 0 0 0 4px var(--papel); }
 .punto-lectura::before { border-color: var(--hueso); }
 .punto-lectura:hover, .punto-lectura.activo { background: var(--amarillo); color: #000; }
@@ -107,7 +107,7 @@
 .color__nota { color: var(--tinta-2); }
 
 /* ---------- Tipografía ---------- */
-.fuente__muestra { background: radial-gradient(ellipse at 50% 120%, rgba(255, 213, 0, .12), transparent 60%), var(--noche-2); }
+.fuente__muestra { background: var(--noche-2); }   /* fondo neutro, sin brillo amarillo */
 .fuente__muestra img { width: 100%; height: auto; max-height: 220px; object-fit: contain; }
 .roles li { border-color: rgba(255, 213, 0, .55); }
 .pareja__visual--post { padding: 0; }
@@ -147,3 +147,7 @@
   .escala li:nth-child(2) .marca { height: 105px; }
   .escala li:nth-child(3) .marca { height: 80px; }
 }
+
+/* ---------- Fondo neutro ---------- */
+/* La barra superior sobre secciones de papel usa gris neutro, no crema */
+body[data-tono="papel"] .barra.solida { background: rgba(17, 17, 17, .88); color: #fff; }

@@ -438,17 +438,28 @@
   /* ---------- Parrilla de Instagram ---------- */
   /* Cuadrícula de 3 columnas como el perfil de Instagram. Las piezas con
      foto: true son fotografías de apoyo: se muestran pero no se amplían. */
+  /* Parrilla de Instagram dentro de un teléfono: barra de estado, cabecera del perfil,
+     pestañas y la cuadrícula de tres columnas. Las fotos no se amplían; los diseños sí. */
   function parrilla(s, p) {
     var cu = cuentaDe(p), sec = (s.encabezado && s.encabezado.ante) || s.titulo, k = 0;
+    var usuario = (p.cuenta && p.cuenta.usuario) || cu.nombre.toLowerCase().replace(/[^a-z0-9]+/g, '');
     var celdas = s.piezas.map(function (x) {
       if (x.foto) return '<li class="parrilla__celda parrilla__celda--foto"><img src="' + esc(x.src) + '" alt="' + esc(x.alt) + '" loading="lazy" decoding="async"></li>';
       return '<li class="parrilla__celda"><button type="button" class="pieza__btn"' + datos(x, s.nota, sec, k++) + ' aria-label="Ampliar: ' + esc(x.titulo || x.alt) + '">' + imagen(x) + '</button></li>';
     }).join('');
     return '<div class="parrilla" data-grupo>' +
-      '<div class="parrilla__cab">' + avatar(cu, 'parrilla__avatar') + '<div><strong>' + esc(cu.nombre) + '</strong><span>' + s.piezas.length + ' publicaciones</span></div></div>' +
-      '<ul class="parrilla__rejilla">' + celdas + '</ul>' +
+      '<div class="telefono parrilla__telefono">' +
+        '<div class="telefono__estado" aria-hidden="true"><span>9:41</span><i class="telefono__isla"></i><span class="telefono__senal"><b></b><b></b><b></b></span></div>' +
+        '<div class="parrilla__barra" aria-hidden="true"><strong>' + esc(usuario) + '</strong>' + icono('i-ig-mas', 'ico') + '</div>' +
+        '<div class="parrilla__cab">' + avatar(cu, 'parrilla__avatar') +
+          '<div class="parrilla__datos"><strong>' + esc(p.titulo || cu.nombre) + '</strong><span><b>' + s.piezas.length + '</b> publicaciones</span></div></div>' +
+        '<div class="parrilla__pestanas" aria-hidden="true"><span class="activa"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>' +
+        '<ul class="parrilla__rejilla">' + celdas + '</ul>' +
+        '<div class="parrilla__inicio" aria-hidden="true"><i></i></div>' +
+      '</div>' +
     '</div>';
   }
+
 
   /* ---------- Videos: una tarjeta por video (ver videoteca.js) ---------- */
   function videoteca() { return window.Videoteca ? window.Videoteca.html() : ''; }
