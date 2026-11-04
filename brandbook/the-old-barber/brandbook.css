@@ -151,3 +151,99 @@
 /* ---------- Fondo neutro ---------- */
 /* La barra superior sobre secciones de papel usa gris neutro, no crema */
 body[data-tono="papel"] .barra.solida { background: rgba(17, 17, 17, .88); color: #fff; }
+
+/* ---------- Versiones: fotografía de prueba en blanco y negro ---------- */
+/* La foto de fondo pierde el color para que el logotipo sea lo único con matiz */
+.escenario__fondos img { filter: grayscale(1) contrast(1.06); }
+
+/* ---------- Contraste: precio con el signo de pesos como exponente ---------- */
+/* "Por tan solo" va arriba como antetítulo y el signo se reduce y sube,
+   así no invade la cifra ni el texto. */
+.cx-num { display: flex; align-items: flex-start; }
+.cx-moneda { font-size: .4em; line-height: 1; margin: .12em .06em 0 0; }
+
+/* ---------- Tipografía: tablero de voces ---------- */
+/* Tres paneles con los colores de la marca. El abierto crece y muestra
+   alfabeto, uso y argumentos; los cerrados quedan como pestañas verticales. */
+.voces { container-type: inline-size; display: flex; gap: 12px; height: clamp(540px, 64vh, 640px); margin-top: clamp(40px, 5vw, 64px); }
+.voz {
+  position: relative; display: flex; flex: 0 0 128px; min-width: 0; overflow: hidden;
+  border-radius: 26px; transition: flex-grow .8s var(--suave), box-shadow .4s;
+}
+.voz[aria-expanded="true"] { flex-grow: 1; }
+.voz--oxxido { background: #000; color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16); }
+.voz--anton { background: #FFD500; color: #000; }
+.voz--aston { background: #141414; color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); }
+
+/* Pestaña: número arriba, nombre en vertical y función al pie */
+.voz__pestana {
+  flex: 0 0 128px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: 26px 0; background: none; border: 0; color: inherit; cursor: pointer; font: inherit;
+}
+.voz__pestana:focus-visible { outline: 2px solid currentColor; outline-offset: -8px; border-radius: 22px; }
+.voz__num { font-size: 12px; letter-spacing: .14em; }
+.voz__nombre {
+  writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--display); text-transform: uppercase;
+  font-size: clamp(40px, 4vw, 58px); line-height: 1; letter-spacing: .01em; white-space: nowrap;
+}
+.voz__rol { white-space: nowrap; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; opacity: .85; }
+.voz[aria-expanded="true"] .voz__nombre { opacity: .22; }
+
+/* Cuerpo: ancho mínimo fijo para que el texto no se reacomode mientras el panel crece */
+.voz__cuerpo {
+  flex: 0 0 auto; width: calc(100cqw - 3 * 128px - 24px); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 44px); align-items: center; padding: 40px 44px 40px 4px;
+  opacity: 0; visibility: hidden; transition: opacity .35s, visibility 0s .35s;
+}
+.voz[aria-expanded="true"] .voz__cuerpo { opacity: 1; visibility: visible; transition: opacity .6s .3s, visibility 0s; }
+.voz__muestra { display: grid; gap: 28px; align-content: center; justify-items: start; }
+.voz__texto { display: grid; gap: 14px; align-content: center; }
+.voz__texto p { font-size: 15.5px; line-height: 1.62; max-width: 46ch; }
+.voz__uso { font-size: 11px !important; letter-spacing: .14em; text-transform: uppercase; color: #FFD500; }
+.voz--anton .voz__uso { color: #000; }
+.voz__roles { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.voz__roles li { border: 1.5px solid currentColor; border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 600; }
+.voz--oxxido .voz__roles li, .voz--aston .voz__roles li { border-color: #FFD500; }
+
+/* Muestras recortadas: la forma de la letra se pinta con el color del panel */
+.mascara {
+  display: block; aspect-ratio: var(--r); background: currentColor;
+  -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat;
+}
+.voz--aston .mascara { color: #FFD500; }
+.voz__glifo { width: min(48%, 200px); }
+.voz--aston .voz__glifo { width: min(82%, 320px); }
+.voz__alfabeto { width: min(100%, 430px); }
+.voz__glifo--vivo { width: auto; font-family: var(--display); font-size: clamp(150px, 15vw, 220px); line-height: .82; text-transform: none; }
+.voz__alfabeto--vivo { font-family: var(--display); font-size: clamp(24px, 2.4vw, 34px); line-height: 1.12; letter-spacing: .02em; }
+
+/* Entrada escalonada del contenido al abrir el panel */
+.js .voz__muestra > *, .js .voz__texto > * { transform: translateY(14px); opacity: 0; transition: transform .7s var(--suave), opacity .6s; }
+.js .voz[aria-expanded="true"] .voz__muestra > *, .js .voz[aria-expanded="true"] .voz__texto > * { transform: none; opacity: 1; }
+.js .voz[aria-expanded="true"] .voz__muestra > :nth-child(2) { transition-delay: .42s; }
+.js .voz[aria-expanded="true"] .voz__texto > :nth-child(1) { transition-delay: .36s; }
+.js .voz[aria-expanded="true"] .voz__texto > :nth-child(2) { transition-delay: .44s; }
+.js .voz[aria-expanded="true"] .voz__texto > :nth-child(3) { transition-delay: .52s; }
+.js .voz[aria-expanded="true"] .voz__texto > :nth-child(4) { transition-delay: .6s; }
+.js .voz[aria-expanded="true"] .voz__muestra > :nth-child(1) { transition-delay: .3s; }
+.voces__ayuda { margin-top: 16px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #fff; }
+
+/* Tableta y móvil: los tres paneles se apilan abiertos, con la pestaña en horizontal */
+@media (max-width: 1100px) {
+  .voces { flex-direction: column; height: auto; }
+  .voz { flex: none; flex-direction: column; }
+  .voz__pestana { flex: none; flex-direction: row; justify-content: flex-start; gap: 14px; padding: 22px 22px 0; cursor: default; }
+  .voz__nombre, .voz__rol { writing-mode: horizontal-tb; transform: none; }
+  .voz__nombre { font-size: 40px; opacity: 1 !important; }
+  .voz__rol { margin-left: auto; }
+  .voz__cuerpo { width: auto; grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 18px 22px 26px; opacity: 1; visibility: visible; }
+  .js .voz__muestra > *, .js .voz__texto > * { transform: none; opacity: 1; }
+  .voces__ayuda { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .voz, .voz__cuerpo, .js .voz__muestra > *, .js .voz__texto > * { transition: none; }
+}
+/* En tableta cada panel apilado conserva muestra y texto lado a lado */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .voz__cuerpo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}

@@ -419,7 +419,7 @@
       '<button type="button" class="pieza__btn fbcaso__portada"' + datos(portada, s.nota, sec, 0) + ' aria-label="Ampliar: ' + esc(portada.titulo) + '">' + imagen(portada) + '</button>' +
       '<div class="fbcaso__pie">' +
         (perfil ? '<button type="button" class="pieza__btn fbcaso__perfil"' + datos(perfil, s.nota, sec, 1) + ' aria-label="Ampliar: ' + esc(perfil.titulo) + '">' + imagen(perfil) + '</button>' : '') +
-        '<div class="fbcaso__nombre"><strong>' + esc(p.titulo) + '</strong><span>' + esc(cu.descripcion || 'Grupo juvenil cristiano') + '</span></div>' +
+        '<div class="fbcaso__nombre"><strong>' + esc(p.titulo) + '</strong><span>' + esc(cu.descripcion || (p.cuenta && p.cuenta.descripcion) || 'Grupo juvenil cristiano') + '</span></div>' +
       '</div>' +
     '</div>';
   }
@@ -436,30 +436,50 @@
   }
 
   /* ---------- Parrilla de Instagram ---------- */
-  /* Cuadrícula de 3 columnas como el perfil de Instagram. Las piezas con
-     foto: true son fotografías de apoyo: se muestran pero no se amplían. */
-  /* Parrilla de Instagram dentro de un teléfono: barra de estado, cabecera del perfil,
-     pestañas y la cuadrícula de tres columnas. Las fotos no se amplían; los diseños sí. */
-  function parrilla(s, p) {
+  /* Teléfono con el perfil de Instagram: barra de estado, cabecera, biografía,
+     pestañas y la cuadrícula de tres columnas. Las piezas con foto: true son
+     fotografías de apoyo y no se amplían.
+     modo "escaparate": cada diseño de la cuadrícula selecciona su publicación
+     en la vitrina de al lado en lugar de abrir el visor. */
+  function telefonoParrilla(piezas, p, s, modo, vitrinaPiezas) {
     var cu = cuentaDe(p), sec = (s.encabezado && s.encabezado.ante) || s.titulo, k = 0;
     var usuario = (p.cuenta && p.cuenta.usuario) || cu.nombre.toLowerCase().replace(/[^a-z0-9]+/g, '');
-    var celdas = s.piezas.map(function (x) {
+    var bio = (p.cuenta && p.cuenta.bio) || [];
+    var celdas = piezas.map(function (x) {
       if (x.foto) return '<li class="parrilla__celda parrilla__celda--foto"><img src="' + esc(x.src) + '" alt="' + esc(x.alt) + '" loading="lazy" decoding="async"></li>';
+      if (modo === 'escaparate') {
+        // Busca la misma publicación en la vitrina para poder seleccionarla
+        var i = -1;
+        vitrinaPiezas.forEach(function (v, j) { if (v.src === x.src) i = j; });
+        return '<li class="parrilla__celda"><button type="button" class="parrilla__elegir" data-vitrina-celda="' + i + '" aria-label="Ver en la vitrina: ' + esc(x.titulo || x.alt) + '"' + (i === 0 ? ' aria-current="true"' : '') + '>' + imagen(x) + '</button></li>';
+      }
       return '<li class="parrilla__celda"><button type="button" class="pieza__btn"' + datos(x, s.nota, sec, k++) + ' aria-label="Ampliar: ' + esc(x.titulo || x.alt) + '">' + imagen(x) + '</button></li>';
     }).join('');
-    return '<div class="parrilla" data-grupo>' +
-      '<div class="telefono parrilla__telefono">' +
+    return '<div class="telefono parrilla__telefono">' +
         '<div class="telefono__estado" aria-hidden="true"><span>9:41</span><i class="telefono__isla"></i><span class="telefono__senal"><b></b><b></b><b></b></span></div>' +
         '<div class="parrilla__barra" aria-hidden="true"><strong>' + esc(usuario) + '</strong>' + icono('i-ig-mas', 'ico') + '</div>' +
         '<div class="parrilla__cab">' + avatar(cu, 'parrilla__avatar') +
-          '<div class="parrilla__datos"><strong>' + esc(p.titulo || cu.nombre) + '</strong><span><b>' + s.piezas.length + '</b> publicaciones</span></div></div>' +
+          '<div class="parrilla__datos"><strong>' + esc(p.titulo || cu.nombre) + '</strong><span><b>' + piezas.length + '</b> publicaciones</span></div></div>' +
+        (bio.length ? '<div class="parrilla__bio">' + bio.map(function (l) { return '<span>' + esc(l) + '</span>'; }).join('') + '</div>' : '') +
         '<div class="parrilla__pestanas" aria-hidden="true"><span class="activa"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>' +
         '<ul class="parrilla__rejilla">' + celdas + '</ul>' +
         '<div class="parrilla__inicio" aria-hidden="true"><i></i></div>' +
-      '</div>' +
-    '</div>';
+      '</div>';
   }
 
+  function parrilla(s, p) {
+    return '<div class="parrilla" data-grupo>' + telefonoParrilla(s.piezas, p, s) + '</div>';
+  }
+
+  /* ---------- Escaparate: perfil completo junto a la vitrina de publicaciones ---------- */
+  /* A la izquierda, el teléfono con toda la parrilla; a la derecha, la vitrina.
+     Tocar un diseño en la cuadrícula lo pone al frente en la vitrina. */
+  function escaparate(s, p) {
+    return '<div class="escaparate">' +
+      '<div class="escaparate__perfil parrilla">' + telefonoParrilla(s.parrilla || s.piezas, p, s, 'escaparate', s.piezas) + '</div>' +
+      '<div class="escaparate__vitrina">' + vitrina(s, p) + '</div>' +
+    '</div>';
+  }
 
   /* ---------- Videos: una tarjeta por video (ver videoteca.js) ---------- */
   function videoteca() { return window.Videoteca ? window.Videoteca.html() : ''; }
@@ -566,6 +586,8 @@
   function iniciarVitrina(el) {
     var imgs = $$('.vitrina__img', el), items = $$('.vitrina__item', el), num = $('.vitrina__num b', el);
     var escena = $('.vitrina__escena', el), n = imgs.length, actual = 0;
+    var envoltura = el.closest('.escaparate');
+    var celdas = envoltura ? $$('[data-vitrina-celda]', envoltura) : [];
     function ir(k, foco) {
       k = (k + n) % n;
       if (k === actual) { if (foco) items[k].focus(); return; }
@@ -576,12 +598,17 @@
         if (im.matches('button')) { im.tabIndex = i === k ? 0 : -1; if (i === k) im.removeAttribute('aria-hidden'); else im.setAttribute('aria-hidden', 'true'); }
       });
       items.forEach(function (b, i) { b.setAttribute('aria-pressed', String(i === k)); });
+      // Marca en la cuadrícula del teléfono la publicación que está al frente
+      celdas.forEach(function (c) { if (Number(c.dataset.vitrinaCelda) === k) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current'); });
       el.classList.remove('corta'); void el.offsetWidth; el.classList.add('corta');
       num.textContent = dos(k + 1);
       num.classList.remove('cambia'); void num.offsetWidth; num.classList.add('cambia');
       actual = k;
       if (foco) items[k].focus();
     }
+    celdas.forEach(function (c) {
+      c.addEventListener('click', function () { var k = Number(c.dataset.vitrinaCelda); if (k >= 0) ir(k); });
+    });
     items.forEach(function (b, i) {
       b.addEventListener('click', function () { ir(i); });
       b.addEventListener('keydown', function (e) {
@@ -606,7 +633,7 @@
   }
 
   /* ---------- Interfaz pública ---------- */
-  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina, facebook: facebook, objetos: objetos, videoteca: videoteca, parrilla: parrilla };
+  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina, facebook: facebook, objetos: objetos, videoteca: videoteca, parrilla: parrilla, escaparate: escaparate };
 
   window.Presenta = {
     html: function (s, p) { var f = TIPOS[s.tipo]; return f ? f(s, p) : null; },

@@ -496,13 +496,15 @@ window.PROYECTOS = [
     brandbook: { href: "brandbook/the-old-barber/", texto: "Abrir el brandbook interactivo" },
     collage: ["assets/proyectos/the-old-barber/post-2.webp", "assets/proyectos/the-old-barber/post-1.webp", "assets/proyectos/the-old-barber/post-5.webp", "assets/proyectos/the-old-barber/post-3.webp", "assets/proyectos/the-old-barber/post-4.webp", "assets/proyectos/the-old-barber/post-8.webp"],
     vistazo: ["assets/proyectos/the-old-barber/post-2.webp", "assets/proyectos/the-old-barber/post-4.webp", "assets/proyectos/the-old-barber/post-1.webp"],
-    cuenta: { nombre: "theoldbarber", iniciales: "OB", foto: "assets/proyectos/the-old-barber/perfil.webp", color: "#000000" },
+    cuenta: { nombre: "theoldbarber", iniciales: "OB", foto: "assets/proyectos/the-old-barber/perfil.webp", color: "#000000", descripcion: "Barbería clásica",
+      // Biografía del perfil de Instagram, línea por línea
+      bio: ["💈 THE OLD BARBER | Barbería clásica", "✂️ Cortes con estilo, precisión y actitud.", "🥃 Tradición que nunca pasa de moda.", "📲 Agenda tu cita por DM."] },
     // Textos de la cinta que corre bajo la portada del caso.
     cinta: ["Identidad visual", "Branding", "Diseño de publicaciones", "Redes sociales", "Dirección de arte", "Contenido para Instagram"],
     resumen: "Identidad visual y línea de publicaciones para Instagram de una barbería conceptual que combina el oficio tradicional con una imagen actual.",
     contexto: "The Old Barber es una barbería planteada como caso de estudio: un negocio nuevo que necesita presentarse en Instagram con una imagen propia, reconocible desde la primera publicación y capaz de convertir seguidores en citas.",
     objetivo: "Construir una presencia en redes que comunicara servicios, horarios y promociones con claridad, y que al mismo tiempo transmitiera el carácter de una barbería clásica.",
-    participacion: "Desarrollé la identidad visual completa y la llevé a Instagram. Definí la plantilla de las publicaciones, la jerarquía de la información y el uso del color y la tipografía; diseñé seis piezas con objetivos distintos y planeé la parrilla intercalando fotografía de stock con los diseños.",
+    participacion: "Desarrollé la identidad visual completa y la llevé a redes sociales. Definí la plantilla de las publicaciones, la jerarquía de la información y el uso del color y la tipografía; diseñé seis publicaciones con objetivos distintos, dos historias de contenido útil, la portada y la foto de perfil de Facebook, y planeé la parrilla intercalando fotografía de stock con los diseños.",
     concepto: "",
     encabezadoDecisiones: { ante: "Decisiones de diseño", linea1: "Así funciona", linea2: "en el feed" },
     decisiones: [
@@ -514,23 +516,12 @@ window.PROYECTOS = [
     entregables: [],
     resultados: [],
     secciones: [
-      { titulo: "Publicaciones", tipo: "vitrina",
-        encabezado: { ante: "Publicaciones para Instagram", linea1: "Del scroll", linea2: "al sillón" },
+      { titulo: "Publicaciones", tipo: "escaparate",
+        encabezado: { ante: "Instagram", linea1: "Del scroll", linea2: "al sillón" },
         unidad: "publicaciones",
-        nota: "Cada pieza responde a un objetivo de negocio distinto: llenar la agenda de la semana, presentar un servicio, generar interacción, vender un producto, aportar un consejo útil o impulsar una promoción. La plantilla se mantiene y el mensaje cambia, de modo que todas se reconocen como parte de la misma marca.",
-        ayuda: "La vitrina avanza sola o desde la lista de publicaciones",
-        piezas: [
-          { src: "assets/proyectos/the-old-barber/post-1.webp", archivo: "post-1.webp", etiqueta: "Agenda", titulo: "Inicia la semana con estilo", alt: "Inicia la semana con estilo", formato: "vertical", desc: "Pensada para publicarse en lunes, cuando se planea la semana. El horario, el teléfono y la dirección se agrupan en una franja inferior para que agendar no requiera buscar más información." },
-          { src: "assets/proyectos/the-old-barber/post-2.webp", archivo: "post-2.webp", etiqueta: "Servicio", titulo: "Es hora de darle tratamiento a tu barba", alt: "Es hora de darle tratamiento a tu barba", formato: "vertical", desc: "La navaja en primer plano comunica el servicio antes de leer el titular. Los datos se ordenan en bloques amarillos y blancos que se recorren de arriba abajo." },
-          { src: "assets/proyectos/the-old-barber/post-3.webp", archivo: "post-3.webp", etiqueta: "Dinámica", titulo: "Gana un corte de cabello", alt: "Gana un corte de cabello", formato: "vertical", desc: "Busca comentarios y seguidores nuevos. La etiqueta «¡Gratis!» detiene el scroll y el texto al pie lleva a la descripción, donde están las reglas." },
-          { src: "assets/proyectos/the-old-barber/post-4.webp", archivo: "post-4.webp", etiqueta: "Producto", titulo: "Polvo texturizador", alt: "Polvo texturizador por 119 pesos", formato: "vertical", desc: "Abre una línea de venta de productos. Tres beneficios breves responden la duda principal y el precio en amarillo cierra la decisión." },
-          { src: "assets/proyectos/the-old-barber/post-5.webp", archivo: "post-5.webp", etiqueta: "Consejo", titulo: "Cómo mantener tu corte de cabello limpio", alt: "Cómo mantener tu corte de cabello limpio", formato: "vertical", desc: "Contenido de valor que no vende de forma directa. Posiciona a la barbería como experta y le da a la cuenta una razón para seguirla más allá de las promociones." },
-          { src: "assets/proyectos/the-old-barber/post-6.webp", archivo: "post-6.webp", etiqueta: "Promoción", titulo: "Limpieza facial gratis", alt: "Limpieza facial gratis en tu corte de cabello", formato: "vertical", desc: "La oferta se resume en una palabra manuscrita y amarilla que domina la composición. La vigencia queda al pie para generar urgencia sin competir con el titular." }
-        ] },
-      { titulo: "Parrilla de Instagram", tipo: "parrilla",
-        encabezado: { ante: "Parrilla de Instagram", linea1: "El perfil", linea2: "como escaparate" },
-        nota: "Cada fila combina dos publicaciones diseñadas y una fotografía. Las fotografías avanzan en diagonal de una fila a otra, así el perfil alterna información y respiro visual y se lee como una sola composición.",
-        piezas: [
+        nota: "Cada publicación responde a un objetivo de negocio distinto: llenar la agenda, presentar un servicio, generar interacción, vender un producto, aportar un consejo o impulsar una promoción. En el perfil, cada fila combina dos diseños y una fotografía que avanza en diagonal, así la cuenta alterna información y respiro visual y se lee como una sola composición.",
+        ayuda: "Toca una publicación en el perfil o en la lista para verla al frente",
+        parrilla: [
           { src: "assets/proyectos/the-old-barber/post-7.webp", archivo: "post-7.webp", alt: "Fotografía de barbero trabajando", foto: true },
           { src: "assets/proyectos/the-old-barber/post-1.webp", archivo: "post-1.webp", titulo: "Inicia la semana con estilo", alt: "Inicia la semana con estilo" },
           { src: "assets/proyectos/the-old-barber/post-2.webp", archivo: "post-2.webp", titulo: "Es hora de darle tratamiento a tu barba", alt: "Es hora de darle tratamiento a tu barba" },
@@ -540,6 +531,28 @@ window.PROYECTOS = [
           { src: "assets/proyectos/the-old-barber/post-5.webp", archivo: "post-5.webp", titulo: "Cómo mantener tu corte de cabello limpio", alt: "Cómo mantener tu corte de cabello limpio" },
           { src: "assets/proyectos/the-old-barber/post-6.webp", archivo: "post-6.webp", titulo: "Limpieza facial gratis", alt: "Limpieza facial gratis en tu corte de cabello" },
           { src: "assets/proyectos/the-old-barber/post-9.webp", archivo: "post-9.webp", alt: "Fotografía de corte con tijera", foto: true }
+        ],
+        piezas: [
+          { src: "assets/proyectos/the-old-barber/post-1.webp", archivo: "post-1.webp", etiqueta: "Agenda", titulo: "Inicia la semana con estilo", alt: "Inicia la semana con estilo", formato: "vertical", desc: "Pensada para publicarse en lunes, cuando se planea la semana. El horario, el teléfono y la dirección se agrupan en una franja inferior para que agendar no requiera buscar más información." },
+          { src: "assets/proyectos/the-old-barber/post-2.webp", archivo: "post-2.webp", etiqueta: "Servicio", titulo: "Es hora de darle tratamiento a tu barba", alt: "Es hora de darle tratamiento a tu barba", formato: "vertical", desc: "La navaja en primer plano comunica el servicio antes de leer el titular. Los datos se ordenan en bloques amarillos y blancos que se recorren de arriba abajo." },
+          { src: "assets/proyectos/the-old-barber/post-3.webp", archivo: "post-3.webp", etiqueta: "Dinámica", titulo: "Gana un corte de cabello", alt: "Gana un corte de cabello", formato: "vertical", desc: "Busca comentarios y seguidores nuevos. La etiqueta «¡Gratis!» detiene el scroll y el texto al pie lleva a la descripción, donde están las reglas." },
+          { src: "assets/proyectos/the-old-barber/post-4.webp", archivo: "post-4.webp", etiqueta: "Producto", titulo: "Polvo texturizador", alt: "Polvo texturizador por 119 pesos", formato: "vertical", desc: "Abre una línea de venta de productos. Tres beneficios breves responden la duda principal y el precio en amarillo cierra la decisión." },
+          { src: "assets/proyectos/the-old-barber/post-5.webp", archivo: "post-5.webp", etiqueta: "Consejo", titulo: "Cómo mantener tu corte de cabello limpio", alt: "Cómo mantener tu corte de cabello limpio", formato: "vertical", desc: "Contenido de valor que no vende de forma directa. Posiciona a la barbería como experta y le da a la cuenta una razón para seguirla más allá de las promociones." },
+          { src: "assets/proyectos/the-old-barber/post-6.webp", archivo: "post-6.webp", etiqueta: "Promoción", titulo: "Limpieza facial gratis", alt: "Limpieza facial gratis en tu corte de cabello", formato: "vertical", desc: "La oferta se resume en una palabra manuscrita y amarilla que domina la composición. La vigencia queda al pie para generar urgencia sin competir con el titular." }
+        ] },
+      { titulo: "Historias", tipo: "historias",
+        encabezado: { ante: "Historias de Instagram", linea1: "Consejos", linea2: "que se guardan" },
+        nota: "Las historias llevan la marca a un formato vertical y de consumo rápido. En lugar de promocionar, resuelven dudas frecuentes con pasos y comparaciones breves, apoyadas en iconos y separadores amarillos que ordenan la lectura. Cada una cierra con una frase en recuadro que invita a responder o a pasar por la barbería.",
+        piezas: [
+          { src: "assets/proyectos/the-old-barber/historia-1.webp", archivo: "historia-1.webp", titulo: "Barba sana en 3 pasos", alt: "Historia: barba sana en 3 pasos", formato: "historia", desc: "Tres pasos numerados por iconos, separados con líneas amarillas. La fotografía ocupa la mitad superior y la información se concentra abajo, donde el pulgar descansa al ver historias." },
+          { src: "assets/proyectos/the-old-barber/historia-2.webp", archivo: "historia-2.webp", titulo: "¿Qué producto te conviene?", alt: "Historia: qué producto te conviene", formato: "historia", desc: "Compara pomada, cera y polvo con una fórmula directa: producto igual a resultado. Los productos al centro anticipan la respuesta y el cierre orienta la decisión de compra." }
+        ] },
+      { titulo: "Facebook", tipo: "facebook",
+        encabezado: { ante: "Facebook", linea1: "La misma marca", linea2: "en otro formato" },
+        nota: "La portada traslada la identidad al formato horizontal: el monograma a la izquierda, los servicios al centro y la fotografía como fondo, con la llamada a agendar en amarillo. La foto de perfil coloca el monograma sobre la barbería en blanco y negro, para que se reconozca aun en tamaño pequeño.",
+        piezas: [
+          { src: "assets/proyectos/the-old-barber/facebook-portada.webp", archivo: "facebook-portada.webp", titulo: "Portada de Facebook", alt: "Portada de Facebook: cortes, barba y estilo", formato: "horizontal", desc: "Servicios, frase de marca y llamada a la acción en una sola franja horizontal." },
+          { src: "assets/proyectos/the-old-barber/facebook-perfil.webp", archivo: "facebook-perfil.webp", titulo: "Foto de perfil", alt: "Foto de perfil con el monograma OB", formato: "cuadrado", desc: "El monograma amarillo sobre fotografía en blanco y negro de la barbería." }
         ] }
     ],
     proceso: []
