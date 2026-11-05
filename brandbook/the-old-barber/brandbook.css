@@ -155,6 +155,12 @@ body[data-tono="papel"] .barra.solida { background: rgba(17, 17, 17, .88); color
 /* ---------- Versiones: fotografía de prueba en blanco y negro ---------- */
 /* La foto de fondo pierde el color para que el logotipo sea lo único con matiz */
 .escenario__fondos img { filter: grayscale(1) contrast(1.06); }
+/* Capa negra entre la fotografía y el logotipo: oscurece la imagen de forma pareja
+   y un poco más al centro, donde se apoya cada versión, para que se lea con claridad */
+.escenario__fondos::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 70% at 50% 45%, rgba(0, 0, 0, .3), transparent 75%), rgba(0, 0, 0, .55);
+}
 
 /* ---------- Contraste: precio con el signo de pesos como exponente ---------- */
 /* "Por tan solo" va arriba como antetítulo y el signo se reduce y sube,
