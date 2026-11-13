@@ -1550,7 +1550,9 @@ code{font-family:var(--f-mono);font-size:.8em}
 .revista.es-vertical .revista__canto{display:none}
 
 /* Cada página: imagen más una capa de papel con pliegue, curvatura y grano */
-.revista__pagina{position:relative;overflow:hidden;background:#140e1b}
+/* La librería posiciona cada página; solo antes de que cargue se usa posición relativa */
+.revista__pagina{overflow:hidden;background:#140e1b}
+.revista:not(.lista) .revista__pagina,.revista.sin-giro .revista__pagina{position:relative}
 .revista__pagina img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
 .revista__papel{position:absolute;inset:0;pointer-events:none}
 .revista__pagina--izq .revista__papel{background:
