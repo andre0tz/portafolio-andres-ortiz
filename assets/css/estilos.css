@@ -1499,3 +1499,121 @@ code{font-family:var(--f-mono);font-size:.8em}
 .escaparate .vitrina__num{right:auto;left:-6px;top:-88px}
 .escaparate .vitrina__num b{font-size:clamp(4rem,6vw,5.6rem)}
 .escaparate .vitrina__escena{margin-top:84px}
+
+/* =====================================================================
+   30. REVISTA ONCE UPON A TIME: PALETA, PORTADA Y LIBRO INTERACTIVO
+   ===================================================================== */
+/* Paleta nocturna tomada de la revista: ciruela, vino y filetes dorados */
+.paleta-oat,[data-theme="oscuro"] .paleta-oat{
+  --fondo:#0e0a13;--fondo-2:#140e1b;--superficie:#1b1323;
+  --texto:#f2ebdd;--texto-suave:#cfc4ae;--linea:rgba(201,164,92,.24);
+  --proy:#c9a45c;--proy-2:#e3c98d;--proy-3:#f2ebdd;--acento:#c9a45c}
+.caso__lienzo.paleta-oat{overflow-x:clip}
+.paleta-oat .caso__cabeza.paleta-hero{
+  background:radial-gradient(ellipse 60% 70% at 78% 45%,rgba(233,207,156,.09),transparent 65%),
+    radial-gradient(ellipse 60% 60% at 0% 100%,#3a1019,transparent 70%),
+    radial-gradient(ellipse 60% 60% at 100% 0%,#2a1533,transparent 70%),#0e0a13;overflow:hidden}
+.paleta-oat .paleta-hero .chip--fuerte{background:#c9a45c;border-color:#c9a45c;color:#140e1b}
+.paleta-oat .caso__titulo{color:#ead39c;line-height:1.02}
+.paleta-oat .sec-cab__titulo .l2,.paleta-oat .sec-cab__ante,.paleta-oat .caso__fichas dt{color:#c9a45c}
+.portada-revista .caso__hero{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.portada-revista .caso__visual{width:100%;align-self:center}
+
+/* Portada del caso: el primer pliego abierto sobre la mesa.
+   Cada hoja se inclina hacia el lomo y se oscurece cerca del pliegue. */
+.portada-rev{perspective:2200px;padding:4% 2% 8%}
+.portada-rev__libro{position:relative;display:grid;grid-template-columns:1fr 1fr;transform:rotateX(14deg) rotateZ(-2deg);transform-style:preserve-3d;
+  animation:revEntra 1.2s var(--ease) .15s both}
+.portada-rev__libro::before{content:"";position:absolute;inset:6% 3% -9%;z-index:-1;border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.85),transparent 70%);filter:blur(22px);transform:translateZ(-40px)}
+.portada-rev__hoja{position:relative;display:block;aspect-ratio:1406/1988;overflow:hidden;background:#140e1b}
+.portada-rev__hoja img{width:100%;height:100%;object-fit:cover;display:block}
+.portada-rev__hoja--izq{transform-origin:right center;transform:rotateY(9deg);border-radius:3px 0 0 3px}
+.portada-rev__hoja--der{transform-origin:left center;transform:rotateY(-9deg);border-radius:0 3px 3px 0}
+.portada-rev__hoja::after{content:"";position:absolute;inset:0;pointer-events:none}
+.portada-rev__hoja--izq::after{background:linear-gradient(270deg,rgba(0,0,0,.55),rgba(0,0,0,.18) 4%,transparent 18%,transparent 82%,rgba(255,240,210,.08))}
+.portada-rev__hoja--der::after{background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.18) 4%,transparent 18%,transparent 82%,rgba(255,240,210,.08))}
+@keyframes revEntra{from{opacity:0;transform:rotateX(26deg) rotateZ(-4deg) translateY(30px)}}
+
+/* ---------- Libro interactivo ---------- */
+.revista{display:grid;gap:18px;justify-items:center}
+.revista__escena{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(8px,2vw,28px);width:100%}
+.revista__libro{position:relative;justify-self:center;width:min(100%,1180px,calc((100svh - 230px) * 1.4145));
+  transform:perspective(2600px) rotateX(3deg);transform-origin:50% 70%}
+/* Sombra de contacto: la revista apoyada sobre la mesa */
+.revista__libro::before{content:"";position:absolute;left:3%;right:3%;bottom:-5%;height:22%;z-index:-1;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 40%,rgba(0,0,0,.8),transparent 70%);filter:blur(16px)}
+/* Cantos: hojas acumuladas a cada lado, más gruesos según lo que falta por leer */
+.revista__canto{position:absolute;top:.6%;bottom:.6%;width:var(--grosor,2px);border-radius:2px;z-index:0;
+  background:repeating-linear-gradient(90deg,#e4d8bf 0 1px,#a3967d 1px 2px);transition:width .9s var(--ease)}
+.revista__canto--izq{right:100%}
+.revista__canto--der{left:100%}
+.revista.es-vertical .revista__canto{display:none}
+
+/* Cada página: imagen más una capa de papel con pliegue, curvatura y grano */
+.revista__pagina{position:relative;overflow:hidden;background:#140e1b}
+.revista__pagina img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
+.revista__papel{position:absolute;inset:0;pointer-events:none}
+.revista__pagina--izq .revista__papel{background:
+  linear-gradient(270deg,rgba(0,0,0,.42) 0,rgba(0,0,0,.18) 2.2%,rgba(0,0,0,.07) 7%,transparent 15%,transparent 84%,rgba(255,244,222,.05) 97%,rgba(0,0,0,.12) 100%),
+  radial-gradient(ellipse 110% 85% at 38% 42%,rgba(255,244,222,.06),transparent 62%)}
+.revista__pagina--der .revista__papel{background:
+  linear-gradient(90deg,rgba(0,0,0,.42) 0,rgba(0,0,0,.18) 2.2%,rgba(0,0,0,.07) 7%,transparent 15%,transparent 84%,rgba(255,244,222,.05) 97%,rgba(0,0,0,.12) 100%),
+  radial-gradient(ellipse 110% 85% at 62% 42%,rgba(255,244,222,.06),transparent 62%)}
+.revista__papel::after{content:"";position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Antes de que cargue el giro: el primer pliego queda visible y completo */
+.revista:not(.lista) .revista__hojas{display:grid;grid-template-columns:1fr 1fr}
+.revista:not(.lista) .revista__pagina{aspect-ratio:1406/1988}
+.revista:not(.lista):not(.sin-giro) .revista__pagina:nth-child(n+3){display:none}
+.revista.sin-giro .revista__pagina{display:none}
+.revista.sin-giro .revista__pagina.visible{display:block;animation:revFunde .5s ease}
+@keyframes revFunde{from{opacity:0}}
+
+.revista__flecha{width:50px;height:50px;border-radius:50%;border:1px solid var(--linea);background:rgba(14,10,19,.6);color:var(--proy-2,#e3c98d);
+  display:grid;place-items:center;cursor:pointer;transition:border-color .3s,transform .3s var(--ease),opacity .3s}
+.revista__flecha svg{width:20px;height:20px}
+.revista__flecha--ant svg{transform:scaleX(-1)}
+.revista__flecha:hover:not(:disabled){border-color:var(--proy);transform:scale(1.06)}
+.revista__flecha:disabled{opacity:.25;cursor:default}
+.revista__flecha:focus-visible,.revista__mini:focus-visible,.revista__ampliar:focus-visible{outline:2px solid var(--proy-2,#e3c98d);outline-offset:3px}
+
+.revista__pie{display:flex;align-items:center;justify-content:center;gap:14px 26px;flex-wrap:wrap;width:100%}
+.revista__lectura{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0}
+.revista__seccion{font-weight:700;font-size:1.02rem;letter-spacing:.02em;color:var(--texto)}
+.revista__folio{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--texto-suave);font-variant-numeric:tabular-nums}
+.revista__miniaturas{display:flex;gap:10px;list-style:none;margin:0;padding:2px;overflow-x:auto;max-width:100%;scrollbar-width:none}
+.revista__mini{display:flex;padding:0;border:1px solid transparent;border-radius:3px;background:none;cursor:pointer;opacity:.5;transition:opacity .3s,border-color .3s,transform .3s var(--ease)}
+.revista__mini img{width:34px;height:auto;display:block}
+.revista__mini:hover{opacity:.85}
+.revista__mini[aria-current="true"]{opacity:1;border-color:var(--proy);transform:translateY(-2px)}
+.revista__ampliar{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--linea);border-radius:999px;background:none;color:var(--texto);
+  font:inherit;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 15px;cursor:pointer;transition:border-color .3s}
+.revista__ampliar:hover{border-color:var(--proy)}
+.revista__ampliar svg{width:15px;height:15px}
+.revista__ayuda{margin:0;font-size:.86rem;color:var(--texto-suave);text-align:center}
+
+/* Vista ampliada: pliego a resolución completa, con desplazamiento libre */
+.revista-ampliada{position:fixed;inset:0;z-index:3000;display:grid;grid-template-rows:auto 1fr;background:rgba(9,6,12,.95);color:#f2ebdd}
+.revista-ampliada__barra{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid rgba(201,164,92,.24);
+  padding:calc(12px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+.revista-ampliada__barra span{font-size:.95rem;letter-spacing:.04em}
+.revista-ampliada__cerrar{border:1px solid rgba(201,164,92,.4);border-radius:999px;background:none;color:inherit;font:inherit;padding:8px 16px;cursor:pointer}
+.revista-ampliada__lienzo{overflow:auto;padding:20px;cursor:grab}
+.revista-ampliada__lienzo.arrastrando{cursor:grabbing}
+.revista-ampliada__pliego{display:flex;width:max(100%,2200px);margin:0 auto;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.revista-ampliada__pliego.es-una{width:max(100%,1100px)}
+.revista-ampliada__pliego img{flex:1 1 0;min-width:0;height:auto;display:block}
+
+@media (max-width:760px){
+  /* En celular las flechas pasan debajo del libro, una a cada lado */
+  .revista__escena{grid-template-columns:auto auto;justify-content:space-between;row-gap:14px}
+  .revista__libro{grid-column:1/-1;grid-row:1}
+  .revista__flecha{grid-row:2;width:46px;height:46px}
+  .revista__libro{width:min(100%,calc((100svh - 260px) * .7072));transform:none}
+  .revista:not(.lista) .revista__hojas{grid-template-columns:1fr}
+  .revista:not(.lista):not(.sin-giro) .revista__pagina:nth-child(n+2){display:none}
+  .portada-revista .caso__hero{grid-template-columns:minmax(0,1fr)}
+  .revista-ampliada__pliego,.revista-ampliada__pliego.es-una{width:max(100%,900px)}
+}
+@media (prefers-reduced-motion:reduce){.portada-rev__libro{animation:none}.revista__canto,.revista__mini{transition:none}}

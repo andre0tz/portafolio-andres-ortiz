@@ -158,6 +158,7 @@ window.FILTROS = [
   { id: "publicidad", nombre: "Publicidad y campañas" },
   { id: "video", nombre: "Video" },
   { id: "identidad", nombre: "Identidad visual" },
+  { id: "editorial", nombre: "Diseño editorial" },
   { id: "personal", nombre: "Personal" }
 ];
 
@@ -553,6 +554,56 @@ window.PROYECTOS = [
         piezas: [
           { src: "assets/proyectos/the-old-barber/facebook-portada.webp", archivo: "facebook-portada.webp", titulo: "Portada de Facebook", alt: "Portada de Facebook: cortes, barba y estilo", formato: "horizontal", desc: "Servicios, frase de marca y llamada a la acción en una sola franja horizontal." },
           { src: "assets/proyectos/the-old-barber/facebook-perfil.webp", archivo: "facebook-perfil.webp", titulo: "Foto de perfil", alt: "Foto de perfil con el monograma OB", formato: "cuadrado", desc: "El monograma amarillo sobre fotografía en blanco y negro de la barbería." }
+        ] }
+    ],
+    proceso: []
+  },
+  {
+    slug: "revista-once-upon-a-time",
+    publicado: true,
+    titulo: "Revista Once Upon a Time",
+    categorias: ["editorial"],
+    disciplina: "Diseño editorial",
+    relacion: "conceptual",
+    tono: "tinta",
+    paleta: "oat",
+    portada: "assets/proyectos/revista-once-upon-a-time/pliego-1.webp",
+    portadaEstilo: "revista",
+    vistazo: ["assets/proyectos/revista-once-upon-a-time/pliego-2.webp", "assets/proyectos/revista-once-upon-a-time/pliego-4.webp"],
+    resumen: "Revista conmemorativa por los 15 años de Once Upon a Time. Cada pliego recorre un tema de la serie con una puesta en página inspirada en los libros de cuentos.",
+    aclaracion: "Proyecto en desarrollo. Aquí se muestran los pliegos terminados; la revista completa se integrará al concluirla.",
+    contexto: "Once Upon a Time cumple 15 años desde su estreno. La revista celebra la serie con artículos sobre sus personajes, sus relaciones y el trabajo detrás de la producción.",
+    objetivo: "Crear una pieza editorial que se sienta como abrir un libro de cuentos: elegante, ornamentada y fácil de leer, aun con mucho texto e imagen en cada pliego.",
+    participacion: "Diseñé la revista: concepto visual, retícula, jerarquía tipográfica, paleta por sección y la composición de cada pliego.",
+    concepto: "",
+    encabezadoDecisiones: { ante: "Decisiones de diseño", linea1: "Un libro", linea2: "de cuentos" },
+    decisiones: [
+      { titulo: "Un color para cada mundo", texto: "Los pliegos sobre héroes y villanos usan rojos profundos, como la manzana envenenada; los de oscuridad y magia pasan a morados. El cambio de color marca el avance entre secciones sin necesidad de separadores." },
+      { titulo: "Ornamento con medida", texto: "Las filigranas doradas enmarcan títulos y esquinas, pero nunca entran en los bloques de texto. Así el estilo de cuento convive con columnas que se leen con comodidad." },
+      { titulo: "Títulos que se leen como portada", texto: "Los títulos en mayúsculas doradas y de gran tamaño abren cada artículo y se reconocen desde lejos. Los subtítulos más pequeños explican el enfoque del tema antes de entrar al texto." },
+      { titulo: "Fotografía integrada al escenario", texto: "Los personajes se recortan sobre bosques y fondos de textura, de modo que la imagen y la página forman una sola escena. Las fotos de apoyo van en marcos blancos inclinados, como recuerdos guardados en un álbum." }
+    ],
+    entregables: [],
+    resultados: [],
+    secciones: [
+      { titulo: "Revista", tipo: "revista",
+        encabezado: { ante: "Revista interactiva", linea1: "Hojea", linea2: "la revista" },
+        nota: "Cada página se puede tomar de la esquina y pasar como en una revista impresa. Ampliar pliego abre el pliego a resolución completa para leer los textos.",
+        pliegos: [
+          { titulo: "Héroes y villanos", folio: "09 y 10" },
+          { titulo: "Más allá del bien y del mal", folio: "11 y 12" },
+          { titulo: "Los rostros de la oscuridad", folio: "13 y 14" },
+          { titulo: "Detrás de la magia", folio: "19 y 20" }
+        ],
+        piezas: [
+          { src: "assets/proyectos/revista-once-upon-a-time/pagina-1.webp", mini: "assets/proyectos/revista-once-upon-a-time/mini-1.webp", archivo: "pagina-1.webp", alt: "Héroes y villanos, página izquierda" },
+          { src: "assets/proyectos/revista-once-upon-a-time/pagina-2.webp", mini: "assets/proyectos/revista-once-upon-a-time/mini-2.webp", archivo: "pagina-2.webp", alt: "Héroes y villanos, página derecha" },
+          { src: "assets/proyectos/revista-once-upon-a-time/pagina-3.webp", mini: "assets/proyectos/revista-once-upon-a-time/mini-3.webp", archivo: "pagina-3.webp", alt: "Más allá del bien y del mal, página izquierda" },
+          { src: "assets/proyectos/revista-once-upon-a-time/pagina-4.webp", mini: "assets/proyectos/revista-once-upon-a-time/mini-4.webp", archivo: "pagina-4.webp", alt: "Más allá del bien y del mal, página derecha" },
+          { src: "assets/proyectos/revista-once-upon-a-time/pagina-5.webp", mini: "assets/proyectos/revista-once-upon-a-time/mini-5.webp", archivo: "pagina-5.webp", alt: "Los rostros de la oscuridad, página izquierda" },
+          { src: "assets/proyectos/revista-once-upon-a-time/pagina-6.webp", mini: "assets/proyectos/revista-once-upon-a-time/mini-6.webp", archivo: "pagina-6.webp", alt: "Los rostros de la oscuridad, página derecha" },
+          { src: "assets/proyectos/revista-once-upon-a-time/pagina-7.webp", mini: "assets/proyectos/revista-once-upon-a-time/mini-7.webp", archivo: "pagina-7.webp", alt: "Detrás de la magia, página izquierda" },
+          { src: "assets/proyectos/revista-once-upon-a-time/pagina-8.webp", mini: "assets/proyectos/revista-once-upon-a-time/mini-8.webp", archivo: "pagina-8.webp", alt: "Detrás de la magia, página derecha" }
         ] }
     ],
     proceso: []

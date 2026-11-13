@@ -79,6 +79,10 @@ Vive en `brandbook/generacion-diferente/` como página propia (`index.html`, `br
 
 Vive en `brandbook/the-old-barber/`. Reutiliza `brandbook.css` y `brandbook.js` de Generación Diferente y solo agrega su propio `brandbook.css` con los colores de la marca (negro, blanco #FFFEFF y amarillo #FFD500). Las imágenes y los SVG del logotipo están en `assets/proyectos/the-old-barber/`.
 
+## Revista Once Upon a Time
+
+El caso usa una sección `tipo: "revista"` (ver `assets/js/revista.js`). Cada pieza es una página en orden de lectura y `pliegos` lleva el título y los folios de cada par de páginas. El giro de página lo hace la librería StPageFlip, que se carga desde jsDelivr solo al abrir este caso; si no carga, los pliegos cambian con un fundido. Para sumar páginas, exporta cada pliego partido en dos imágenes (`pagina-N.webp` y `mini-N.webp`) dentro de `assets/proyectos/revista-once-upon-a-time/` y agrégalas a `piezas` y `pliegos`.
+
 ## Estructura
 
 ```

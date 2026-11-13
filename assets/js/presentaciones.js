@@ -408,6 +408,21 @@
     '</div>';
   }
 
+  /* ---------- Portada de una revista: el primer pliego abierto, apoyado en la mesa ---------- */
+  /* Usa las dos primeras páginas de la sección "revista"; cada hoja se inclina
+     un poco hacia el lomo, como una revista que no queda plana al abrirse. */
+  function portadaRevista(p) {
+    var sec = (p.secciones || []).filter(function (s) { return s.tipo === 'revista'; })[0];
+    var pag = sec ? sec.piezas : [];
+    if (pag.length < 2) return collage(p);
+    return '<div class="portada-rev" aria-hidden="true">' +
+      '<div class="portada-rev__libro">' +
+        '<span class="portada-rev__hoja portada-rev__hoja--izq"><img src="' + esc(pag[0].src) + '" alt="" decoding="async"></span>' +
+        '<span class="portada-rev__hoja portada-rev__hoja--der"><img src="' + esc(pag[1].src) + '" alt="" decoding="async"></span>' +
+      '</div>' +
+    '</div>';
+  }
+
   /* ---------- Facebook: portada completa con su foto de perfil ---------- */
   /* La portada se muestra entera, en su proporción original, y la foto de
      perfil se superpone como en la plataforma. */
@@ -483,6 +498,9 @@
 
   /* ---------- Videos: una tarjeta por video (ver videoteca.js) ---------- */
   function videoteca() { return window.Videoteca ? window.Videoteca.html() : ''; }
+
+  /* ---------- Revista: libro que se hojea con giro de página (ver revista.js) ---------- */
+  function revista(s, p) { return window.Revista ? window.Revista.html(s, p) : ''; }
 
   /* Portada del proyecto Videos: los pósters apilados dentro de un marco */
   function portadaVideos(p) {
@@ -633,12 +651,12 @@
   }
 
   /* ---------- Interfaz pública ---------- */
-  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina, facebook: facebook, objetos: objetos, videoteca: videoteca, parrilla: parrilla, escaparate: escaparate };
+  var TIPOS = { feed: feed, escenario: escenario, historias: historias, carruseles: carruseles, abanico: abanico, vitrina: vitrina, facebook: facebook, objetos: objetos, videoteca: videoteca, parrilla: parrilla, escaparate: escaparate, revista: revista };
 
   window.Presenta = {
     html: function (s, p) { var f = TIPOS[s.tipo]; return f ? f(s, p) : null; },
     encabezado: encabezado,
-    collage: function (p) { return p.portadaEstilo === 'columnas' ? columnas(p) : p.portadaEstilo === 'pantalla' ? pantalla(p) : p.portadaEstilo === 'brandbook' ? portalBrandbook(p) : p.portadaEstilo === 'videos' ? portadaVideos(p) : collage(p); },
+    collage: function (p) { return p.portadaEstilo === 'revista' ? portadaRevista(p) : p.portadaEstilo === 'columnas' ? columnas(p) : p.portadaEstilo === 'pantalla' ? pantalla(p) : p.portadaEstilo === 'brandbook' ? portalBrandbook(p) : p.portadaEstilo === 'videos' ? portadaVideos(p) : collage(p); },
     cinta: cinta,
     postIG: function (x, p) { return postIG(x, p, cuentaDe(p)); },
     iniciar: function (raiz) {
@@ -649,6 +667,7 @@
       $$('[data-fila]', raiz).forEach(iniciarFila);
       $$('[data-vitrina]', raiz).forEach(iniciarVitrina);
       if (window.Videoteca) $$('[data-videoteca]', raiz).forEach(window.Videoteca.iniciar);
+      if (window.Revista) $$('[data-revista]', raiz).forEach(window.Revista.iniciar);
       var aparecen = $$('[data-aparece], .feed .ig', raiz);
       if ('IntersectionObserver' in window && !reducir) {
         var io = new IntersectionObserver(function (en) {
@@ -668,7 +687,7 @@
         like.classList.remove('late'); void like.offsetWidth; if (on) like.classList.add('late');
       });
     },
-    detener: function () { limpiezas.forEach(function (f) { f(); }); limpiezas = []; },
+    detener: function () { limpiezas.forEach(function (f) { f(); }); limpiezas = []; if (window.Revista) window.Revista.detener(); },
     piezas: function (p) {
       var out = [];
       (p.secciones || []).forEach(function (s) {
