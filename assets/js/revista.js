@@ -86,7 +86,7 @@
   }
 
   /* ---------- Vista ampliada para leer los textos ---------- */
-  function ampliar(imagenes, titulo, volver) {
+  function ampliar(imagenes, titulo, volver, origen) {
     var capa = document.createElement('div');
     capa.className = 'revista-ampliada';
     capa.setAttribute('role', 'dialog');
@@ -97,15 +97,22 @@
       '<div class="revista-ampliada__lienzo"><div class="revista-ampliada__pliego' + (imagenes.length === 1 ? ' es-una' : '') + '">' +
         imagenes.map(function (src) { return '<img src="' + esc(src) + '" alt="" draggable="false">'; }).join('') +
       '</div></div>';
-    document.body.appendChild(capa);
+    // El caso se abre como diálogo modal (capa superior del navegador): la vista
+    // ampliada debe vivir dentro de ese diálogo para quedar por encima de él
+    var dialogo = origen && origen.closest('dialog');
+    (dialogo || document.body).appendChild(capa);
     var lienzo = capa.querySelector('.revista-ampliada__lienzo');
     var cerrar = capa.querySelector('.revista-ampliada__cerrar');
+    // Escape cierra solo la vista ampliada, no el caso completo
+    function cancelar(e) { e.preventDefault(); salir(); }
+    if (dialogo) dialogo.addEventListener('cancel', cancelar);
     function salir() {
       document.removeEventListener('keydown', tecla, true);
+      if (dialogo) dialogo.removeEventListener('cancel', cancelar);
       capa.remove();
       if (volver) volver.focus();
     }
-    function tecla(e) { if (e.key === 'Escape') { e.stopPropagation(); salir(); } }
+    function tecla(e) { if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); salir(); } }
     document.addEventListener('keydown', tecla, true);
     cerrar.addEventListener('click', salir);
     cerrar.focus();
@@ -194,7 +201,7 @@
     el.querySelector('.revista__ampliar').addEventListener('click', function (e) {
       var k = pliegoDe(pagina);
       var lista = vertical ? [srcs[pagina]] : [srcs[2 * k], srcs[2 * k + 1]].filter(Boolean);
-      ampliar(lista, (pliegos[k] || '') + (folios[k] ? ' · págs. ' + folios[k] : ''), e.currentTarget);
+      ampliar(lista, (pliegos[k] || '') + (folios[k] ? ' · págs. ' + folios[k] : ''), e.currentTarget, el);
     });
 
     cargarLibreria().then(function () {
