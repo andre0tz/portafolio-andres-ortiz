@@ -1619,3 +1619,52 @@ code{font-family:var(--f-mono);font-size:.8em}
   .revista-ampliada__pliego,.revista-ampliada__pliego.es-una{width:max(100%,900px)}
 }
 @media (prefers-reduced-motion:reduce){.portada-rev__libro{animation:none}.revista__canto,.revista__mini{transition:none}}
+
+/* =====================================================================
+   31. AJUSTES DE LA AUDITORÍA: DESBORDES, MÓVIL Y LEGIBILIDAD
+   ===================================================================== */
+/* El aviso para colocar la foto solo se ve en modo de revisión (?pendientes).
+   En público queda el panel azul con la letra, que ya es una composición completa. */
+html:not(.ver-pendientes) .hueco--foto{display:none}
+
+/* Ningún caso debe generar desplazamiento horizontal, aunque una pieza rote */
+.caso__cuerpo{overflow-x:hidden}
+
+/* Abanico de invitaciones en tableta: las tarjetas se encogen para caber
+   en reposo y al tocarlas no se abren más allá del ancho de la pantalla */
+@media (min-width:621px) and (max-width:1100px){
+  .abanico>.ig{flex-basis:min(250px,27vw);margin-left:-70px}
+  .abanico:hover>.ig,.abanico:focus-within>.ig{margin-left:-40px}
+}
+
+@media (max-width:620px){
+  /* Filtros en una sola fila deslizable: ocupan una línea en lugar de tres */
+  .filtros{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * var(--margen));padding:2px var(--margen) 6px;scroll-snap-type:x proximity;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--margen),#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 var(--margen),#000 calc(100% - 28px),transparent)}
+  .filtros::-webkit-scrollbar{display:none}
+  .filtro{flex:none;scroll-snap-align:start;height:44px}
+
+  /* Etiquetas y textos de apoyo con un mínimo legible en pantallas pequeñas */
+  .obra__rel,.tray__tipo,.habilidades__grupo h4,.hero__nombre .mono{font-size:.72rem}
+  .formacion__estado{font-size:.72rem!important}
+  .herramientas li small,.pie small,.pie .mono{font-size:.7rem}
+  .estampa span{font-size:.7rem}
+  .chip{font-size:.68rem}
+}
+
+/* Portada en celular: la presentación y los botones suben antes del panel
+   ilustrado, para que "Ver proyectos" quede en la primera pantalla. Mientras
+   no haya foto, el panel es más bajo porque solo cumple una función decorativa. */
+@media (max-width:620px){
+  .hero__grid{grid-template-areas:"texto" "pie" "visual";row-gap:22px}
+  .hero__visual{margin:18px 0 8px}
+  .hero__panel:not(:has(img)){aspect-ratio:5/4}
+}
+
+/* Número de tarjeta con contraste suficiente sobre los fondos azules */
+.t-cobalto .obra__num{color:#fff}
+.t-cielo .obra__num{color:var(--azul-tinta)}
+
+/* Las vistas previas de cada tarjeta solo aparecen al pasar el cursor; en
+   pantallas táctiles no se muestran ni se descargan */
+@media (hover:none){.obra__vistazo{display:none}}

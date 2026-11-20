@@ -1,0 +1,29 @@
+/* Imagen para compartir: tipografías y colores del portafolio */
+@font-face { font-family: "Anton"; src: url(../../assets/fonts/anton-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Manrope"; src: url(../../assets/fonts/manrope-latin-wght-normal.woff2) format("woff2"); font-weight: 200 800; }
+@font-face { font-family: "JetBrains Mono"; src: url(../../assets/fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2"); }
+
+html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+.tarjeta {
+  --fondo: #0d1733; --texto: #f3efe6; --acento: #ffc83d;
+  box-sizing: border-box; width: 1200px; height: 630px; padding: 0 0 0 72px;
+  display: grid; grid-template-columns: 1fr 520px; gap: 48px; align-items: center;
+  background: var(--fondo); color: var(--texto); font-family: "Manrope", sans-serif; overflow: hidden;
+}
+.tarjeta__texto { box-sizing: border-box; display: grid; gap: 22px; align-content: center; height: 100%; padding: 64px 0; min-width: 0; }
+.tarjeta__firma { margin: 0; font-family: "JetBrains Mono", monospace; font-size: 20px; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+.tarjeta__firma span { color: var(--acento); }
+.tarjeta__titulo { margin: 0; font-family: "Anton", sans-serif; font-weight: 400; text-transform: uppercase; font-size: 96px; line-height: .98; letter-spacing: .005em; }
+.tarjeta__titulo.largo { font-size: 76px; }
+.tarjeta__disciplina { margin: 0; font-family: "JetBrains Mono", monospace; font-size: 22px; letter-spacing: .1em; text-transform: uppercase; color: var(--acento); }
+.tarjeta__url { margin: 18px 0 0; font-size: 20px; opacity: .65; }
+
+/* Imagen del proyecto: una pieza grande, o tres piezas escalonadas en la portada general */
+.tarjeta__imagenes { position: relative; height: 630px; }
+.tarjeta__imagenes img { position: absolute; display: block; object-fit: cover; border-radius: 18px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .6); }
+.una img { top: 50px; right: 64px; width: 424px; height: 530px; }
+.una.ancha img { top: 138px; right: 24px; width: 496px; height: 354px; }
+.tres img { width: 220px; height: 275px; }
+.tres img:nth-child(1) { top: 70px; left: 0; transform: rotate(-5deg); }
+.tres img:nth-child(2) { top: 190px; left: 150px; transform: rotate(3deg); z-index: 2; }
+.tres img:nth-child(3) { top: 80px; left: 295px; transform: rotate(-2deg); }

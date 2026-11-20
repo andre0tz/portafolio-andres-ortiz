@@ -83,6 +83,31 @@ Vive en `brandbook/the-old-barber/`. Reutiliza `brandbook.css` y `brandbook.js` 
 
 El caso usa una sección `tipo: "revista"` (ver `assets/js/revista.js`). Cada pieza es una página en orden de lectura y `pliegos` lleva el título y los folios de cada par de páginas. El giro de página lo hace la librería StPageFlip, que se carga desde jsDelivr solo al abrir este caso; si no carga, los pliegos cambian con un fundido. Para sumar páginas, exporta cada pliego partido en dos imágenes (`pagina-N.webp` y `mini-N.webp`) dentro de `assets/proyectos/revista-once-upon-a-time/` y agrégalas a `piezas` y `pliegos`.
 
+## Vistas al compartir
+
+Los enlaces con `#` (por ejemplo `#caso/ink-house`) siempre muestran la vista general al pegarlos en WhatsApp, LinkedIn o Facebook, porque esas plataformas ignoran todo lo que va después de `#`. Por eso cada proyecto publicado con portada tiene una página para compartir en `p/<slug>/`, con su propio título, descripción e imagen, que lleva directo al caso:
+
+`https://andre0tz.github.io/portafolio-andres-ortiz/p/ink-house/`
+
+Cuando agregues o cambies un proyecto, vuelve a generar las páginas y las imágenes (1200 × 630) desde la raíz del repositorio:
+
+```
+node herramientas/compartir/paginas.js
+node herramientas/compartir/imagenes.js
+```
+
+El segundo comando necesita Playwright (`npm i -D playwright`). La plantilla de la imagen está en `herramientas/compartir/tarjeta.html` y `tarjeta.css`.
+
+## Imágenes ligeras
+
+Las tarjetas de la portada usan versiones reducidas de sus imágenes. Después de cambiar una portada o un `vistazo`, ejecuta:
+
+```
+python3 herramientas/miniaturas.py
+```
+
+Crea las copias en `assets/miniaturas/` y actualiza `assets/js/miniaturas.js`. Si una imagen no tiene miniatura, el sitio usa la original.
+
 ## Estructura
 
 ```

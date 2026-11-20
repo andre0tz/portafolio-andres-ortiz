@@ -161,8 +161,14 @@
     { span: 4, filas: 1 }, { span: 4, filas: 1 }, { span: 4, filas: 1 }
   ];
 
+  // Versión ligera de una imagen si herramientas/miniaturas.py la generó (miniaturas.js)
+  function mini(src) { var m = window.MINIATURAS && window.MINIATURAS[src]; return m ? m.src : src; }
+
   function portadaHTML(p, i) {
-    if (p.portada) return '<div class="obra__portada"><img src="' + esc(p.portada) + '" alt="" loading="lazy" decoding="async"' + (p.portadaPos ? ' style="object-position:' + esc(p.portadaPos) + '"' : '') + '></div>';
+    // La portada usa la versión de 900 px en pantallas chicas y la original en las grandes
+    var m = window.MINIATURAS && window.MINIATURAS[p.portada];
+    var fuentes = m ? ' srcset="' + esc(m.src) + ' ' + m.ancho + 'w, ' + esc(p.portada) + ' ' + m.original + 'w" sizes="(max-width:620px) 100vw, (max-width:980px) 50vw, 58vw"' : '';
+    if (p.portada) return '<div class="obra__portada"><img src="' + esc(p.portada) + '"' + fuentes + ' alt="" loading="lazy" decoding="async"' + (p.portadaPos ? ' style="object-position:' + esc(p.portadaPos) + '"' : '') + '></div>';
     return '<div class="obra__portada"><span class="obra__numero" aria-hidden="true">' + numero(i) + '</span></div>';
   }
 
@@ -181,7 +187,7 @@
       '</div>' +
       '<span class="obra__flecha" aria-hidden="true"><svg><use href="#i-flecha"/></svg></span>' +
       (p.vistazo && p.vistazo.length ? '<div class="obra__vistazo" aria-hidden="true">' + p.vistazo.slice(0, 3).map(function (v, k) {
-        return '<img src="' + esc(v) + '" alt="" loading="lazy" decoding="async" style="--k:' + k + '">';
+        return '<img src="' + esc(mini(v)) + '" alt="" loading="lazy" decoding="async" style="--k:' + k + '">';
       }).join('') + '</div>' : '') +
       '<span class="obra__chip">' + (p.publicado === false ? '<span class="chip-borrador">Borrador</span>' : '') +
         (p.portada ? '' : '<span class="chip-pendiente">Portada pendiente</span>') + '</span>' +
