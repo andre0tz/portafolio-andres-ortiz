@@ -1668,3 +1668,37 @@ html:not(.ver-pendientes) .hueco--foto{display:none}
 /* Las vistas previas de cada tarjeta solo aparecen al pasar el cursor; en
    pantallas táctiles no se muestran ni se descargan */
 @media (hover:none){.obra__vistazo{display:none}}
+
+/* =====================================================================
+   32. FLECHAS, TEXTO BLANCO E INTERLINEADO EN LOS CASOS
+   ===================================================================== */
+/* La flecha de cada tarjeta es decorativa: deja pasar el clic al enlace
+   que está debajo, así abrir el proyecto funciona también desde la flecha */
+.obra__flecha{pointer-events:none}
+
+/* Texto de cuerpo en blanco puro siempre que el fondo es oscuro:
+   todos los casos en tema oscuro, y en tema claro los que tienen fondo
+   oscuro fijo (portada de Generación Diferente, Videos y la revista).
+   Los acentos de color, títulos y piezas simuladas conservan su color. */
+:is([data-theme="oscuro"] .caso__lienzo, .caso__lienzo.paleta-oat, .caso__lienzo.paleta-gdi .caso__cabeza, .caso__lienzo:not([class*="paleta-"]) .caso__cabeza) :is(
+  .caso__resumen, .caso__aclaracion, .caso__fichas dd, .fichas dd, .sec-cab__nota,
+  .decision p, .resultado p, .objeto__desc, .portal__etq, .carrusel-pieza figcaption span,
+  .vitrina__desc, .vt__resumen, .vt__datos dd, .vt__decisiones p, .revista__ayuda, .caso__fichas dd li
+){color:#fff}
+.caso__lienzo.paleta-oat :is(.caso__resumen,.caso__aclaracion,.caso__fichas dd,.sec-cab__nota,.decision p,.revista__ayuda){color:#fff}
+
+/* Interlineado: los títulos condensados dejan aire suficiente para los
+   acentos (Ó, Á) y los párrafos usan un ritmo común y cómodo */
+.caso__titulo{line-height:1}
+.sec-cab__titulo{line-height:1}
+.decision h4{line-height:1.2}
+.caso__fichas dd,.fichas dd,.objeto__desc,.vitrina__desc,.vt__resumen,.carrusel-pieza figcaption span{line-height:1.65}
+.decision p,.resultado p,.sec-cab__nota,.caso__aclaracion{line-height:1.7}
+/* Listas, títulos de decisiones y etiquetas sobre fondo oscuro: blanco puro en lugar de crema */
+:is([data-theme="oscuro"] .caso__lienzo, .caso__lienzo.paleta-oat) :is(dd li, .decision h4, .caso__chips .chip:not(.chip--fuerte)){color:#fff}
+.caso__lienzo.paleta-gdi .caso__cabeza .caso__chips .chip:not(.chip--fuerte){color:#fff}
+/* Tarjetas con foto: el texto se apoya abajo con flex en lugar de posicionarse.
+   Así el área clicable del enlace (su ::after) cubre la tarjeta completa
+   y no solo la franja del título */
+.obra--foto{display:flex;flex-direction:column;justify-content:flex-end}
+.obra--foto .obra__info{position:static}

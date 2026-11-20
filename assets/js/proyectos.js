@@ -213,7 +213,7 @@ window.PROYECTOS = [
     cuenta: { nombre: "generacióndiferente", iniciales: "GD", foto: "assets/proyectos/generacion-diferente/perfil-2.webp", color: "#0b0b0c", descripcion: "Grupo juvenil cristiano" },
     cinta: ["Concepto", "Logotipo", "Retícula", "Color", "Tipografía", "Guía de uso", "Redes sociales", "Aplicaciones"],
     resumen: "Identidad visual completa para un grupo de jóvenes cristianos: símbolo, logotipo, color, tipografía, guía de uso y aplicaciones en redes y objetos.",
-    contexto: "Generación Diferente reúne a jóvenes cristianos que comparten su fe en reuniones, cultos y redes sociales. La identidad debía transmitir energía y convicción, hablarle a un público joven con su propio lenguaje y mantenerse reconocible en Facebook, Instagram, impresos y objetos.",
+    contexto: "Generación Diferente reúne a jóvenes cristianos que comparten su fe en reuniones, cultos y redes. La identidad debía transmitir energía, hablar su lenguaje y reconocerse en cualquier soporte.",
     objetivo: "Crear un símbolo con significado para el grupo y un sistema visual que funcione en redes, impresos y objetos sin perder coherencia.",
     participacion: "Diseñé toda la identidad: concepto, logotipo y sus versiones, retícula, paleta, tipografía, guía de uso, portada y foto de perfil, publicaciones y aplicaciones.",
     concepto: "Una llama encendida: el fuego del Espíritu Santo que se reparte entre muchas personas y que no se apaga cuando se comparte.",
@@ -229,20 +229,20 @@ window.PROYECTOS = [
     secciones: [
       { titulo: "Redes sociales", tipo: "facebook",
         encabezado: { ante: "Facebook", linea1: "Portada y", linea2: "foto de perfil" },
-        nota: "La portada centra el nombre y lo enmarca con tres figuras: dos jóvenes en oración, contorneados en naranja y azul, y una figura central con los brazos en alto. Las tiras de papel rasgado dividen la escena y conectan con las publicaciones. La foto de perfil repite la llama sobre el público y cierra el conjunto.",
+        nota: "La portada enmarca el nombre con tres figuras: dos jóvenes en oración, contorneados en naranja y azul, y una al centro con los brazos en alto. Las tiras de papel rasgado la conectan con las publicaciones.",
         piezas: [
           { src: "assets/proyectos/generacion-diferente/portada-facebook.webp", archivo: "portada-facebook.webp", titulo: "Portada de Facebook", alt: "Portada de Facebook de Generación Diferente", formato: "portada" },
           { src: "assets/proyectos/generacion-diferente/perfil-2.webp", archivo: "perfil-2.webp", titulo: "Foto de perfil", alt: "Foto de perfil de Generación Diferente", formato: "cuadrado" } ] },
       { titulo: "Publicaciones", tipo: "feed",
         encabezado: { ante: "Publicaciones para Instagram", linea1: "Se reconoce", linea2: "antes de leerse" },
-        nota: "Anunciar una reunión, invitar a un culto o compartir un momento: cada publicación resuelve una necesidad distinta. Cambian el formato y la fotografía, pero el negro, el naranja, la letra gastada y la llama al pie se mantienen, y el feed se identifica a primera vista.",
+        nota: "Cada publicación cumple una función distinta: anunciar una reunión, invitar a un culto o compartir un momento. El negro, el naranja, la letra gastada y la llama al pie hacen que el feed se reconozca a primera vista.",
         piezas: [
           { src: "assets/proyectos/generacion-diferente/post-1.webp", archivo: "post-1.webp", titulo: "Reunión de jóvenes", alt: "Publicación: Reunión de jóvenes", desc: "Collage de papel rasgado con fotografías del público y la fecha en grande. Retoma las tiras rasgadas de la portada de Facebook.", formato: "vertical" },
           { src: "assets/proyectos/generacion-diferente/post-2.webp", archivo: "post-2.webp", titulo: "Culto de jóvenes", alt: "Publicación: Culto de jóvenes", desc: "Invitación directa: título en blanco y naranja, y los datos organizados en tres bloques que se leen de un vistazo.", formato: "vertical" },
           { src: "assets/proyectos/generacion-diferente/post-3.webp", archivo: "post-3.webp", titulo: "La llama como marco", alt: "Publicación con la llama como marco", desc: "La llama se convierte en un trazo naranja que envuelve la fotografía. El isotipo firma la pieza al pie.", formato: "vertical" } ] },
       { titulo: "Aplicaciones", tipo: "objetos",
         encabezado: { ante: "Aplicaciones", linea1: "La llama fuera", linea2: "de la pantalla" },
-        nota: "Cada objeto utiliza la versión del logotipo que mejor responde a su material, tamaño y uso: la llama sola donde el espacio es reducido, la versión horizontal en soportes alargados y el logotipo completo donde hay superficie suficiente.",
+        nota: "Cada objeto usa la versión del logotipo que mejor se adapta a su tamaño: la llama sola en espacios reducidos, la horizontal en soportes alargados y el logotipo completo donde hay superficie.",
         piezas: [
           { src: "assets/proyectos/generacion-diferente/cuaderno-1.webp", archivo: "cuaderno-1.webp", titulo: "Cuaderno", alt: "Cuaderno con la identidad de Generación Diferente", desc: "Para notas de estudio y reuniones. El logotipo ocupa el centro y las salpicaduras naranjas traducen la energía de la llama a una textura.", formato: "vertical" },
           { src: "assets/proyectos/generacion-diferente/playeras.webp", archivo: "playeras.webp", titulo: "Playeras", alt: "Playeras con la identidad de Generación Diferente", desc: "Logotipo pequeño al frente para el uso diario y completo en la espalda, para identificar al grupo a distancia.", formato: "horizontal" },
@@ -283,7 +283,7 @@ window.PROYECTOS = [
     resumen: "Identidad visual y línea de publicaciones para Instagram de una barbería conceptual que combina el oficio tradicional con una imagen actual.",
     contexto: "The Old Barber es una barbería planteada como caso de estudio: un negocio nuevo que necesita presentarse en Instagram con una imagen propia, reconocible desde la primera publicación y capaz de convertir seguidores en citas.",
     objetivo: "Construir una presencia en redes que comunicara servicios, horarios y promociones con claridad, y que al mismo tiempo transmitiera el carácter de una barbería clásica.",
-    participacion: "Desarrollé la identidad visual completa y la llevé a redes sociales. Definí la plantilla de las publicaciones, la jerarquía de la información y el uso del color y la tipografía; diseñé seis publicaciones con objetivos distintos, dos historias de contenido útil, la portada y la foto de perfil de Facebook, y planeé la parrilla intercalando fotografía de stock con los diseños.",
+    participacion: "Desarrollé la identidad visual y la llevé a redes: plantilla de publicaciones, jerarquía, color y tipografía. Diseñé seis publicaciones, dos historias, la portada y la foto de perfil de Facebook, y planeé la parrilla.",
     concepto: "",
     encabezadoDecisiones: { ante: "Decisiones de diseño", linea1: "Así funciona", linea2: "en el feed" },
     decisiones: [
@@ -298,7 +298,7 @@ window.PROYECTOS = [
       { titulo: "Publicaciones", tipo: "escaparate",
         encabezado: { ante: "Instagram", linea1: "Del scroll", linea2: "al sillón" },
         unidad: "publicaciones",
-        nota: "Cada publicación responde a un objetivo de negocio distinto: llenar la agenda, presentar un servicio, generar interacción, vender un producto, aportar un consejo o impulsar una promoción. En el perfil, cada fila combina dos diseños y una fotografía que avanza en diagonal, así la cuenta alterna información y respiro visual y se lee como una sola composición.",
+        nota: "Cada publicación cumple un objetivo distinto: llenar la agenda, presentar un servicio, generar interacción, vender, aconsejar o promocionar. En el perfil, dos diseños y una fotografía por fila mantienen el feed ordenado.",
         ayuda: "Toca una publicación en el perfil o en la lista para verla al frente",
         parrilla: [
           { src: "assets/proyectos/the-old-barber/post-7.webp", archivo: "post-7.webp", alt: "Fotografía de barbero trabajando", foto: true },
@@ -321,14 +321,14 @@ window.PROYECTOS = [
         ] },
       { titulo: "Historias", tipo: "historias",
         encabezado: { ante: "Historias de Instagram", linea1: "Consejos", linea2: "que se guardan" },
-        nota: "Las historias llevan la marca a un formato vertical y de consumo rápido. En lugar de promocionar, resuelven dudas frecuentes con pasos y comparaciones breves, apoyadas en iconos y separadores amarillos que ordenan la lectura. Cada una cierra con una frase en recuadro que invita a responder o a pasar por la barbería.",
+        nota: "Las historias resuelven dudas frecuentes con pasos y comparaciones breves. Iconos y separadores amarillos ordenan la lectura, y cada una cierra con una invitación a responder o a visitar la barbería.",
         piezas: [
           { src: "assets/proyectos/the-old-barber/historia-1.webp", archivo: "historia-1.webp", titulo: "Barba sana en 3 pasos", alt: "Historia: barba sana en 3 pasos", formato: "historia", desc: "Tres pasos numerados por iconos, separados con líneas amarillas. La fotografía ocupa la mitad superior y la información se concentra abajo, donde el pulgar descansa al ver historias." },
           { src: "assets/proyectos/the-old-barber/historia-2.webp", archivo: "historia-2.webp", titulo: "¿Qué producto te conviene?", alt: "Historia: qué producto te conviene", formato: "historia", desc: "Compara pomada, cera y polvo con una fórmula directa: producto igual a resultado. Los productos al centro anticipan la respuesta y el cierre orienta la decisión de compra." }
         ] },
       { titulo: "Facebook", tipo: "facebook",
         encabezado: { ante: "Facebook", linea1: "La misma marca", linea2: "en otro formato" },
-        nota: "La portada traslada la identidad al formato horizontal: el monograma a la izquierda, los servicios al centro y la fotografía como fondo, con la llamada a agendar en amarillo. La foto de perfil coloca el monograma sobre la barbería en blanco y negro, para que se reconozca aun en tamaño pequeño.",
+        nota: "La portada lleva la identidad al formato horizontal: monograma, servicios y la llamada a agendar en amarillo. La foto de perfil pone el monograma sobre la barbería en blanco y negro, para reconocerse aun en tamaño pequeño.",
         piezas: [
           { src: "assets/proyectos/the-old-barber/facebook-portada.webp", archivo: "facebook-portada.webp", titulo: "Portada de Facebook", alt: "Portada de Facebook: cortes, barba y estilo", formato: "horizontal", desc: "Servicios, frase de marca y llamada a la acción en una sola franja horizontal." },
           { src: "assets/proyectos/the-old-barber/facebook-perfil.webp", archivo: "facebook-perfil.webp", titulo: "Foto de perfil", alt: "Foto de perfil con el monograma OB", formato: "cuadrado", desc: "El monograma amarillo sobre fotografía en blanco y negro de la barbería." }
@@ -357,17 +357,17 @@ window.PROYECTOS = [
     cuenta: { nombre: "Ink House", iniciales: "IH", color: "#ff6a13", foto: "assets/proyectos/ink-house/perfil.webp" },
     resumen: "Redes sociales de una agencia de diseño y publicidad: promociones de temporada, contenido de marca y el lanzamiento de dos servicios nuevos.",
     aclaracion: "Aquí muestro una selección de algunos proyectos que realicé, no la totalidad de mi trabajo en la agencia.",
-    contexto: "Ink House Diseño y Publicidad es una agencia de Pachuca. Trabajé ahí de enero de 2025 a febrero de 2026 como diseñador gráfico y community manager, a cargo de sus redes y de las de varios clientes. Cuando llegué, la agencia publicaba de forma ocasional y sin un plan.",
-    objetivo: "Publicar con constancia para mantener una presencia activa, vender los servicios de la agencia y mostrarla como un estudio creativo, sin salir de su identidad: dibujos animados y colores amarillo, naranja y azul.",
-    participacion: "Planeé el contenido en Google Sheets a partir de las fechas conmemorativas de México y presentaba cada idea para su aprobación. Con la idea aprobada, escribía los textos y diseñaba las piezas en Illustrator; mis jefes revisaban el resultado final. Las promociones las armaba con la información que me daba el equipo. Al mismo tiempo llevaba las cuentas de otros clientes, así que organizaba el trabajo por la fecha de entrega más próxima.",
+    contexto: "Agencia de diseño y publicidad en Pachuca. Trabajé ahí de enero de 2025 a febrero de 2026 como diseñador gráfico y community manager. Cuando llegué, la agencia publicaba de forma ocasional y sin un plan.",
+    objetivo: "Publicar con constancia, vender los servicios de la agencia y mostrarla como un estudio creativo, dentro de su identidad: dibujos animados en amarillo, naranja y azul.",
+    participacion: "Planeé el contenido en Google Sheets a partir de fechas conmemorativas, escribí los textos y diseñé las piezas en Illustrator. Mis jefes aprobaban cada idea y el resultado final. Al mismo tiempo llevaba otras cuentas, así que priorizaba por fecha de entrega.",
     concepto: "",
     encabezadoDecisiones: { ante: "Decisiones de diseño", linea1: "Por qué", linea2: "se ve así" },
     decisiones: [
-      { titulo: "El calendario como punto de partida", texto: "Cada publicación partía de una fecha conmemorativa de México, como el Día del Comunicólogo, el Día del Mercadólogo, el Día de la Hamburguesa o el Día de Pac-Man. El reto era encontrar en cada fecha una relación con el diseño gráfico. Así había un motivo nuevo para publicar cada semana y los temas no se repetían." },
-      { titulo: "Menos es más en las promociones", texto: "La primera propuesta presentaba los precios como elementos colgantes. La cambiamos por una composición más limpia, con la oferta en texto grande, porque la gente quiere saber de inmediato cuánto cuesta algo. Además hicimos dos versiones de cada promoción, una navideña y otra del Buen Fin, para comparar cuál atraía más clientes." },
-      { titulo: "La IA como apoyo, no como sustituto", texto: "Las ilustraciones de los carruseles se generaron con inteligencia artificial y después las adapté al estilo de la marca. La composición, la tipografía, los textos y el armado de cada pieza los hice en Illustrator. La herramienta ahorró tiempo en la ilustración; las decisiones de diseño siguieron siendo mías." },
-      { titulo: "Un ejemplo concreto para vender tecnología", texto: "Para presentar el servicio de apps elegí el caso de los restaurantes, uno de los sectores que más las usa para reservaciones, pedidos y entregas. El servicio también iba dirigido a otros giros, pero un ejemplo cercano lo hacía fácil de entender. La interfaz que aparece en las piezas es una maqueta existente." },
-      { titulo: "Un color para cada paquete", texto: "En las invitaciones digitales, cada paquete tiene un color relacionado con su temática y ninguno se repite. Así se distinguen a simple vista antes de leer el precio. Las invitaciones que aparecen en el celular son ejemplos para presentar el servicio." }
+      { titulo: "El calendario como punto de partida", texto: "Cada publicación partía de una fecha conmemorativa, como el Día del Comunicólogo o el Día de Pac-Man, y la relacionaba con el diseño gráfico. Así siempre había un motivo nuevo para publicar." },
+      { titulo: "Menos es más en las promociones", texto: "La primera propuesta mostraba los precios colgando. La cambiamos por la oferta en texto grande, porque la gente quiere saber el precio de inmediato. Cada promoción tuvo dos versiones para comparar cuál atraía más clientes." },
+      { titulo: "La IA como apoyo, no como sustituto", texto: "Las ilustraciones de los carruseles se generaron con inteligencia artificial y las adapté al estilo de la marca. La composición, la tipografía, los textos y el armado de cada pieza los hice en Illustrator." },
+      { titulo: "Un ejemplo concreto para vender tecnología", texto: "Para presentar el servicio de apps elegí los restaurantes, uno de los sectores que más las usan para reservaciones, pedidos y entregas. Un ejemplo cercano hacía fácil de entender un servicio técnico." },
+      { titulo: "Un color para cada paquete", texto: "Cada paquete de invitaciones digitales tiene un color ligado a su temática, sin repetirse, para distinguirlos antes de leer el precio." }
     ],
     entregables: [],
     resultados: [
@@ -378,7 +378,7 @@ window.PROYECTOS = [
     secciones: [
       { titulo: "Promociones", tipo: "feed",
         encabezado: { ante: "Promociones de temporada", linea1: "Precios que", linea2: "saltan a la vista" },
-        nota: "Para El Buen Fin y la temporada navideña, la agencia necesitaba que sus ofertas se entendieran en el segundo que alguien tarda en pasar una publicación. El precio en tipografía grande y en color de acento es lo primero que se lee, el producto queda en segundo nivel y las condiciones al final. Los copos de nieve y el sello del Buen Fin ubican la temporada sin competir con la oferta. Cada promoción tuvo dos versiones para comparar cuál funcionaba mejor.",
+        nota: "En El Buen Fin y Navidad, las ofertas debían entenderse en un segundo. El precio grande y en color de acento se lee primero, después el producto y al final las condiciones.",
         ayuda: "Cada publicación se amplía al seleccionarla",
         piezas: [
           { src: "assets/proyectos/ink-house/promocion-8.webp", archivo: "promocion-8.webp", titulo: "Playeras para parejas personalizadas", alt: "Playeras para parejas personalizadas", formato: "vertical" },
@@ -391,7 +391,7 @@ window.PROYECTOS = [
           { src: "assets/proyectos/ink-house/promocion-7.webp", archivo: "promocion-7.webp", titulo: "Tarjetas de presentación, versión Buen Fin", alt: "Tarjetas de presentación, versión Buen Fin", formato: "vertical" } ] },
       { titulo: "Carruseles para redes", tipo: "carruseles",
         encabezado: { ante: "Carruseles de diseño gráfico", linea1: "Ideas que", linea2: "se deslizan" },
-        nota: "Cada carrusel nació de una fecha conmemorativa y la conecta con el diseño gráfico, para mostrar que la disciplina aparece en más lugares de la vida diaria de los que parece. Respetan la identidad de la agencia: personajes de caricatura, colores amarillo y naranja, y frases con palabras resaltadas. Las ilustraciones se generaron con inteligencia artificial; los textos, la composición y el armado de cada lámina son míos.",
+        nota: "Cada carrusel conecta una fecha conmemorativa con el diseño gráfico, con el estilo de caricatura de la agencia y frases con palabras resaltadas.",
         ayuda: "Cada carrusel se desliza como en Instagram",
         carruseles: [
         { titulo: "Comunicólogos", desc: "Felicitación por el día del comunicólogo que pasa del humor al reconocimiento: sin comunicólogos no hay marcas ni medios.", piezas: [
@@ -415,7 +415,7 @@ window.PROYECTOS = [
       ] },
       { titulo: "Apps digitales", tipo: "escenario",
         encabezado: { ante: "Campaña de apps para negocios", linea1: "Del antojo", linea2: "al pedido" },
-        nota: "Ink House iba a sumar un servicio nuevo: crear aplicaciones para negocios. Un servicio tecnológico cuesta trabajo explicarlo en abstracto, así que la campaña lo aterrizó en un caso de uso concreto, una app para restaurantes. La primera pieza presenta la idea; las otras dos explican qué gana el restaurante y qué gana su cliente, con la interfaz de la app al centro (una maqueta existente) para que el servicio se entienda sin tecnicismos.",
+        nota: "Para lanzar el servicio de apps para negocios, la campaña lo aterrizó en un caso concreto: un restaurante. La primera pieza presenta la idea y las otras dos muestran qué ganan el negocio y su cliente. La interfaz es una maqueta existente.",
         ayuda: "Avanza con deslizamiento o con las flechas; la pieza central se amplía al seleccionarla",
         piezas: [
           { src: "assets/proyectos/ink-house/apps-1.webp", archivo: "apps-1.webp", titulo: "Haz que tus clientes pidan con solo un clic", alt: "Haz que tus clientes pidan con solo un clic", formato: "vertical" },
@@ -423,7 +423,7 @@ window.PROYECTOS = [
           { src: "assets/proyectos/ink-house/apps-3.webp", archivo: "apps-3.webp", titulo: "Beneficios para tus clientes", alt: "Beneficios para tus clientes", formato: "vertical" } ] },
       { titulo: "Invitaciones digitales", tipo: "abanico",
         encabezado: { ante: "Lanzamiento de invitaciones digitales", linea1: "Un paquete", linea2: "para cada fiesta" },
-        nota: "Las invitaciones digitales eran otro servicio nuevo de la agencia y había que presentarlas como una opción moderna y práctica frente a la invitación impresa. Cada pieza muestra una invitación de ejemplo dentro de un celular, que es donde la recibe el invitado. Los paquetes se distinguen por color y precio, y unos íconos resumen lo que incluye cada uno, como cuenta regresiva, música o confirmación por WhatsApp, sin saturar la publicación.",
+        nota: "Las invitaciones digitales se presentaron como una opción práctica frente a la impresa. Cada pieza muestra una invitación de ejemplo en un celular, y los íconos resumen lo que incluye cada paquete.",
         ayuda: "Los cuatro paquetes se despliegan al pasar el cursor o al deslizar",
         piezas: [
           { src: "assets/proyectos/ink-house/invitaciones-1.webp", archivo: "invitaciones-1.webp", titulo: "Paquete Elite", alt: "Paquete Elite", formato: "vertical" },
@@ -466,7 +466,7 @@ window.PROYECTOS = [
     secciones: [
       { titulo: "Publicaciones", tipo: "feed",
         encabezado: { ante: "Publicaciones para el feed", linea1: "Lo que vive", linea2: "en el feed" },
-        nota: "Las publicaciones presentan el procedimiento paso a paso: qué es, por qué se hace, quién puede ser candidato y qué cambios atiende. Las promociones del Buen Fin conservan la misma estructura gráfica para que se reconozcan como parte de la cuenta y no como un anuncio aislado.",
+        nota: "Las publicaciones explican el procedimiento paso a paso: qué es, por qué se hace y quién puede ser candidato. Las promociones del Buen Fin conservan la misma estructura para reconocerse como parte de la cuenta.",
         ayuda: "Cada publicación se amplía al seleccionarla",
         piezas: [
           { src: "assets/proyectos/blefaroplastia-pachuca/publicacion-1.webp", archivo: "publicacion-1.webp", titulo: "¿Por qué hacerse una blefaroplastia?", alt: "¿Por qué hacerse una blefaroplastia?", formato: "vertical" },

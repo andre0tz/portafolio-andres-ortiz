@@ -25,7 +25,7 @@
   --tinta: #17140f;
   --tinta-2: #5a5348;
   --hueso: #f3efe6;
-  --hueso-2: #a9a49b;
+  --hueso-2: #FFFFFF;          /* texto de cuerpo sobre fondos oscuros: blanco puro */
   --linea-noche: rgba(243, 239, 230, .12);
   --linea-papel: rgba(23, 20, 15, .14);
   --display: "Anton", "Arial Narrow", Impact, sans-serif;
